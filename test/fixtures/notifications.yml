@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  title: MyString
+  message: MyText
+  notification_type: MyString
+  read: false
+  data: 
+  scholarship: one
+  sent_at: 2025-07-01 12:52:59
+
+two:
+  user: two
+  title: MyString
+  message: MyText
+  notification_type: MyString
+  read: false
+  data: 
+  scholarship: two
+  sent_at: 2025-07-01 12:52:59

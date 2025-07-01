@@ -1,0 +1,45 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  institution: one
+  title: MyString
+  description: MyText
+  requirements: MyText
+  benefits: MyText
+  level: MyString
+  field_of_study: MyString
+  country: MyString
+  city: MyString
+  pourcentage: 9.99
+  scholarship_type: MyString
+  duration_months: 1
+  application_deadline: 2025-07-01
+  program_start_date: 2025-07-01
+  language: MyString
+  age_min: 1
+  age_max: 1
+  gender_requirement: MyString
+  external_application_url: MyString
+  active: false
+
+two:
+  institution: two
+  title: MyString
+  description: MyText
+  requirements: MyText
+  benefits: MyText
+  level: MyString
+  field_of_study: MyString
+  country: MyString
+  city: MyString
+  pourcentage: 9.99
+  scholarship_type: MyString
+  duration_months: 1
+  application_deadline: 2025-07-01
+  program_start_date: 2025-07-01
+  language: MyString
+  age_min: 1
+  age_max: 1
+  gender_requirement: MyString
+  external_application_url: MyString
+  active: false
