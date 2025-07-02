@@ -4546,3 +4546,215 @@ Processing by ScholarshipsController#show as HTML
 Completed 200 OK in 55ms (Views: 18.8ms | ActiveRecord: 2.0ms (2 queries, 0 cached) | GC: 0.1ms)
 
 
+Started GET "/scholarships?query=aze&country=France&level=Licence" for 127.0.0.1 at 2025-07-02 20:57:53 +0200
+Processing by ScholarshipsController#index as HTML
+  Parameters: {"query"=>"aze", "country"=>"France", "level"=>"Licence"}
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (24.6ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" INNER JOIN (SELECT "scholarships"."id" AS pg_search_id, (ts_rank((to_tsvector('simple', coalesce(("scholarships"."title")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."description")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."field_of_study")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."level")::text, ''))), (to_tsquery('simple', ''' ' || 'aze' || ' ''' || ':*')), 0)) AS rank FROM "scholarships" WHERE ((to_tsvector('simple', coalesce(("scholarships"."title")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."description")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."field_of_study")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."level")::text, ''))) @@ (to_tsquery('simple', ''' ' || 'aze' || ' ''' || ':*'))) OR ('aze' % (coalesce(("scholarships"."title")::text, '') || ' ' || coalesce(("scholarships"."description")::text, '') || ' ' || coalesce(("scholarships"."field_of_study")::text, '') || ' ' || coalesce(("scholarships"."level")::text, '')))) AS pg_search_bf1eff5757c95c272e8ed0 ON "scholarships"."id" = pg_search_bf1eff5757c95c272e8ed0.pg_search_id LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:253
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 91.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 92.3ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 192ms (ActiveRecord: 39.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActionView::Template::Error (PG::UndefinedFunction: ERROR:  operator does not exist: unknown % text
+LINE 1: ...le', ''' ' || 'aze' || ' ''' || ':*'))) OR ('aze' % (coalesc...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+)
+Caused by: ActiveRecord::StatementInvalid (PG::UndefinedFunction: ERROR:  operator does not exist: unknown % text
+LINE 1: ...le', ''' ' || 'aze' || ' ''' || ':*'))) OR ('aze' % (coalesc...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+)
+Caused by: PG::UndefinedFunction (ERROR:  operator does not exist: unknown % text
+LINE 1: ...le', ''' ' || 'aze' || ' ''' || ':*'))) OR ('aze' % (coalesc...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+)
+
+Information for: ActionView::Template::Error (PG::UndefinedFunction: ERROR:  operator does not exist: unknown % text
+LINE 1: ...le', ''' ' || 'aze' || ' ''' || ':*'))) OR ('aze' % (coalesc...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+):
+    250:                     Découvrez les opportunités de bourses d'études disponibles
+    251:                 </p>
+    252:             </div>
+    253:                  <% if @scholarships.empty? %>
+    254:                               <!-- Empty State -->
+    255:                 <div id="emptyState" class="text-center py-12 ">
+    256:                     <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+  
+
+Information for cause: ActiveRecord::StatementInvalid (PG::UndefinedFunction: ERROR:  operator does not exist: unknown % text
+LINE 1: ...le', ''' ' || 'aze' || ' ''' || ':*'))) OR ('aze' % (coalesc...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+):
+  
+
+Information for cause: PG::UndefinedFunction (ERROR:  operator does not exist: unknown % text
+LINE 1: ...le', ''' ' || 'aze' || ' ''' || ':*'))) OR ('aze' % (coalesc...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+):
+  
+app/views/scholarships/index.html.erb:253
+Started GET "/scholarships/1" for 127.0.0.1 at 2025-07-02 20:58:12 +0200
+Processing by ScholarshipsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mScholarship Load (1.8ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."id" = 1 LIMIT 1 /*action='show',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/controllers/scholarships_controller.rb:11:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/show.html.erb within layouts/application
+  [1m[36mInstitution Load (1.4ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" WHERE "institutions"."id" = 1 LIMIT 1 /*action='show',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/show.html.erb:80
+  Rendered scholarships/show.html.erb within layouts/application (Duration: 25.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 27.5ms | GC: 0.0ms)
+Completed 200 OK in 78ms (Views: 26.7ms | ActiveRecord: 3.7ms (2 queries, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/scholarships/1" for 127.0.0.1 at 2025-07-02 20:58:12 +0200
+Processing by ScholarshipsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mScholarship Load (1.0ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."id" = 1 LIMIT 1 /*action='show',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/controllers/scholarships_controller.rb:11:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/show.html.erb within layouts/application
+  [1m[36mInstitution Load (1.3ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" WHERE "institutions"."id" = 1 LIMIT 1 /*action='show',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/show.html.erb:80
+  Rendered scholarships/show.html.erb within layouts/application (Duration: 17.6ms | GC: 0.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 20.0ms | GC: 0.5ms)
+Completed 200 OK in 66ms (Views: 19.8ms | ActiveRecord: 2.2ms (2 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-07-02 20:58:21 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/zeinabou/.rvm/gems/ruby-3.2.2/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/zeinabou/.rvm/gems/ruby-3.2.2/gems/railties-8.0.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 52ms (Views: 3.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-02 20:58:26 +0200
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:253
+  [1m[36mScholarship Load (0.7ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:273
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 7.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 18.1ms | GC: 7.9ms)
+Completed 200 OK in 54ms (Views: 17.3ms | ActiveRecord: 1.8ms (2 queries, 0 cached) | GC: 7.9ms)
+
+
+Started GET "/scholarships?query=Sciences+Politiques&country=France&level=Master" for 127.0.0.1 at 2025-07-02 21:09:51 +0200
+Processing by ScholarshipsController#index as HTML
+  Parameters: {"query"=>"Sciences Politiques", "country"=>"France", "level"=>"Master"}
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (14.9ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" INNER JOIN (SELECT "scholarships"."id" AS pg_search_id, (ts_rank((to_tsvector('simple', coalesce(("scholarships"."title")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."description")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."field_of_study")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."level")::text, ''))), (to_tsquery('simple', ''' ' || 'Sciences' || ' ''' || ':*') || to_tsquery('simple', ''' ' || 'Politiques' || ' ''' || ':*')), 0)) AS rank FROM "scholarships" WHERE ((to_tsvector('simple', coalesce(("scholarships"."title")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."description")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."field_of_study")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."level")::text, ''))) @@ (to_tsquery('simple', ''' ' || 'Sciences' || ' ''' || ':*') || to_tsquery('simple', ''' ' || 'Politiques' || ' ''' || ':*'))) OR ('Sciences Politiques' % (coalesce(("scholarships"."title")::text, '') || ' ' || coalesce(("scholarships"."description")::text, '') || ' ' || coalesce(("scholarships"."field_of_study")::text, '') || ' ' || coalesce(("scholarships"."level")::text, '')))) AS pg_search_bf1eff5757c95c272e8ed0 ON "scholarships"."id" = pg_search_bf1eff5757c95c272e8ed0.pg_search_id LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:253
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 18.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.9ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 157ms (ActiveRecord: 36.6ms (1 query, 0 cached) | GC: 1.0ms)
+
+
+  
+ActionView::Template::Error (PG::UndefinedFunction: ERROR:  operator does not exist: unknown % text
+LINE 1: ...es' || ' ''' || ':*'))) OR ('Sciences Politiques' % (coalesc...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+)
+Caused by: ActiveRecord::StatementInvalid (PG::UndefinedFunction: ERROR:  operator does not exist: unknown % text
+LINE 1: ...es' || ' ''' || ':*'))) OR ('Sciences Politiques' % (coalesc...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+)
+Caused by: PG::UndefinedFunction (ERROR:  operator does not exist: unknown % text
+LINE 1: ...es' || ' ''' || ':*'))) OR ('Sciences Politiques' % (coalesc...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+)
+
+Information for: ActionView::Template::Error (PG::UndefinedFunction: ERROR:  operator does not exist: unknown % text
+LINE 1: ...es' || ' ''' || ':*'))) OR ('Sciences Politiques' % (coalesc...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+):
+    250:                     Découvrez les opportunités de bourses d'études disponibles
+    251:                 </p>
+    252:             </div>
+    253:                  <% if @scholarships.empty? %>
+    254:                               <!-- Empty State -->
+    255:                 <div id="emptyState" class="text-center py-12 ">
+    256:                     <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+  
+
+Information for cause: ActiveRecord::StatementInvalid (PG::UndefinedFunction: ERROR:  operator does not exist: unknown % text
+LINE 1: ...es' || ' ''' || ':*'))) OR ('Sciences Politiques' % (coalesc...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+):
+  
+
+Information for cause: PG::UndefinedFunction (ERROR:  operator does not exist: unknown % text
+LINE 1: ...es' || ' ''' || ':*'))) OR ('Sciences Politiques' % (coalesc...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+):
+  
+app/views/scholarships/index.html.erb:253
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1425780857168850000) /*application='BourseRadar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BourseRadar'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (9.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='BourseRadar'*/[0m
+Migrating to EnablePgTrgmExtension (20250702191438)
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mBEGIN /*application='BourseRadar'*/[0m
+  [1m[35mSQL (120.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "pg_trgm" /*application='BourseRadar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250702191438') RETURNING "version" /*application='BourseRadar'*/[0m
+  [1m[36mTRANSACTION (9.4ms)[0m  [1m[35mCOMMIT /*application='BourseRadar'*/[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(1425780857168850000) /*application='BourseRadar'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BourseRadar'*/[0m
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-02 21:15:39 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BourseRadar'*/[0m
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:253
+  [1m[36mScholarship Load (20.3ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:273
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 221.6ms | GC: 2.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 278.0ms | GC: 14.8ms)
+Completed 200 OK in 402ms (Views: 216.5ms | ActiveRecord: 81.0ms (2 queries, 0 cached) | GC: 28.1ms)
+
+
+Started GET "/scholarships?query=Sciences+Politiques&country=France&level=Master" for 127.0.0.1 at 2025-07-02 21:15:53 +0200
+Processing by ScholarshipsController#index as HTML
+  Parameters: {"query"=>"Sciences Politiques", "country"=>"France", "level"=>"Master"}
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (78.4ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" INNER JOIN (SELECT "scholarships"."id" AS pg_search_id, (ts_rank((to_tsvector('simple', coalesce(("scholarships"."title")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."description")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."field_of_study")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."level")::text, ''))), (to_tsquery('simple', ''' ' || 'Sciences' || ' ''' || ':*') || to_tsquery('simple', ''' ' || 'Politiques' || ' ''' || ':*')), 0)) AS rank FROM "scholarships" WHERE ((to_tsvector('simple', coalesce(("scholarships"."title")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."description")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."field_of_study")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."level")::text, ''))) @@ (to_tsquery('simple', ''' ' || 'Sciences' || ' ''' || ':*') || to_tsquery('simple', ''' ' || 'Politiques' || ' ''' || ':*'))) OR ('Sciences Politiques' % (coalesce(("scholarships"."title")::text, '') || ' ' || coalesce(("scholarships"."description")::text, '') || ' ' || coalesce(("scholarships"."field_of_study")::text, '') || ' ' || coalesce(("scholarships"."level")::text, '')))) AS pg_search_bf1eff5757c95c272e8ed0 ON "scholarships"."id" = pg_search_bf1eff5757c95c272e8ed0.pg_search_id LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:253
+  [1m[36mScholarship Load (2.5ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" INNER JOIN (SELECT "scholarships"."id" AS pg_search_id, (ts_rank((to_tsvector('simple', coalesce(("scholarships"."title")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."description")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."field_of_study")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."level")::text, ''))), (to_tsquery('simple', ''' ' || 'Sciences' || ' ''' || ':*') || to_tsquery('simple', ''' ' || 'Politiques' || ' ''' || ':*')), 0)) AS rank FROM "scholarships" WHERE ((to_tsvector('simple', coalesce(("scholarships"."title")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."description")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."field_of_study")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."level")::text, ''))) @@ (to_tsquery('simple', ''' ' || 'Sciences' || ' ''' || ':*') || to_tsquery('simple', ''' ' || 'Politiques' || ' ''' || ':*'))) OR ('Sciences Politiques' % (coalesce(("scholarships"."title")::text, '') || ' ' || coalesce(("scholarships"."description")::text, '') || ' ' || coalesce(("scholarships"."field_of_study")::text, '') || ' ' || coalesce(("scholarships"."level")::text, '')))) AS pg_search_bf1eff5757c95c272e8ed0 ON "scholarships"."id" = pg_search_bf1eff5757c95c272e8ed0.pg_search_id ORDER BY pg_search_bf1eff5757c95c272e8ed0.rank DESC, "scholarships"."id" ASC /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:273
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 100.3ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 111.3ms | GC: 0.3ms)
+Completed 200 OK in 175ms (Views: 31.6ms | ActiveRecord: 80.8ms (2 queries, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/scholarships?query=aze&country=Canada&level=Licence" for 127.0.0.1 at 2025-07-02 21:16:09 +0200
+Processing by ScholarshipsController#index as HTML
+  Parameters: {"query"=>"aze", "country"=>"Canada", "level"=>"Licence"}
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (1.8ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" INNER JOIN (SELECT "scholarships"."id" AS pg_search_id, (ts_rank((to_tsvector('simple', coalesce(("scholarships"."title")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."description")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."field_of_study")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."level")::text, ''))), (to_tsquery('simple', ''' ' || 'aze' || ' ''' || ':*')), 0)) AS rank FROM "scholarships" WHERE ((to_tsvector('simple', coalesce(("scholarships"."title")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."description")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."field_of_study")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."level")::text, ''))) @@ (to_tsquery('simple', ''' ' || 'aze' || ' ''' || ':*'))) OR ('aze' % (coalesce(("scholarships"."title")::text, '') || ' ' || coalesce(("scholarships"."description")::text, '') || ' ' || coalesce(("scholarships"."field_of_study")::text, '') || ' ' || coalesce(("scholarships"."level")::text, '')))) AS pg_search_bf1eff5757c95c272e8ed0 ON "scholarships"."id" = pg_search_bf1eff5757c95c272e8ed0.pg_search_id LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:253
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 4.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 18.6ms | GC: 0.0ms)
+Completed 200 OK in 78ms (Views: 28.4ms | ActiveRecord: 1.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
