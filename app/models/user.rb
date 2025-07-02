@@ -12,14 +12,14 @@ class User < ApplicationRecord
 
   validates :role, inclusion: { in: VALID_ROLES, message: "%{value} n'est pas un rôle valide" }
 
-  validates :fist_name, :last_name, presence: true
+  validates :first_name, :last_name, presence: true
   validates :phone, format: { with: /\A[\+]?[0-9\-\s\(\)]+\z/, message: "Format de numero invalide" }, allow_blank: true
   validates :role, presence: true
 
   after_create :create_profile
 
   def full_name
-    "#{fist_name} #{last_name}"
+    "#{first_name} #{last_name}"
   end
 
   private

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de la bourse - BourseRadar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5',
+                        secondary: '#7c3aed'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .animate-pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header avec navigation -->
+    <nav class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <%= link_to scholarships_path, class: "text-gray-600 hover:text-primary transition-colors flex items-center" do %>
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        Retour aux bourses
+                    <% end %>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 text-gray-600 hover:text-primary transition-colors">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                    <button class="p-2 text-gray-600 hover:text-red-500 transition-colors">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Contenu principal -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- En-tête de la bourse -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover">
+                    <div class="flex items-start space-x-6 mb-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h1 class="text-3xl font-bold text-gray-900 mb-2 leading-tight">
+                                <%= @scholarship.title %>
+                            </h1>
+                            <div class="flex flex-wrap items-center gap-4 text-gray-600">
+                                <div class="flex items-center">
+                                    <i class="fas fa-university mr-2 text-primary"></i>
+                                    <span class="font-medium"><%= @scholarship.institution.name %></span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-map-marker-alt mr-2 text-primary"></i>
+                                    <span><%= @scholarship.city %>, <%= @scholarship.country %></span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-globe mr-2 text-primary"></i>
+                                    <span><%= @scholarship.language %></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tags principaux -->
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <% if @scholarship.level.present? %>
+                            <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                                <i class="fas fa-graduation-cap mr-1"></i>
+                                <%= @scholarship.level %>
+                            </span>
+                        <% end %>
+                        <% if @scholarship.field_of_study.present? %>
+                            <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+                                <i class="fas fa-book mr-1"></i>
+                                <%= @scholarship.field_of_study %>
+                            </span>
+                        <% end %>
+                        <% if @scholarship.scholarship_type.present? %>
+                            <span class="px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">
+                                <i class="fas fa-award mr-1"></i>
+                                <%= @scholarship.scholarship_type %>
+                            </span>
+                        <% end %>
+                        <% if @scholarship.pourcentage.present? %>
+                            <span class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">
+                                <i class="fas fa-percentage mr-1"></i>
+                                <%= @scholarship.pourcentage %>% financé
+                            </span>
+                        <% end %>
+                    </div>
+
+                    <!-- Alerte deadline -->
+                    <% if @scholarship.application_deadline.present? %>
+                        <% days_left = (@scholarship.application_deadline - Date.current).to_i %>
+                        <% if days_left > 0 %>
+                            <div class="<%= days_left <= 7 ? 'bg-red-50 border-red-200 text-red-800' : days_left <= 30 ? 'bg-orange-50 border-orange-200 text-orange-800' : 'bg-green-50 border-green-200 text-green-800' %> border rounded-xl p-4 mb-6">
+                                <div class="flex items-center">
+                                    <i class="fas fa-clock mr-3 text-lg"></i>
+                                    <div>
+                                        <p class="font-semibold">Date limite de candidature</p>
+                                        <p class="text-sm">
+                                            <%= l(@scholarship.application_deadline, format: :long) %> 
+                                            (<%= pluralize(days_left, 'jour') %> restants)
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        <% else %>
+                            <div class="bg-red-100 border border-red-300 text-red-800 rounded-xl p-4 mb-6">
+                                <div class="flex items-center">
+                                    <i class="fas fa-exclamation-triangle mr-3 text-lg"></i>
+                                    <div>
+                                        <p class="font-semibold">Candidatures fermées</p>
+                                        <p class="text-sm">La date limite était le <%= l(@scholarship.application_deadline, format: :long) %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+
+                <!-- Description -->
+                <% if @scholarship.description.present? %>
+                    <div class="bg-white rounded-2xl shadow-lg p-8 card-hover">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                            <i class="fas fa-info-circle mr-3 text-primary"></i>
+                            Description
+                        </h2>
+                        <div class="prose prose-gray max-w-none">
+                            <p class="text-gray-700 leading-relaxed"><%= simple_format(@scholarship.description) %></p>
+                        </div>
+                    </div>
+                <% end %>
+
+                <!-- Avantages -->
+                <% if @scholarship.benefits.present? %>
+                    <div class="bg-white rounded-2xl shadow-lg p-8 card-hover">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                            <i class="fas fa-gift mr-3 text-primary"></i>
+                            Avantages de la bourse
+                        </h2>
+                        <div class="prose prose-gray max-w-none">
+                            <div class="text-gray-700 leading-relaxed"><%= simple_format(@scholarship.benefits) %></div>
+                        </div>
+                    </div>
+                <% end %>
+
+                <!-- Exigences -->
+                <% if @scholarship.requirements.present? %>
+                    <div class="bg-white rounded-2xl shadow-lg p-8 card-hover">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                            <i class="fas fa-clipboard-check mr-3 text-primary"></i>
+                            Critères d'éligibilité
+                        </h2>
+                        <div class="prose prose-gray max-w-none">
+                            <div class="text-gray-700 leading-relaxed"><%= simple_format(@scholarship.requirements) %></div>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- CTA Postuler -->
+                <div class="bg-gradient-to-br from-primary to-secondary rounded-2xl p-6 text-white sticky top-6">
+                    <h3 class="text-xl font-bold mb-4 text-center">Postuler maintenant</h3>
+                    
+                    <% if @scholarship.external_application_url.present? %>
+                        <%= link_to @scholarship.external_application_url, target: "_blank", class: "w-full bg-white text-primary font-bold py-4 px-6 rounded-xl hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center mb-4" do %>
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Candidater en ligne
+                        <% end %>
+                    <% else %>
+                        <button class="w-full bg-white text-primary font-bold py-4 px-6 rounded-xl hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Candidater
+                        </button>
+                    <% end %>
+                    
+                    <p class="text-center text-sm opacity-90">
+                        <i class="fas fa-shield-alt mr-1"></i>
+                        Candidature 100% sécurisée
+                    </p>
+                </div>
+
+                <!-- Informations clés -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-info mr-2 text-primary"></i>
+                        Informations clés
+                    </h3>
+                    <div class="space-y-4">
+                        <!-- Durée -->
+                        <% if @scholarship.duration_months.present? %>
+                            <div class="flex justify-between items-center py-2">
+                                <span class="text-gray-600 flex items-center">
+                                    <i class="fas fa-calendar mr-2 text-primary"></i>
+                                    Durée
+                                </span>
+                                <span class="font-medium"><%= pluralize(@scholarship.duration_months, 'mois') %></span>
+                            </div>
+                        <% end %>
+
+                        <!-- Date de début -->
+                        <% if @scholarship.program_start_date.present? %>
+                            <div class="flex justify-between items-center py-2">
+                                <span class="text-gray-600 flex items-center">
+                                    <i class="fas fa-play mr-2 text-primary"></i>
+                                    Début du programme
+                                </span>
+                                <span class="font-medium"><%= l(@scholarship.program_start_date, format: :short) %></span>
+                            </div>
+                        <% end %>
+
+                        <!-- Âge -->
+                        <% if @scholarship.age_min.present? || @scholarship.age_max.present? %>
+                            <div class="flex justify-between items-center py-2">
+                                <span class="text-gray-600 flex items-center">
+                                    <i class="fas fa-user mr-2 text-primary"></i>
+                                    Âge requis
+                                </span>
+                                <span class="font-medium">
+                                    <% if @scholarship.age_min.present? && @scholarship.age_max.present? %>
+                                        <%= @scholarship.age_min %>-<%= @scholarship.age_max %> ans
+                                    <% elsif @scholarship.age_min.present? %>
+                                        Minimum <%= @scholarship.age_min %> ans
+                                    <% elsif @scholarship.age_max.present? %>
+                                        Maximum <%= @scholarship.age_max %> ans
+                                    <% end %>
+                                </span>
+                            </div>
+                        <% end %>
+
+                        <!-- Genre -->
+                        <% if @scholarship.gender_requirement.present? %>
+                            <div class="flex justify-between items-center py-2">
+                                <span class="text-gray-600 flex items-center">
+                                    <i class="fas fa-users mr-2 text-primary"></i>
+                                    Genre
+                                </span>
+                                <span class="font-medium"><%= @scholarship.gender_requirement %></span>
+                            </div>
+                        <% end %>
+
+                        <!-- Statut -->
+                        <div class="flex justify-between items-center py-2">
+                            <span class="text-gray-600 flex items-center">
+                                <i class="fas fa-circle mr-2 text-primary"></i>
+                                Statut
+                            </span>
+                            <span class="<%= @scholarship.active? ? 'text-green-600' : 'text-red-600' %> font-medium">
+                                <%= @scholarship.active? ? 'Active' : 'Inactive' %>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Institution -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-university mr-2 text-primary"></i>
+                        Institution
+                    </h3>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-university text-white text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2"><%= @scholarship.institution.name %></h4>
+                        <p class="text-gray-600 text-sm">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <%= @scholarship.city %>, <%= @scholarship.country %>
+                        </p>
+                        <% if @scholarship.institution.website.present? %>
+                            <%= link_to @scholarship.institution.website, target: "_blank", class: "inline-flex items-center mt-3 text-primary hover:text-indigo-700 text-sm font-medium" do %>
+                                <i class="fas fa-external-link-alt mr-1"></i>
+                                Visiter le site
+                            <% end %>
+                        <% end %>
+                    </div>
+                </div>
+
+                <!-- Actions rapides -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Actions rapides</h3>
+                    <div class="space-y-3">
+                        <button class="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-gray-700">
+                            <i class="fas fa-bookmark mr-2"></i>
+                            Sauvegarder
+                        </button>
+                        <button class="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-gray-700">
+                            <i class="fas fa-share mr-2"></i>
+                            Partager
+                        </button>
+                        <button class="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-gray-700">
+                            <i class="fas fa-print mr-2"></i>
+                            Imprimer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

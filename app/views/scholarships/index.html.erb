@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BourseRadar - Trouvez votre bourse d'études idéale</title>
+    <meta name="description" content="Découvrez des milliers d'opportunités de bourses d'études dans le monde entier. Votre avenir académique commence ici.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5',
+                        secondary: '#7c3aed'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+    
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 235, 59, 0.8); }
+            50% { text-shadow: 0 0 30px rgba(255, 235, 59, 1), 0 0 40px rgba(255, 235, 59, 0.8); }
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        .float-animation { animation: float 6s ease-in-out infinite; }
+        .glow-text { animation: glow 3s ease-in-out infinite; }
+        .sparkle { animation: sparkle 2s ease-in-out infinite; }
+        
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .gradient-border {
+            background: linear-gradient(45deg, #f3ec78, #af4261, #4338ca);
+            padding: 2px;
+            border-radius: 16px;
+        }
+        
+        .gradient-border-inner {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 14px;
+        }
+        
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+    
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(79, 70, 229, 0.6); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Hero Section -->
+    <section class="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-800 to-blue-900 relative overflow-hidden flex items-center">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0">
+            <!-- Floating shapes -->
+            <div class="absolute top-20 left-16 w-40 h-40 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full opacity-20 float-animation"></div>
+            <div class="absolute top-1/3 right-24 w-28 h-28 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full opacity-30 float-animation" style="animation-delay: -2s;"></div>
+            <div class="absolute bottom-32 left-1/4 w-24 h-24 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full opacity-25 float-animation" style="animation-delay: -4s;"></div>
+            <div class="absolute top-1/2 left-1/2 w-32 h-32 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full opacity-20 float-animation" style="animation-delay: -1s;"></div>
+            
+            <!-- Sparkle effects -->
+            <div class="absolute top-1/4 left-1/3 w-2 h-2 bg-yellow-300 rounded-full sparkle"></div>
+            <div class="absolute top-3/4 right-1/4 w-3 h-3 bg-white rounded-full sparkle" style="animation-delay: -1s;"></div>
+            <div class="absolute top-1/2 left-1/5 w-2 h-2 bg-pink-300 rounded-full sparkle" style="animation-delay: -0.5s;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="text-center">
+                <!-- Main heading with enhanced typography -->
+                <div class="mb-8">
+                    <h1 class="text-5xl md:text-7xl font-black text-white mb-4 leading-tight">
+                        Transformez vos 
+                        <span class="bg-gradient-to-r from-yellow-400 via-orange-500 to-pink-500 bg-clip-text text-transparent glow-text">
+                            rêves
+                        </span>
+                        <br>
+                        en <span class="text-cyan-300">réalité académique</span>
+                    </h1>
+                    <p class="text-2xl md:text-3xl text-purple-100 font-light mb-6">
+                        🎓 Votre porte d'entrée vers l'excellence mondiale
+                    </p>
+                </div>
+
+                <!-- Enhanced description -->
+                <div class="max-w-4xl mx-auto mb-12">
+                    <p class="text-lg md:text-xl text-indigo-100 mb-6 leading-relaxed">
+                        Explorez un univers de <strong class="text-yellow-300">possibilités infinies</strong> avec notre plateforme révolutionnaire. 
+                        Des bourses prestigieuses aux programmes d'échange exclusifs, nous connectons les talents exceptionnels 
+                        aux opportunités qui changent des vies.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4 text-sm md:text-base text-purple-200">
+                        <span class="bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            100% Gratuit
+                        </span>
+                        <span class="bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
+                            <i class="fas fa-globe text-blue-400 mr-2"></i>
+                            Portée Mondiale
+                        </span>
+                        <span class="bg-white/10 px-4 py-2 rounded-full backdrop-blur-sm">
+                            <i class="fas fa-clock text-yellow-400 mr-2"></i>
+                            Mis à jour quotidiennement
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Enhanced Search Bar -->
+                <div class="max-w-5xl mx-auto mb-12">
+                    <div class="gradient-border hover-lift">
+                        <form class="gradient-border-inner p-4" action="/scholarships" method="get">
+                            <div class="flex flex-col lg:flex-row gap-3">
+                                <div class="flex-1 relative">
+                                    <i class="fas fa-search absolute left-6 top-1/2 transform -translate-y-1/2 text-purple-500 text-lg"></i>
+                                    <input type="text" 
+                                        name="query"
+                                        placeholder="Ex: Intelligence Artificielle, Médecine, Commerce International..."
+                                        class="w-full pl-16 pr-6 py-5 rounded-xl border-2 border-purple-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-200 outline-none text-gray-800 text-lg transition-all duration-300">
+                                </div>
+                                <div class="flex flex-col sm:flex-row gap-3 lg:w-auto">
+                                    <select name="country" class="px-6 py-5 rounded-xl border-2 border-purple-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-200 outline-none text-gray-800 text-lg min-w-[180px]">
+                                        <option value="">🌍 Destination</option>
+                                        <option value="France">🇫🇷 France</option>
+                                        <option value="Canada">🇨🇦 Canada</option>
+                                        <option value="États-Unis">🇺🇸 États-Unis</option>
+                                        <option value="Royaume-Uni">🇬🇧 Royaume-Uni</option>
+                                        <option value="Allemagne">🇩🇪 Allemagne</option>
+                                        <option value="Australie">🇦🇺 Australie</option>
+                                        <option value="Japon">🇯🇵 Japon</option>
+                                        <option value="Singapour">🇸🇬 Singapour</option>
+                                    </select>
+                                    <select name="level" class="px-6 py-5 rounded-xl border-2 border-purple-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-200 outline-none text-gray-800 text-lg min-w-[160px]">
+                                        <option value="">📚 Niveau</option>
+                                        <option value="Licence">🎓 Licence</option>
+                                        <option value="Master">🎯 Master</option>
+                                        <option value="Doctorat">🔬 Doctorat</option>
+                                        <option value="Post-doctorat">⭐ Post-doctorat</option>
+                                    </select>
+                                    <button type="submit" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-5 rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 font-bold text-lg shadow-2xl hover:shadow-purple-500/25 transform hover:scale-105 flex items-center justify-center min-w-[160px]">
+                                        <i class="fas fa-rocket mr-3"></i>
+                                        Découvrir
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Enhanced Stats with better design -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                    <div class="glassmorphism rounded-2xl p-8 hover-lift text-center group">
+                        <div class="text-4xl mb-4">💰</div>
+                        <div class="text-4xl font-black text-yellow-300 mb-2 group-hover:scale-110 transition-transform">15,847</div>
+                        <div class="text-purple-100 font-medium">Bourses Actives</div>
+                        <div class="text-xs text-purple-300 mt-1">Nouvelles chaque jour</div>
+                    </div>
+                    <div class="glassmorphism rounded-2xl p-8 hover-lift text-center group">
+                        <div class="text-4xl mb-4">🏛️</div>
+                        <div class="text-4xl font-black text-cyan-300 mb-2 group-hover:scale-110 transition-transform">2,156</div>
+                        <div class="text-purple-100 font-medium">Universités Partenaires</div>
+                        <div class="text-xs text-purple-300 mt-1">Top mondial</div>
+                    </div>
+                    <div class="glassmorphism rounded-2xl p-8 hover-lift text-center group">
+                        <div class="text-4xl mb-4">🌍</div>
+                        <div class="text-4xl font-black text-green-300 mb-2 group-hover:scale-110 transition-transform">89</div>
+                        <div class="text-purple-100 font-medium">Pays Disponibles</div>
+                        <div class="text-xs text-purple-300 mt-1">6 continents</div>
+                    </div>
+                    <div class="glassmorphism rounded-2xl p-8 hover-lift text-center group">
+                        <div class="text-4xl mb-4">🎯</div>
+                        <div class="text-4xl font-black text-pink-300 mb-2 group-hover:scale-110 transition-transform">97%</div>
+                        <div class="text-purple-100 font-medium">Taux de Satisfaction</div>
+                        <div class="text-xs text-purple-300 mt-1">Étudiants ravis</div>
+                    </div>
+                </div>
+
+                <!-- Call to action buttons -->
+                <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 font-bold text-lg shadow-xl hover:shadow-green-500/25 transform hover:scale-105">
+                        <i class="fas fa-play mr-3"></i>
+                        Commencer maintenant
+                    </button>
+                    <button class="bg-white/10 text-white px-8 py-4 rounded-xl hover:bg-white/20 transition-all duration-300 font-bold text-lg backdrop-blur-sm border border-white/30">
+                        <i class="fas fa-video mr-3"></i>
+                        Voir la démo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Scholarships Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">
+                    Bourses disponibles
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Découvrez les opportunités de bourses d'études disponibles
+                </p>
+            </div>
+                 <% if @scholarships.empty? %>
+                              <!-- Empty State -->
+                <div id="emptyState" class="text-center py-12 ">
+                    <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-search text-gray-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                        Aucune bourse trouvée
+                    </h3>
+                    <p class="text-gray-600 mb-6 max-w-md mx-auto">
+                        Essayez d'ajuster vos critères de recherche ou explorez d'autres options.
+                    </p>
+                    <a href="/scholarships" class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium">
+                        <i class="fas fa-home mr-2"></i>
+                        Voir toutes les bourses
+                    </a>
+                </div>
+                        <% else %>
+                        <!-- Scholarships Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <% @scholarships.each do |scholarship| %>
+                            <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl card-hover border border-gray-100 overflow-hidden group">
+                                <div class="p-6">
+                                <!-- Institution Badge -->
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-university text-white"></i>
+                                    </div>
+                                    <div class="ml-3 min-w-0">
+                                    <h4 class="font-semibold text-gray-900 truncate"><%= scholarship.title %></h4>
+                                    <p class="text-sm text-gray-500 flex items-center">
+                                        <i class="fas fa-map-marker-alt mr-1"></i>
+                                        <%= scholarship.country %>
+                                    </p>
+                                    </div>
+                                </div>
+
+                                <!-- Scholarship Title -->
+                                <h3 class="text-lg font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                                    <%= scholarship.title %>
+                                </h3>
+
+                                <!-- Description -->
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-3">
+                                    <%= truncate(scholarship.description, length: 150) %>
+                                </p>
+
+                                <!-- Tags -->
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full font-medium"><%= scholarship.level %></span>
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full font-medium"><%= scholarship.field_of_study %></span>
+                                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full font-medium"><%= scholarship.pourcentage %> % financé</span>
+                                </div>
+
+                                <!-- Footer -->
+                                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                                    <div class="flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    <span class="text-green-600"><%= scholarship.remaining_days %> jours restants</span>
+                                    </div>
+                                    <%= link_to  scholarship_path(scholarship), class: "text-primary hover:text-indigo-700 font-medium text-sm flex items-center group-hover:translate-x-1 transition-transform" do %>
+                                    Voir détails
+                                    <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                                    <% end %>
+                                </div>
+                                </div>
+                            </div>
+                            <% end %>
+                        </div>
+                        <% end %>
+                                
+                </div>
+    </section>
+</body>
+</html>

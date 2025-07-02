@@ -24,12 +24,6 @@ class CreateScholarships < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-    add_index :scholarships, :level
-    add_index :scholarships, :field_of_study
-    add_index :scholarships, :country
-    add_index :scholarships, :application_deadline
-    add_index :scholarships, :active
-    add_index :scholarships, :published_at
-    add_index :scholarships, :views_count
+   
   end
 end
