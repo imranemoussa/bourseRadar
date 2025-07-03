@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  get "profiles/show"
+  get "profiles/edit"
+  get "profiles/update"
+  get "institutions/index"
+  get "institutions/show"
+  get "institutions/scholarships"
+  get "institutions/new"
+  get "institutions/create"
+  get "institutions/edit"
+  get "institutions/update"
+  
   devise_for :users, controllers: {
   registrations: 'users/registrations',
   sessions: 'users/sessions',
@@ -16,5 +27,60 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "home#index"
+
+  resources :scholarships, only: [:index, :show] do
+    collection do
+      get :search
+    end
+  end
+  
+  resources :institutions, only: [:index, :show] do
+    member do
+      get :scholarships
+    end
+  end
+  
+  # Routes pour utilisateurs connectés
+  authenticated :user do
+    # Dashboard principal
+    get '/dashboard', to: 'dashboard#index'
+    
+    # Profil étudiant
+    resource :profile, only: [:show, :edit, :update]
+    
+    # Notifications
+    resources :notifications, only: [:index] do
+      member do
+        patch :mark_as_read
+      end
+      collection do
+        patch :mark_all_as_read
+      end
+    end
+    
+    # Routes pour les institutions
+    resources :institutions, except: [:index, :show] do
+      resources :scholarships, except: [:index, :show]
+    end
+  end
+  
+  # Routes admin
+  namespace :admin do
+    get '/dashboard', to: 'dashboard#index'
+    
+    resources :users, only: [:index, :show]
+    
+    resources :institutions, only: [:index, :show] do
+      member do
+        patch :verify
+      end
+    end
+    
+    resources :scholarships, only: [:index, :show] do
+      member do
+        patch :moderate
+      end
+    end
+  end
 end
