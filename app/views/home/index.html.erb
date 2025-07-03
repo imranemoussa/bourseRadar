@@ -1,60 +1,83 @@
-<% content_for :title, "BourseRadar - Trouvez votre bourse d'études idéale" %>
-<% content_for :description, "Découvrez des milliers d'opportunités de bourses d'études dans le monde entier. Votre avenir académique commence ici." %>
-
 <!-- Hero Section -->
-<section class="pb-16 bg-gradient-to-br from-primary via-indigo-600 to-secondary">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        <div class="text-center">
-            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
-                Trouvez votre <span class="text-yellow-300">bourse d'études</span> idéale
-            </h1>
-            <p class="text-xl text-indigo-100 mb-8 max-w-3xl mx-auto">
-                Découvrez des milliers d'opportunités de bourses d'études dans le monde entier. 
-                Votre avenir académique commence ici.
-            </p>
+<section class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 relative overflow-hidden flex items-center">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-20 left-16 w-20 h-20 bg-gradient-to-r from-blue-200/30 to-purple-200/30 rounded-full blur-xl"></div>
+        <div class="absolute top-1/3 right-24 w-16 h-16 bg-gradient-to-r from-purple-200/40 to-pink-200/40 rounded-full blur-lg"></div>
+        <div class="absolute bottom-32 left-1/4 w-12 h-12 bg-gradient-to-r from-cyan-200/35 to-blue-200/35 rounded-full blur-lg"></div>
+        <div class="absolute top-1/2 left-1/2 w-18 h-18 bg-gradient-to-r from-amber-200/25 to-orange-200/25 rounded-full blur-xl"></div>
+        
+        <div class="absolute top-1/4 left-1/3 w-1 h-1 bg-indigo-400/60 rounded-full"></div>
+        <div class="absolute top-3/4 right-1/4 w-2 h-2 bg-purple-400/40 rounded-full"></div>
+        <div class="absolute top-1/2 left-1/5 w-1 h-1 bg-pink-400/50 rounded-full"></div>
+    </div>
 
-            <!-- Search Bar -->
-            <div class="max-w-4xl mx-auto mb-8">
-                <%= form_with url: root_path, method: :get, local: true, class: "bg-white rounded-2xl shadow-2xl p-2" do |form| %>
-                    <div class="flex flex-col lg:flex-row gap-2">
-                        <div class="flex-1 relative">
-                            <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                            <%= form.text_field :search, 
-                                placeholder: "Rechercher une bourse, un domaine d'étude...",
-                                value: params[:search],
-                                class: "w-full pl-12 pr-4 py-4 rounded-xl border-0 focus:ring-2 focus:ring-primary outline-none text-gray-700" %>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-2 lg:w-auto">
-                            <%= form.select :country, 
-                                options_for_select([["Tous les pays", ""]] + @countries.map { |c| [c, c] }, params[:country]),
-                                {}, 
-                                { class: "px-4 py-4 rounded-xl border-0 focus:ring-2 focus:ring-primary outline-none text-gray-700" } %>
-                            <%= form.select :level, 
-                                options_for_select([["Tous les niveaux", ""]] + @levels.map { |l| [l, l] }, params[:level]),
-                                {}, 
-                                { class: "px-4 py-4 rounded-xl border-0 focus:ring-2 focus:ring-primary outline-none text-gray-700" } %>
-                            <%= form.submit "Rechercher", class: "bg-primary text-black px-8 py-4 rounded-xl hover:bg-indigo-700 transition-colors font-medium cursor-pointer" do %>
-                                <i class="fas fa-search mr-2"></i>
-                                Rechercher
-                            <% end %>
-                        </div>
-                    </div>
-                <% end %>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div class="text-center">
+            <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/60 backdrop-blur-sm border border-white/40 text-indigo-700 text-sm font-medium mb-6">
+                <i class="fas fa-sparkles mr-2 text-amber-500"></i>
+                Votre porte d'entrée vers l'excellence
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4 leading-tight">
+                Trouvez votre 
+                <span class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    bourse d'études
+                </span>
+                idéale
+            </h1>
+
+            <div class="max-w-2xl mx-auto mb-10">
+                <p class="text-lg md:text-xl text-gray-600 mb-4 leading-relaxed">
+                    Découvrez des milliers d'opportunités dans le monde entier
+                </p>
             </div>
 
-            <!-- Stats -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <div class="text-center">
-                    <div class="text-3xl font-bold text-yellow-300"><%= number_with_delimiter(@total_scholarships) %></div>
-                    <div class="text-indigo-100">Bourses disponibles</div>
+            <!-- Compact Search Bar -->
+            <div class="max-w-4xl mx-auto mb-12">
+                <div class="bg-white/60 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-white/30">
+                    <%= form_with url: root_path, method: :get, local: true, class: "flex flex-col lg:flex-row gap-3" do |form| %>
+                        <div class="flex-1 relative">
+                            <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-indigo-400"></i>
+                            <%= form.text_field :search, 
+                                placeholder: "Ex: Intelligence Artificielle, Médecine...",
+                                value: params[:search],
+                                class: "w-full pl-12 pr-4 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-white/30 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 outline-none text-gray-700 transition-all duration-300" %>
+                        </div>
+                        <div class="flex gap-3">
+                            <%= form.select :country, 
+                                options_for_select([["🌍 Tous pays", ""]] + @countries.map { |c| [c, c] }, params[:country]),
+                                {}, 
+                                { class: "px-4 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-white/30 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 outline-none text-gray-700 min-w-[140px]" } %>
+                            <%= form.select :level, 
+                                options_for_select([["📚 Tous niveaux", ""]] + @levels.map { |l| [l, l] }, params[:level]),
+                                {}, 
+                                { class: "px-4 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-white/30 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 outline-none text-gray-700 min-w-[140px]" } %>
+                            <%= form.submit "Rechercher", class: "bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-3 rounded-xl transition-all duration-300 font-medium shadow-lg cursor-pointer hover:scale-105 hover:shadow-indigo-500/25" %>
+                        </div>
+                    <% end %>
                 </div>
-                <div class="text-center">
-                    <div class="text-3xl font-bold text-yellow-300"><%= number_with_delimiter(@total_institutions) %></div>
-                    <div class="text-indigo-100">Institutions partenaires</div>
+            </div>
+
+            <!-- Compact Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="bg-white/50 backdrop-blur-md rounded-xl p-6 text-center border border-white/30 hover:bg-white/60 transition-all duration-300 hover:scale-105">
+                    <div class="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                        <%= number_with_delimiter(@total_scholarships) %>
+                    </div>
+                    <div class="text-gray-600 font-medium text-sm">Bourses disponibles</div>
                 </div>
-                <div class="text-center">
-                    <div class="text-3xl font-bold text-yellow-300"><%= @countries_count %></div>
-                    <div class="text-indigo-100">Pays couverts</div>
+                <div class="bg-white/50 backdrop-blur-md rounded-xl p-6 text-center border border-white/30 hover:bg-white/60 transition-all duration-300 hover:scale-105">
+                    <div class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+                        <%= number_with_delimiter(@total_institutions) %>
+                    </div>
+                    <div class="text-gray-600 font-medium text-sm">Institutions partenaires</div>
+                </div>
+                <div class="bg-white/50 backdrop-blur-md rounded-xl p-6 text-center border border-white/30 hover:bg-white/60 transition-all duration-300 hover:scale-105">
+                    <div class="text-3xl font-bold bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent mb-2">
+                        <%= @countries_count %>
+                    </div>
+                    <div class="text-gray-600 font-medium text-sm">Pays couverts</div>
                 </div>
             </div>
         </div>
@@ -62,28 +85,32 @@
 </section>
 
 <!-- Recent Scholarships -->
-<section class="py-16 bg-white">
+<section class="py-20 bg-gradient-to-br from-gray-50 to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center px-4 py-2 rounded-full bg-indigo-100 text-indigo-800 text-sm font-semibold mb-6">
+                <i class="fas fa-graduation-cap mr-2"></i>
+                Opportunités Premium
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 <%= params[:search].present? ? "Résultats de recherche" : "Bourses récentes" %>
             </h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 Découvrez les dernières opportunités de bourses d'études ajoutées par nos institutions partenaires
             </p>
             
             <% if params[:search].present? %>
-                <div class="mt-4 inline-flex items-center space-x-2 text-sm text-gray-600">
-                    <span>Recherche pour :</span>
-                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full font-medium">"<%= params[:search] %>"</span>
+                <div class="mt-8 inline-flex items-center flex-wrap justify-center gap-3 text-sm">
+                    <span class="text-gray-600 font-medium">Recherche pour :</span>
+                    <span class="px-4 py-2 bg-indigo-100 text-indigo-800 rounded-full font-semibold">"<%= params[:search] %>"</span>
                     <% if params[:country].present? %>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full"><%= params[:country] %></span>
+                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-semibold"><%= params[:country] %></span>
                     <% end %>
                     <% if params[:level].present? %>
-                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full"><%= params[:level] %></span>
+                        <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full font-semibold"><%= params[:level] %></span>
                     <% end %>
-                    <%= link_to root_path, class: "text-red-600 hover:text-red-800 ml-2" do %>
-                        <i class="fas fa-times"></i> Effacer
+                    <%= link_to root_path, class: "text-red-600 hover:text-red-800 ml-2 px-3 py-1 rounded-full hover:bg-red-50 transition-colors" do %>
+                        <i class="fas fa-times mr-1"></i> Effacer
                     <% end %>
                 </div>
             <% end %>
@@ -92,98 +119,95 @@
         <% if @scholarships.present? %>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <% @scholarships.each do |scholarship| %>
-                    <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden group hover:-translate-y-1">
-                        <div class="p-6">
+                    <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden group hover:-translate-y-2 hover:scale-[1.02]">
+                        <div class="p-8">
                             <!-- Institution Badge -->
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <i class="fas fa-university text-white"></i>
+                            <div class="flex items-center mb-6">
+                                <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                                    <i class="fas fa-university text-white text-lg"></i>
                                 </div>
-                                <div class="ml-3 min-w-0">
-                                    <h4 class="font-semibold text-gray-900 truncate"><%= scholarship.institution.name %></h4>
-                                    <p class="text-sm text-gray-500 flex items-center">
-                                        <i class="fas fa-map-marker-alt mr-1"></i>
+                                <div class="ml-4 min-w-0">
+                                    <h4 class="font-bold text-gray-900 text-lg truncate"><%= scholarship.institution.name %></h4>
+                                    <p class="text-gray-500 flex items-center font-medium">
+                                        <i class="fas fa-map-marker-alt mr-2 text-indigo-500"></i>
                                         <%= scholarship.country %>
                                     </p>
                                 </div>
                             </div>
 
                             <!-- Scholarship Title -->
-                            <h3 class="text-lg font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-indigo-600 transition-colors leading-tight line-clamp-2">
                                 <%= scholarship.title %>
                             </h3>
 
                             <!-- Description -->
-                            <p class="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-3">
+                            <p class="text-gray-600 mb-6 text-sm leading-relaxed line-clamp-3">
                                 <%= truncate(scholarship.description, length: 120) %>
                             </p>
 
                             <!-- Tags -->
-                            <div class="flex flex-wrap gap-2 mb-4">
+                            <div class="flex flex-wrap gap-2 mb-6">
                                 <% if scholarship.level.present? %>
-                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full font-medium">
+                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full font-semibold">
                                         <%= scholarship.level %>
                                     </span>
                                 <% end %>
                                 <% if scholarship.field_of_study.present? %>
-                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full font-medium">
+                                    <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full font-semibold">
                                         <%= truncate(scholarship.field_of_study, length: 20) %>
                                     </span>
                                 <% end %>
                                 <% if scholarship.pourcentage.present? %>
-                                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full font-medium">
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full font-semibold">
                                         <%= scholarship.pourcentage.to_i %>% financé
                                     </span>
                                 <% end %>
                             </div>
 
                             <!-- Footer -->
-                            <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                                <div class="flex items-center text-sm text-gray-500">
+                            <div class="flex items-center justify-between pt-6 border-t border-gray-100">
+                                <div class="flex items-center text-sm font-medium">
                                     <i class="fas fa-calendar-alt mr-2"></i>
                                     <span>
                                         <% if scholarship.days_left %>
                                             <% if scholarship.days_left > 0 %>
-                                                <span class="<%= scholarship.days_left <= 7 ? 'text-red-600 font-semibold' : scholarship.days_left <= 30 ? 'text-orange-600 font-medium' : 'text-green-600' %>">
+                                                <span class="<%= scholarship.days_left <= 7 ? 'text-red-600 font-bold' : scholarship.days_left <= 30 ? 'text-orange-600 font-semibold' : 'text-green-600 font-medium' %>">
                                                     <%= scholarship.days_left %> jours restants
                                                 </span>
                                             <% else %>
-                                                <span class="text-red-600 font-semibold">Expiré</span>
+                                                <span class="text-red-600 font-bold">Expiré</span>
                                             <% end %>
                                         <% else %>
-                                            Date non spécifiée
+                                            <span class="text-gray-500">Date non spécifiée</span>
                                         <% end %>
                                     </span>
                                 </div>
-                                <%= link_to scholarship_path(scholarship), class: "text-primary hover:text-indigo-700 font-medium text-sm flex items-center group-hover:translate-x-1 transition-transform" do %>
+                                <%= link_to scholarship_path(scholarship), class: "text-indigo-600 hover:text-indigo-800 font-bold text-sm flex items-center group-hover:translate-x-1 transition-transform" do %>
                                     Voir détails
-                                    <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
                                 <% end %>
                             </div>
                         </div>
                     </div>
                 <% end %>
             </div>
-
-            <!-- Pagination (si vous utilisez Kaminari) -->
-            
         <% else %>
             <!-- Empty State -->
-            <div class="text-center py-12">
-                <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-search text-gray-400 text-3xl"></i>
+            <div class="text-center py-16">
+                <div class="w-32 h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-8">
+                    <i class="fas fa-search text-gray-400 text-4xl"></i>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">
                     <%= params[:search].present? ? "Aucune bourse trouvée" : "Aucune bourse disponible" %>
                 </h3>
-                <p class="text-gray-600 mb-6 max-w-md mx-auto">
+                <p class="text-gray-600 mb-8 text-lg max-w-md mx-auto leading-relaxed">
                     <%= params[:search].present? ? 
                         "Essayez d'ajuster vos critères de recherche ou explorez d'autres options." : 
                         "Les institutions n'ont pas encore publié de bourses. Revenez bientôt !" %>
                 </p>
                 <% if params[:search].present? %>
-                    <%= link_to root_path, class: "inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium" do %>
-                        <i class="fas fa-home mr-2"></i>
+                    <%= link_to root_path, class: "inline-flex items-center px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-xl transition-all duration-300 font-bold text-lg shadow-lg hover:scale-105" do %>
+                        <i class="fas fa-home mr-3"></i>
                         Voir toutes les bourses
                     <% end %>
                 <% end %>
@@ -191,3 +215,19 @@
         <% end %>
     </div>
 </section>
+
+<style>
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>

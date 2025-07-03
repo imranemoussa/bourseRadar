@@ -10056,3 +10056,731 @@ Processing by Users::RegistrationsController#new as HTML
 Completed 200 OK in 163ms (Views: 43.6ms | ActiveRecord: 14.4ms (0 queries, 0 cached) | GC: 1.6ms)
 
 
+Started GET "/" for 127.0.0.1 at 2025-07-03 12:07:05 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BourseRadar'*/[0m
+Processing by HomeController#index as HTML
+  [1m[36mScholarship Count (2.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:5:in `index'
+  [1m[36mInstitution Count (1.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:6:in `index'
+  [1m[36mScholarship Count (137.5ms)[0m  [1m[34mSELECT COUNT(DISTINCT "scholarships"."country") FROM "scholarships" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:7:in `index'
+  [1m[36mScholarship Pluck (0.9ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."country" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:21:in `index'
+  [1m[36mScholarship Pluck (0.7ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."level" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:22:in `index'
+  [1m[36mScholarship Pluck (0.9ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."field_of_study" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:23:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mScholarship Load (1.4ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."active" = TRUE ORDER BY "scholarships"."created_at" DESC LIMIT 10 /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:92
+  Rendered home/index.html.erb within layouts/application (Duration: 36.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 110.1ms | GC: 25.4ms)
+Completed 200 OK in 521ms (Views: 119.4ms | ActiveRecord: 173.4ms (7 queries, 0 cached) | GC: 25.4ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 12:07:31 +0100
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:206
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 13.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 29.9ms | GC: 1.3ms)
+Completed 200 OK in 66ms (Views: 30.1ms | ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 1.3ms)
+
+
+Started GET "/institutions" for 127.0.0.1 at 2025-07-03 12:07:32 +0100
+Processing by InstitutionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering institutions/index.html.erb within layouts/application
+  [1m[36mInstitution Load (0.8ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" /*action='index',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/views/institutions/index.html.erb:35
+  [1m[36mInstitution Count (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/views/institutions/index.html.erb:97
+  Rendered institutions/index.html.erb within layouts/application (Duration: 8.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 23.7ms | GC: 4.3ms)
+Completed 200 OK in 55ms (Views: 23.9ms | ActiveRecord: 1.7ms (2 queries, 0 cached) | GC: 6.2ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 12:07:48 +0100
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (3.1ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:206
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 15.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 45.5ms | GC: 22.7ms)
+Completed 200 OK in 111ms (Views: 43.5ms | ActiveRecord: 3.0ms (1 query, 0 cached) | GC: 22.7ms)
+
+
+Started GET "/institutions/new" for 127.0.0.1 at 2025-07-03 12:09:28 +0100
+Processing by InstitutionsController#show as HTML
+  Parameters: {"id"=>"new"}
+  [1m[36mInstitution Load (2.8ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" WHERE "institutions"."id" = NULL LIMIT 1 /*action='show',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/controllers/institutions_controller.rb:9:in `show'
+Completed 404 Not Found in 150ms (ActiveRecord: 33.7ms (1 query, 0 cached) | GC: 2.9ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Institution with 'id'=new):
+  
+app/controllers/institutions_controller.rb:9:in `show'
+Started GET "/institutions/new" for 127.0.0.1 at 2025-07-03 12:09:29 +0100
+Processing by InstitutionsController#show as HTML
+  Parameters: {"id"=>"new"}
+  [1m[36mInstitution Load (0.9ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" WHERE "institutions"."id" = NULL LIMIT 1 /*action='show',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/controllers/institutions_controller.rb:9:in `show'
+Completed 404 Not Found in 46ms (ActiveRecord: 0.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Institution with 'id'=new):
+  
+app/controllers/institutions_controller.rb:9:in `show'
+Started GET "/" for 127.0.0.1 at 2025-07-03 12:10:08 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BourseRadar'*/[0m
+Processing by HomeController#index as HTML
+  [1m[36mScholarship Count (2.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:5:in `index'
+  [1m[36mInstitution Count (8.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:6:in `index'
+  [1m[36mScholarship Count (1.1ms)[0m  [1m[34mSELECT COUNT(DISTINCT "scholarships"."country") FROM "scholarships" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:7:in `index'
+  [1m[36mScholarship Pluck (7.5ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."country" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:21:in `index'
+  [1m[36mScholarship Pluck (1.0ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."level" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:22:in `index'
+  [1m[36mScholarship Pluck (0.8ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."field_of_study" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:23:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mScholarship Load (1.8ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."active" = TRUE ORDER BY "scholarships"."created_at" DESC LIMIT 10 /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:92
+  Rendered home/index.html.erb within layouts/application (Duration: 29.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 132.7ms | GC: 27.1ms)
+Completed 200 OK in 423ms (Views: 148.9ms | ActiveRecord: 47.5ms (7 queries, 0 cached) | GC: 27.1ms)
+
+
+Started GET "/institutions" for 127.0.0.1 at 2025-07-03 12:10:10 +0100
+Processing by InstitutionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering institutions/index.html.erb within layouts/application
+  [1m[36mInstitution Load (0.8ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" /*action='index',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/views/institutions/index.html.erb:35
+  [1m[36mInstitution Count (7.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/views/institutions/index.html.erb:97
+  Rendered institutions/index.html.erb within layouts/application (Duration: 21.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 38.0ms | GC: 0.0ms)
+Completed 200 OK in 159ms (Views: 31.8ms | ActiveRecord: 8.3ms (2 queries, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/institutions/new" for 127.0.0.1 at 2025-07-03 12:10:15 +0100
+Processing by InstitutionsController#show as HTML
+  Parameters: {"id"=>"new"}
+  [1m[36mInstitution Load (1.8ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" WHERE "institutions"."id" = NULL LIMIT 1 /*action='show',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/controllers/institutions_controller.rb:9:in `show'
+Completed 404 Not Found in 210ms (ActiveRecord: 61.6ms (1 query, 0 cached) | GC: 0.7ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Institution with 'id'=new):
+  
+app/controllers/institutions_controller.rb:9:in `show'
+Started GET "/institutions/new" for 127.0.0.1 at 2025-07-03 12:10:18 +0100
+Processing by InstitutionsController#show as HTML
+  Parameters: {"id"=>"new"}
+  [1m[36mInstitution Load (1.5ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" WHERE "institutions"."id" = NULL LIMIT 1 /*action='show',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/controllers/institutions_controller.rb:9:in `show'
+Completed 404 Not Found in 72ms (ActiveRecord: 1.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Institution with 'id'=new):
+  
+app/controllers/institutions_controller.rb:9:in `show'
+Started GET "/institutions/new" for 127.0.0.1 at 2025-07-03 12:10:41 +0100
+Processing by InstitutionsController#show as HTML
+  Parameters: {"id"=>"new"}
+  Rendering layout layouts/application.html.erb
+  Rendering institutions/show.html.erb within layouts/application
+  Rendered institutions/show.html.erb within layouts/application (Duration: 6.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.4ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 58ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.6ms)
+
+
+  
+ActionView::Template::Error (undefined method `name' for nil:NilClass)
+Caused by: NoMethodError (undefined method `name' for nil:NilClass)
+
+Information for: ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    1: <% content_for :title, @institution.name %>
+    2: <% content_for :description, truncate(@institution.description, length: 160) %>
+    3: 
+    4: <section class="relative min-h-screen bg-white overflow-hidden">
+  
+app/views/institutions/show.html.erb:1
+
+Information for cause: NoMethodError (undefined method `name' for nil:NilClass):
+  
+app/views/institutions/show.html.erb:1
+Started GET "/institutions/new" for 127.0.0.1 at 2025-07-03 12:12:13 +0100
+Processing by InstitutionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering institutions/new.html.erb within layouts/application
+  Rendered institutions/_form.html.erb (Duration: 36.8ms | GC: 0.0ms)
+  Rendered institutions/new.html.erb within layouts/application (Duration: 39.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 73.0ms | GC: 0.7ms)
+Completed 200 OK in 256ms (Views: 76.6ms | ActiveRecord: 16.3ms (0 queries, 0 cached) | GC: 2.3ms)
+
+
+Started GET "/institutions" for 127.0.0.1 at 2025-07-03 12:12:49 +0100
+Processing by InstitutionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering institutions/index.html.erb within layouts/application
+  [1m[36mInstitution Load (1.3ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" /*action='index',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/views/institutions/index.html.erb:35
+  [1m[36mInstitution Count (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/views/institutions/index.html.erb:97
+  Rendered institutions/index.html.erb within layouts/application (Duration: 16.7ms | GC: 1.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 24.4ms | GC: 1.1ms)
+Completed 200 OK in 58ms (Views: 25.8ms | ActiveRecord: 2.1ms (2 queries, 0 cached) | GC: 1.1ms)
+
+
+Started GET "/institutions/edit" for 127.0.0.1 at 2025-07-03 12:12:55 +0100
+Processing by InstitutionsController#show as HTML
+  Parameters: {"id"=>"edit"}
+  Rendering layout layouts/application.html.erb
+  Rendering institutions/show.html.erb within layouts/application
+  Rendered institutions/show.html.erb within layouts/application (Duration: 11.3ms | GC: 0.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | GC: 0.9ms)
+Completed 500 Internal Server Error in 53ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.9ms)
+
+
+  
+ActionView::Template::Error (undefined method `name' for nil:NilClass)
+Caused by: NoMethodError (undefined method `name' for nil:NilClass)
+
+Information for: ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    1: <% content_for :title, @institution.name %>
+    2: <% content_for :description, truncate(@institution.description, length: 160) %>
+    3: 
+    4: <section class="relative min-h-screen bg-white overflow-hidden">
+  
+app/views/institutions/show.html.erb:1
+
+Information for cause: NoMethodError (undefined method `name' for nil:NilClass):
+  
+app/views/institutions/show.html.erb:1
+Started GET "/" for 127.0.0.1 at 2025-07-03 12:14:06 +0100
+Processing by HomeController#index as HTML
+  [1m[36mScholarship Count (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:5:in `index'
+  [1m[36mInstitution Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:6:in `index'
+  [1m[36mScholarship Count (1.9ms)[0m  [1m[34mSELECT COUNT(DISTINCT "scholarships"."country") FROM "scholarships" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:7:in `index'
+  [1m[36mScholarship Pluck (1.1ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."country" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:21:in `index'
+  [1m[36mScholarship Pluck (1.0ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."level" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:22:in `index'
+  [1m[36mScholarship Pluck (1.1ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."field_of_study" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:23:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mScholarship Load (1.0ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."active" = TRUE ORDER BY "scholarships"."created_at" DESC LIMIT 10 /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:92
+  Rendered home/index.html.erb within layouts/application (Duration: 72.8ms | GC: 23.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 97.0ms | GC: 23.0ms)
+Completed 200 OK in 341ms (Views: 108.7ms | ActiveRecord: 11.1ms (7 queries, 0 cached) | GC: 61.1ms)
+
+
+Started GET "/sign_up" for 127.0.0.1 at 2025-07-03 12:15:03 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/sign_up"):
+  
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-07-03 12:15:33 +0100
+Processing by Users::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 16.7ms | GC: 14.5ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 36.1ms | GC: 14.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 45.2ms | GC: 14.5ms)
+Completed 200 OK in 117ms (Views: 49.7ms | ActiveRecord: 9.6ms (0 queries, 0 cached) | GC: 14.5ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2025-07-03 12:15:38 +0100
+Processing by Users::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 15.5ms | GC: 7.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.9ms | GC: 7.0ms)
+Completed 200 OK in 60ms (Views: 26.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 7.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-07-03 12:16:13 +0100
+Processing by Users::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 5.4ms | GC: 0.5ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.5ms | GC: 0.5ms)
+Completed 200 OK in 45ms (Views: 13.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-07-03 12:16:30 +0100
+Processing by HomeController#index as HTML
+  [1m[36mScholarship Count (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:5:in `index'
+  [1m[36mInstitution Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:6:in `index'
+  [1m[36mScholarship Count (0.9ms)[0m  [1m[34mSELECT COUNT(DISTINCT "scholarships"."country") FROM "scholarships" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:7:in `index'
+  [1m[36mScholarship Pluck (1.5ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."country" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:21:in `index'
+  [1m[36mScholarship Pluck (0.9ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."level" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:22:in `index'
+  [1m[36mScholarship Pluck (4.7ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."field_of_study" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:23:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mScholarship Load (1.2ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."active" = TRUE ORDER BY "scholarships"."created_at" DESC LIMIT 10 /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:92
+  Rendered home/index.html.erb within layouts/application (Duration: 17.5ms | GC: 0.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 26.2ms | GC: 2.0ms)
+Completed 200 OK in 109ms (Views: 28.7ms | ActiveRecord: 11.0ms (7 queries, 0 cached) | GC: 3.2ms)
+
+
+Started GET "/institutions" for 127.0.0.1 at 2025-07-03 12:16:43 +0100
+Processing by InstitutionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering institutions/index.html.erb within layouts/application
+  [1m[36mInstitution Load (1.0ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" /*action='index',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/views/institutions/index.html.erb:35
+  [1m[36mInstitution Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/views/institutions/index.html.erb:97
+  Rendered institutions/index.html.erb within layouts/application (Duration: 13.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 27.8ms | GC: 0.0ms)
+Completed 200 OK in 98ms (Views: 27.2ms | ActiveRecord: 1.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/institutions" for 127.0.0.1 at 2025-07-03 12:16:45 +0100
+Processing by InstitutionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering institutions/index.html.erb within layouts/application
+  [1m[36mInstitution Load (1.0ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" /*action='index',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/views/institutions/index.html.erb:35
+  [1m[36mInstitution Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/views/institutions/index.html.erb:97
+  Rendered institutions/index.html.erb within layouts/application (Duration: 17.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 33.5ms | GC: 0.0ms)
+Completed 200 OK in 120ms (Views: 32.8ms | ActiveRecord: 1.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-07-03 12:17:14 +0100
+Processing by Users::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 2.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.2ms | GC: 0.9ms)
+Completed 200 OK in 51ms (Views: 13.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2025-07-03 12:17:15 +0100
+Processing by Users::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 4.7ms | GC: 0.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.1ms | GC: 0.9ms)
+Completed 200 OK in 42ms (Views: 11.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-07-03 12:18:23 +0100
+Processing by HomeController#index as HTML
+  [1m[36mScholarship Count (2.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:5:in `index'
+  [1m[36mInstitution Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:6:in `index'
+  [1m[36mScholarship Count (2.4ms)[0m  [1m[34mSELECT COUNT(DISTINCT "scholarships"."country") FROM "scholarships" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:7:in `index'
+  [1m[36mScholarship Pluck (0.9ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."country" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:21:in `index'
+  [1m[36mScholarship Pluck (1.0ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."level" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:22:in `index'
+  [1m[36mScholarship Pluck (0.8ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."field_of_study" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:23:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mScholarship Load (1.2ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."active" = TRUE ORDER BY "scholarships"."created_at" DESC LIMIT 10 /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:92
+  Rendered home/index.html.erb within layouts/application (Duration: 17.9ms | GC: 0.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 35.6ms | GC: 4.5ms)
+Completed 200 OK in 123ms (Views: 36.7ms | ActiveRecord: 8.8ms (7 queries, 0 cached) | GC: 5.6ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 12:19:31 +0100
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:206
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 10.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 30.4ms | GC: 0.0ms)
+Completed 200 OK in 76ms (Views: 32.2ms | ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/institutions" for 127.0.0.1 at 2025-07-03 12:19:31 +0100
+Processing by InstitutionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering institutions/index.html.erb within layouts/application
+  [1m[36mInstitution Load (0.7ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" /*action='index',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/views/institutions/index.html.erb:35
+  [1m[36mInstitution Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/views/institutions/index.html.erb:97
+  Rendered institutions/index.html.erb within layouts/application (Duration: 6.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.2ms | GC: 0.0ms)
+Completed 200 OK in 42ms (Views: 12.1ms | ActiveRecord: 1.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/institutions" for 127.0.0.1 at 2025-07-03 12:19:49 +0100
+Processing by InstitutionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering institutions/index.html.erb within layouts/application
+  [1m[36mInstitution Load (0.7ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" /*action='index',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/views/institutions/index.html.erb:35
+  [1m[36mInstitution Count (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/views/institutions/index.html.erb:97
+  Rendered institutions/index.html.erb within layouts/application (Duration: 7.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.0ms | GC: 0.0ms)
+Completed 200 OK in 42ms (Views: 13.1ms | ActiveRecord: 1.6ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/institutions" for 127.0.0.1 at 2025-07-03 12:19:55 +0100
+Processing by InstitutionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering institutions/index.html.erb within layouts/application
+  [1m[36mInstitution Load (1.8ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" /*action='index',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/views/institutions/index.html.erb:35
+  [1m[36mInstitution Count (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/views/institutions/index.html.erb:97
+  Rendered institutions/index.html.erb within layouts/application (Duration: 11.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.7ms | GC: 0.0ms)
+Completed 200 OK in 47ms (Views: 13.0ms | ActiveRecord: 2.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 12:21:46 +0100
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (1.6ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:206
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 4.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 15.8ms | GC: 3.8ms)
+Completed 200 OK in 63ms (Views: 15.3ms | ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 3.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-07-03 12:21:52 +0100
+Processing by HomeController#index as HTML
+  [1m[36mScholarship Count (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:5:in `index'
+  [1m[36mInstitution Count (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:6:in `index'
+  [1m[36mScholarship Count (1.0ms)[0m  [1m[34mSELECT COUNT(DISTINCT "scholarships"."country") FROM "scholarships" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:7:in `index'
+  [1m[36mScholarship Pluck (1.2ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."country" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:21:in `index'
+  [1m[36mScholarship Pluck (1.0ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."level" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:22:in `index'
+  [1m[36mScholarship Pluck (2.0ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."field_of_study" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:23:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mScholarship Load (1.1ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."active" = TRUE ORDER BY "scholarships"."created_at" DESC LIMIT 10 /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:92
+  Rendered home/index.html.erb within layouts/application (Duration: 78.3ms | GC: 1.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 83.6ms | GC: 1.4ms)
+Completed 200 OK in 330ms (Views: 83.6ms | ActiveRecord: 8.1ms (7 queries, 0 cached) | GC: 46.9ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 12:21:54 +0100
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:206
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 3.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.3ms | GC: 0.0ms)
+Completed 200 OK in 42ms (Views: 7.5ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-07-03 12:21:56 +0100
+Processing by HomeController#index as HTML
+  [1m[36mScholarship Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:5:in `index'
+  [1m[36mInstitution Count (2.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:6:in `index'
+  [1m[36mScholarship Count (11.2ms)[0m  [1m[34mSELECT COUNT(DISTINCT "scholarships"."country") FROM "scholarships" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:7:in `index'
+  [1m[36mScholarship Pluck (1.3ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."country" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:21:in `index'
+  [1m[36mScholarship Pluck (1.8ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."level" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:22:in `index'
+  [1m[36mScholarship Pluck (1.3ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."field_of_study" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:23:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mScholarship Load (1.1ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."active" = TRUE ORDER BY "scholarships"."created_at" DESC LIMIT 10 /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:92
+  Rendered home/index.html.erb within layouts/application (Duration: 21.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 87.5ms | GC: 38.9ms)
+Completed 200 OK in 274ms (Views: 87.8ms | ActiveRecord: 19.3ms (7 queries, 0 cached) | GC: 96.3ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 12:21:58 +0100
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:206
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 4.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 20.9ms | GC: 1.1ms)
+Completed 200 OK in 95ms (Views: 31.9ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-07-03 12:59:07 +0100
+Processing by HomeController#index as HTML
+  [1m[36mScholarship Count (5.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:5:in `index'
+  [1m[36mInstitution Count (2.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:6:in `index'
+  [1m[36mScholarship Count (8.1ms)[0m  [1m[34mSELECT COUNT(DISTINCT "scholarships"."country") FROM "scholarships" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:7:in `index'
+  [1m[36mScholarship Pluck (1.3ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."country" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:21:in `index'
+  [1m[36mScholarship Pluck (1.4ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."level" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:22:in `index'
+  [1m[36mScholarship Pluck (1.2ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."field_of_study" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:23:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mScholarship Load (2.6ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."active" = TRUE ORDER BY "scholarships"."created_at" DESC LIMIT 10 /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:133
+  Rendered home/index.html.erb within layouts/application (Duration: 238.4ms | GC: 57.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 336.2ms | GC: 60.2ms)
+Completed 200 OK in 1122ms (Views: 349.2ms | ActiveRecord: 79.8ms (7 queries, 0 cached) | GC: 320.3ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 12:59:21 +0100
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:206
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 10.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 21.8ms | GC: 1.6ms)
+Completed 200 OK in 56ms (Views: 21.8ms | ActiveRecord: 1.6ms (1 query, 0 cached) | GC: 1.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-07-03 12:59:22 +0100
+Processing by HomeController#index as HTML
+  [1m[36mScholarship Count (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:5:in `index'
+  [1m[36mInstitution Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:6:in `index'
+  [1m[36mScholarship Count (1.3ms)[0m  [1m[34mSELECT COUNT(DISTINCT "scholarships"."country") FROM "scholarships" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:7:in `index'
+  [1m[36mScholarship Pluck (1.1ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."country" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:21:in `index'
+  [1m[36mScholarship Pluck (0.9ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."level" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:22:in `index'
+  [1m[36mScholarship Pluck (10.5ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."field_of_study" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:23:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mScholarship Load (1.0ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."active" = TRUE ORDER BY "scholarships"."created_at" DESC LIMIT 10 /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:133
+  Rendered home/index.html.erb within layouts/application (Duration: 61.2ms | GC: 1.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 74.5ms | GC: 1.4ms)
+Completed 200 OK in 214ms (Views: 74.9ms | ActiveRecord: 16.5ms (7 queries, 0 cached) | GC: 4.2ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2025-07-03 12:59:38 +0100
+Processing by Users::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 3.4ms | GC: 0.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 37.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 49.0ms | GC: 0.0ms)
+Completed 200 OK in 125ms (Views: 52.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for 127.0.0.1 at 2025-07-03 13:06:36 +0100
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 13:06:54 +0100
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (131.6ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:206
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 144.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 206.4ms | GC: 0.0ms)
+Completed 200 OK in 333ms (Views: 26.6ms | ActiveRecord: 181.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/institutions" for 127.0.0.1 at 2025-07-03 13:07:01 +0100
+Processing by InstitutionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering institutions/index.html.erb within layouts/application
+  [1m[36mInstitution Load (1.9ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" /*action='index',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/views/institutions/index.html.erb:35
+  [1m[36mInstitution Count (11.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='institutions'*/[0m
+  ↳ app/views/institutions/index.html.erb:97
+  Rendered institutions/index.html.erb within layouts/application (Duration: 85.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 105.0ms | GC: 0.0ms)
+Completed 200 OK in 201ms (Views: 92.7ms | ActiveRecord: 13.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 13:07:12 +0100
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (3.0ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:206
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 30.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 68.5ms | GC: 0.0ms)
+Completed 200 OK in 154ms (Views: 81.9ms | ActiveRecord: 2.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-07-03 13:07:13 +0100
+Processing by HomeController#index as HTML
+  [1m[36mScholarship Count (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:5:in `index'
+  [1m[36mInstitution Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:6:in `index'
+  [1m[36mScholarship Count (13.0ms)[0m  [1m[34mSELECT COUNT(DISTINCT "scholarships"."country") FROM "scholarships" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:7:in `index'
+  [1m[36mScholarship Pluck (1.0ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."country" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:21:in `index'
+  [1m[36mScholarship Pluck (1.0ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."level" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:22:in `index'
+  [1m[36mScholarship Pluck (1.2ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."field_of_study" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:23:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mScholarship Load (9.0ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."active" = TRUE ORDER BY "scholarships"."created_at" DESC LIMIT 10 /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:133
+  Rendered home/index.html.erb within layouts/application (Duration: 28.1ms | GC: 2.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 31.9ms | GC: 2.4ms)
+Completed 200 OK in 218ms (Views: 38.7ms | ActiveRecord: 26.9ms (7 queries, 0 cached) | GC: 52.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-07-03 13:12:15 +0100
+Processing by HomeController#index as HTML
+  [1m[36mScholarship Count (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:5:in `index'
+  [1m[36mInstitution Count (2.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:6:in `index'
+  [1m[36mScholarship Count (2.4ms)[0m  [1m[34mSELECT COUNT(DISTINCT "scholarships"."country") FROM "scholarships" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:7:in `index'
+  [1m[36mScholarship Pluck (0.9ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."country" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:21:in `index'
+  [1m[36mScholarship Pluck (1.0ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."level" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:22:in `index'
+  [1m[36mScholarship Pluck (0.7ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."field_of_study" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:23:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mScholarship Load (0.9ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."active" = TRUE ORDER BY "scholarships"."created_at" DESC LIMIT 10 /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:119
+  Rendered home/index.html.erb within layouts/application (Duration: 93.9ms | GC: 1.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 125.9ms | GC: 2.2ms)
+Completed 200 OK in 583ms (Views: 173.6ms | ActiveRecord: 308.9ms (7 queries, 0 cached) | GC: 3.6ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2025-07-03 13:12:36 +0100
+Processing by Users::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 10.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.2ms | GC: 0.0ms)
+Completed 200 OK in 248ms (Views: 16.6ms | ActiveRecord: 177.7ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 13:13:00 +0100
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:206
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 15.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 101.2ms | GC: 0.0ms)
+Completed 200 OK in 186ms (Views: 101.7ms | ActiveRecord: 1.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 13:13:32 +0100
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 29.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 30.8ms | GC: 0.0ms)
+Completed 500 Internal Server Error in 86ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `map' for nil:NilClass)
+Caused by: NoMethodError (undefined method `map' for nil:NilClass)
+
+Information for: ActionView::Template::Error (undefined method `map' for nil:NilClass):
+    170:                         </div>
+    171:                         <div class="flex gap-3">
+    172:                             <%= form.select :country, 
+    173:                                 options_for_select([["🌍 Tous pays", ""]] + @countries.map { |c| [c, c] }, params[:country]),
+    174:                                 {}, 
+    175:                                 { class: "px-4 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-white/30 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 outline-none text-gray-700 min-w-[140px]" } %>
+    176:                             <%= form.select :level, 
+  
+app/views/scholarships/index.html.erb:173
+app/views/scholarships/index.html.erb:163
+
+Information for cause: NoMethodError (undefined method `map' for nil:NilClass):
+  
+app/views/scholarships/index.html.erb:173
+app/views/scholarships/index.html.erb:163
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 13:15:48 +0100
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:206
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 19.2ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 32.5ms | GC: 0.8ms)
+Completed 200 OK in 85ms (Views: 31.4ms | ActiveRecord: 10.8ms (1 query, 0 cached) | GC: 1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2025-07-03 13:17:16 +0100
+Processing by HomeController#index as HTML
+  [1m[36mScholarship Count (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:5:in `index'
+  [1m[36mInstitution Count (10.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "institutions" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:6:in `index'
+  [1m[36mScholarship Count (0.9ms)[0m  [1m[34mSELECT COUNT(DISTINCT "scholarships"."country") FROM "scholarships" /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:7:in `index'
+  [1m[36mScholarship Pluck (1.0ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."country" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:21:in `index'
+  [1m[36mScholarship Pluck (10.3ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."level" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:22:in `index'
+  [1m[36mScholarship Pluck (0.9ms)[0m  [1m[34mSELECT DISTINCT "scholarships"."field_of_study" FROM "scholarships" WHERE "scholarships"."active" = TRUE /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:23:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mScholarship Load (1.1ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."active" = TRUE ORDER BY "scholarships"."created_at" DESC LIMIT 10 /*action='index',application='BourseRadar',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:119
+  Rendered home/index.html.erb within layouts/application (Duration: 46.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 64.2ms | GC: 0.5ms)
+Completed 200 OK in 263ms (Views: 66.1ms | ActiveRecord: 25.8ms (7 queries, 0 cached) | GC: 1.5ms)
+
+

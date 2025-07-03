@@ -9,7 +9,6 @@ class ScholarshipsController < ApplicationController
 
     def show
        @scholarship=Scholarship.find(params[:id])
-       
-        render :show
     end
+    
 end

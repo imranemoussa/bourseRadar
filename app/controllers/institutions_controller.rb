@@ -6,7 +6,7 @@ class InstitutionsController < ApplicationController
   end
 
   def show
-    @institution = Institution.find(params[:id])
+    #@institution = Institution.find(params[:id])
   end
 
   def scholarships

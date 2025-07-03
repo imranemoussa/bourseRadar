@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :institutions, only: [:index, :show] do
+  resources :institutions, only: [:index, :show, :new] do
     member do
       get :scholarships
     end
@@ -51,7 +51,7 @@ Rails.application.routes.draw do
     end
     
     # Routes pour les institutions
-    resources :institutions, except: [:index, :show] do
+    resources :institutions, except: [:index, :show, :new] do
       resources :scholarships, except: [:index, :show]
     end
   end
