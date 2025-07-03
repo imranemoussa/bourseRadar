@@ -1,14 +1,5 @@
 Rails.application.routes.draw do
-  get "profiles/show"
-  get "profiles/edit"
-  get "profiles/update"
-  get "institutions/index"
-  get "institutions/show"
-  get "institutions/scholarships"
-  get "institutions/new"
-  get "institutions/create"
-  get "institutions/edit"
-  get "institutions/update"
+
   
   devise_for :users, controllers: {
   registrations: 'users/registrations',
@@ -44,7 +35,6 @@ Rails.application.routes.draw do
   # Routes pour utilisateurs connectés
   authenticated :user do
     # Dashboard principal
-    get '/dashboard', to: 'dashboard#index'
     
     # Profil étudiant
     resource :profile, only: [:show, :edit, :update]
