@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
     @total_scholarships = Scholarship.published.count
     @total_institutions = Institution.count
-    @countries_count = Scholarship.published.group(:country).count
+    @countries_count = Scholarship.select(:country).distinct.count
 
     if params[:search].present?
       @scholarships = Scholarship.published.search_by_keywords(params[:search]).includes(:institution)
