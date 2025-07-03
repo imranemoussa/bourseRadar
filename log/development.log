@@ -4758,3 +4758,631 @@ Processing by ScholarshipsController#index as HTML
 Completed 200 OK in 78ms (Views: 28.4ms | ActiveRecord: 1.7ms (1 query, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/scholarships?query=aze&country=Canada&level=Licence" for 127.0.0.1 at 2025-07-03 10:07:56 +0200
+  
+ActiveRecord::ConnectionNotEstablished (could not connect to server: Connection refused
+	Is the server running on host "127.0.0.1" and accepting
+	TCP/IP connections on port 5432?
+)
+Caused by: PG::ConnectionBad (could not connect to server: Connection refused
+	Is the server running on host "127.0.0.1" and accepting
+	TCP/IP connections on port 5432?
+)
+
+Information for: ActiveRecord::ConnectionNotEstablished (could not connect to server: Connection refused
+	Is the server running on host "127.0.0.1" and accepting
+	TCP/IP connections on port 5432?
+):
+  
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:69:in `rescue in new_client'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:57:in `new_client'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:939:in `connect'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:951:in `reconnect'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:667:in `block in reconnect!'
+activesupport (8.0.2) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:666:in `reconnect!'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:771:in `block in verify!'
+activesupport (8.0.2) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:761:in `verify!'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:779:in `connect!'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:985:in `block in with_raw_connection'
+activesupport (8.0.2) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:984:in `with_raw_connection'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in `quote_string'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract/quoting.rb:76:in `quote'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in `quote'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1142:in `quoted_scope'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1119:in `data_source_sql'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract/schema_statements.rb:60:in `table_exists?'
+activerecord (8.0.2) lib/active_record/schema_migration.rb:55:in `block in create_table'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:418:in `with_connection'
+activerecord (8.0.2) lib/active_record/schema_migration.rb:54:in `create_table'
+activerecord (8.0.2) lib/active_record/migration.rb:1431:in `initialize'
+activerecord (8.0.2) lib/active_record/migration.rb:1279:in `new'
+activerecord (8.0.2) lib/active_record/migration.rb:1279:in `open'
+activerecord (8.0.2) lib/active_record/migration.rb:763:in `block (2 levels) in pending_migrations'
+activerecord (8.0.2) lib/active_record/migration/pending_migration_connection.rb:8:in `with_temporary_pool'
+activerecord (8.0.2) lib/active_record/migration.rb:762:in `block in pending_migrations'
+activerecord (8.0.2) lib/active_record/migration.rb:761:in `each'
+activerecord (8.0.2) lib/active_record/migration.rb:761:in `pending_migrations'
+activerecord (8.0.2) lib/active_record/migration.rb:740:in `check_pending_migrations'
+activerecord (8.0.2) lib/active_record/migration.rb:660:in `block (2 levels) in call'
+activesupport (8.0.2) lib/active_support/file_update_checker.rb:85:in `execute'
+activerecord (8.0.2) lib/active_record/migration.rb:665:in `block in call'
+activerecord (8.0.2) lib/active_record/migration.rb:657:in `synchronize'
+activerecord (8.0.2) lib/active_record/migration.rb:657:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in `run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in `call'
+rack (3.1.16) lib/rack/method_override.rb:28:in `call'
+rack (3.1.16) lib/rack/runtime.rb:24:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (8.0.2) lib/rails/engine.rb:535:in `call'
+puma (6.6.0) lib/puma/configuration.rb:279:in `call'
+puma (6.6.0) lib/puma/request.rb:99:in `block in handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in `handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in `process_client'
+puma (6.6.0) lib/puma/server.rb:254:in `block in run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+
+Information for cause: PG::ConnectionBad (could not connect to server: Connection refused
+	Is the server running on host "127.0.0.1" and accepting
+	TCP/IP connections on port 5432?
+):
+  
+pg (1.5.9) lib/pg/connection.rb:709:in `async_connect_or_reset'
+pg (1.5.9) lib/pg/connection.rb:844:in `connect_to_hosts'
+pg (1.5.9) lib/pg/connection.rb:772:in `new'
+pg (1.5.9) lib/pg.rb:63:in `connect'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:58:in `new_client'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:939:in `connect'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:951:in `reconnect'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:667:in `block in reconnect!'
+activesupport (8.0.2) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:666:in `reconnect!'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:771:in `block in verify!'
+activesupport (8.0.2) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:761:in `verify!'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:779:in `connect!'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:985:in `block in with_raw_connection'
+activesupport (8.0.2) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:984:in `with_raw_connection'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in `quote_string'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract/quoting.rb:76:in `quote'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in `quote'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1142:in `quoted_scope'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1119:in `data_source_sql'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract/schema_statements.rb:60:in `table_exists?'
+activerecord (8.0.2) lib/active_record/schema_migration.rb:55:in `block in create_table'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:418:in `with_connection'
+activerecord (8.0.2) lib/active_record/schema_migration.rb:54:in `create_table'
+activerecord (8.0.2) lib/active_record/migration.rb:1431:in `initialize'
+activerecord (8.0.2) lib/active_record/migration.rb:1279:in `new'
+activerecord (8.0.2) lib/active_record/migration.rb:1279:in `open'
+activerecord (8.0.2) lib/active_record/migration.rb:763:in `block (2 levels) in pending_migrations'
+activerecord (8.0.2) lib/active_record/migration/pending_migration_connection.rb:8:in `with_temporary_pool'
+activerecord (8.0.2) lib/active_record/migration.rb:762:in `block in pending_migrations'
+activerecord (8.0.2) lib/active_record/migration.rb:761:in `each'
+activerecord (8.0.2) lib/active_record/migration.rb:761:in `pending_migrations'
+activerecord (8.0.2) lib/active_record/migration.rb:740:in `check_pending_migrations'
+activerecord (8.0.2) lib/active_record/migration.rb:660:in `block (2 levels) in call'
+activesupport (8.0.2) lib/active_support/file_update_checker.rb:85:in `execute'
+activerecord (8.0.2) lib/active_record/migration.rb:665:in `block in call'
+activerecord (8.0.2) lib/active_record/migration.rb:657:in `synchronize'
+activerecord (8.0.2) lib/active_record/migration.rb:657:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in `run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in `call'
+rack (3.1.16) lib/rack/method_override.rb:28:in `call'
+rack (3.1.16) lib/rack/runtime.rb:24:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (8.0.2) lib/rails/engine.rb:535:in `call'
+puma (6.6.0) lib/puma/configuration.rb:279:in `call'
+puma (6.6.0) lib/puma/request.rb:99:in `block in handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in `handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in `process_client'
+puma (6.6.0) lib/puma/server.rb:254:in `block in run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Started GET "/favicon.ico" for 127.0.0.1 at 2025-07-03 10:07:58 +0200
+  
+ActiveRecord::ConnectionNotEstablished (could not connect to server: Connection refused
+	Is the server running on host "127.0.0.1" and accepting
+	TCP/IP connections on port 5432?
+)
+Caused by: PG::ConnectionBad (could not connect to server: Connection refused
+	Is the server running on host "127.0.0.1" and accepting
+	TCP/IP connections on port 5432?
+)
+
+Information for: ActiveRecord::ConnectionNotEstablished (could not connect to server: Connection refused
+	Is the server running on host "127.0.0.1" and accepting
+	TCP/IP connections on port 5432?
+):
+  
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:69:in `rescue in new_client'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:57:in `new_client'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:939:in `connect'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:951:in `reconnect'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:667:in `block in reconnect!'
+activesupport (8.0.2) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:666:in `reconnect!'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:771:in `block in verify!'
+activesupport (8.0.2) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:761:in `verify!'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:779:in `connect!'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:985:in `block in with_raw_connection'
+activesupport (8.0.2) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:984:in `with_raw_connection'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in `quote_string'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract/quoting.rb:76:in `quote'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in `quote'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1142:in `quoted_scope'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1119:in `data_source_sql'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract/schema_statements.rb:60:in `table_exists?'
+activerecord (8.0.2) lib/active_record/schema_migration.rb:55:in `block in create_table'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:418:in `with_connection'
+activerecord (8.0.2) lib/active_record/schema_migration.rb:54:in `create_table'
+activerecord (8.0.2) lib/active_record/migration.rb:1431:in `initialize'
+activerecord (8.0.2) lib/active_record/migration.rb:1279:in `new'
+activerecord (8.0.2) lib/active_record/migration.rb:1279:in `open'
+activerecord (8.0.2) lib/active_record/migration.rb:763:in `block (2 levels) in pending_migrations'
+activerecord (8.0.2) lib/active_record/migration/pending_migration_connection.rb:8:in `with_temporary_pool'
+activerecord (8.0.2) lib/active_record/migration.rb:762:in `block in pending_migrations'
+activerecord (8.0.2) lib/active_record/migration.rb:761:in `each'
+activerecord (8.0.2) lib/active_record/migration.rb:761:in `pending_migrations'
+activerecord (8.0.2) lib/active_record/migration.rb:740:in `check_pending_migrations'
+activerecord (8.0.2) lib/active_record/migration.rb:660:in `block (2 levels) in call'
+activesupport (8.0.2) lib/active_support/file_update_checker.rb:85:in `execute'
+activerecord (8.0.2) lib/active_record/migration.rb:665:in `block in call'
+activerecord (8.0.2) lib/active_record/migration.rb:657:in `synchronize'
+activerecord (8.0.2) lib/active_record/migration.rb:657:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in `run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in `call'
+rack (3.1.16) lib/rack/method_override.rb:28:in `call'
+rack (3.1.16) lib/rack/runtime.rb:24:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (8.0.2) lib/rails/engine.rb:535:in `call'
+puma (6.6.0) lib/puma/configuration.rb:279:in `call'
+puma (6.6.0) lib/puma/request.rb:99:in `block in handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in `handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in `process_client'
+puma (6.6.0) lib/puma/server.rb:254:in `block in run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+
+Information for cause: PG::ConnectionBad (could not connect to server: Connection refused
+	Is the server running on host "127.0.0.1" and accepting
+	TCP/IP connections on port 5432?
+):
+  
+pg (1.5.9) lib/pg/connection.rb:709:in `async_connect_or_reset'
+pg (1.5.9) lib/pg/connection.rb:844:in `connect_to_hosts'
+pg (1.5.9) lib/pg/connection.rb:772:in `new'
+pg (1.5.9) lib/pg.rb:63:in `connect'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:58:in `new_client'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:939:in `connect'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql_adapter.rb:951:in `reconnect'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:667:in `block in reconnect!'
+activesupport (8.0.2) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:666:in `reconnect!'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:771:in `block in verify!'
+activesupport (8.0.2) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:761:in `verify!'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:779:in `connect!'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:985:in `block in with_raw_connection'
+activesupport (8.0.2) lib/active_support/concurrency/null_lock.rb:9:in `synchronize'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract_adapter.rb:984:in `with_raw_connection'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in `quote_string'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract/quoting.rb:76:in `quote'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in `quote'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1142:in `quoted_scope'
+activerecord (8.0.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1119:in `data_source_sql'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract/schema_statements.rb:60:in `table_exists?'
+activerecord (8.0.2) lib/active_record/schema_migration.rb:55:in `block in create_table'
+activerecord (8.0.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:418:in `with_connection'
+activerecord (8.0.2) lib/active_record/schema_migration.rb:54:in `create_table'
+activerecord (8.0.2) lib/active_record/migration.rb:1431:in `initialize'
+activerecord (8.0.2) lib/active_record/migration.rb:1279:in `new'
+activerecord (8.0.2) lib/active_record/migration.rb:1279:in `open'
+activerecord (8.0.2) lib/active_record/migration.rb:763:in `block (2 levels) in pending_migrations'
+activerecord (8.0.2) lib/active_record/migration/pending_migration_connection.rb:8:in `with_temporary_pool'
+activerecord (8.0.2) lib/active_record/migration.rb:762:in `block in pending_migrations'
+activerecord (8.0.2) lib/active_record/migration.rb:761:in `each'
+activerecord (8.0.2) lib/active_record/migration.rb:761:in `pending_migrations'
+activerecord (8.0.2) lib/active_record/migration.rb:740:in `check_pending_migrations'
+activerecord (8.0.2) lib/active_record/migration.rb:660:in `block (2 levels) in call'
+activesupport (8.0.2) lib/active_support/file_update_checker.rb:85:in `execute'
+activerecord (8.0.2) lib/active_record/migration.rb:665:in `block in call'
+activerecord (8.0.2) lib/active_record/migration.rb:657:in `synchronize'
+activerecord (8.0.2) lib/active_record/migration.rb:657:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (8.0.2) lib/active_support/callbacks.rb:100:in `run_callbacks'
+actionpack (8.0.2) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (8.0.2) lib/rails/rack/logger.rb:41:in `call_app'
+railties (8.0.2) lib/rails/rack/logger.rb:29:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/request_id.rb:34:in `call'
+rack (3.1.16) lib/rack/method_override.rb:28:in `call'
+rack (3.1.16) lib/rack/runtime.rb:24:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (8.0.2) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.16) lib/rack/sendfile.rb:114:in `call'
+actionpack (8.0.2) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+railties (8.0.2) lib/rails/engine.rb:535:in `call'
+puma (6.6.0) lib/puma/configuration.rb:279:in `call'
+puma (6.6.0) lib/puma/request.rb:99:in `block in handle_request'
+puma (6.6.0) lib/puma/thread_pool.rb:390:in `with_force_shutdown'
+puma (6.6.0) lib/puma/request.rb:98:in `handle_request'
+puma (6.6.0) lib/puma/server.rb:472:in `process_client'
+puma (6.6.0) lib/puma/server.rb:254:in `block in run'
+puma (6.6.0) lib/puma/thread_pool.rb:167:in `block in spawn_thread'
+Started GET "/scholarships?query=aze&country=Canada&level=Licence" for 127.0.0.1 at 2025-07-03 10:11:15 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (7.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BourseRadar'*/[0m
+Processing by ScholarshipsController#index as HTML
+  Parameters: {"query"=>"aze", "country"=>"Canada", "level"=>"Licence"}
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (35.7ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" INNER JOIN (SELECT "scholarships"."id" AS pg_search_id, (ts_rank((to_tsvector('simple', coalesce(("scholarships"."title")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."description")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."field_of_study")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."level")::text, ''))), (to_tsquery('simple', ''' ' || 'aze' || ' ''' || ':*')), 0)) AS rank FROM "scholarships" WHERE ((to_tsvector('simple', coalesce(("scholarships"."title")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."description")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."field_of_study")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."level")::text, ''))) @@ (to_tsquery('simple', ''' ' || 'aze' || ' ''' || ':*'))) OR ('aze' % (coalesce(("scholarships"."title")::text, '') || ' ' || coalesce(("scholarships"."description")::text, '') || ' ' || coalesce(("scholarships"."field_of_study")::text, '') || ' ' || coalesce(("scholarships"."level")::text, '')))) AS pg_search_bf1eff5757c95c272e8ed0 ON "scholarships"."id" = pg_search_bf1eff5757c95c272e8ed0.pg_search_id LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:253
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 59.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 147.0ms | GC: 0.2ms)
+Completed 200 OK in 524ms (Views: 115.9ms | ActiveRecord: 181.2ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/assets/application-8b441ae0.css" for 127.0.0.1 at 2025-07-03 10:11:16 +0200
+Started GET "/assets/application-bfcdf840.js" for 127.0.0.1 at 2025-07-03 10:11:16 +0200
+Started GET "/assets/controllers/hello_controller-708796bd.js" for 127.0.0.1 at 2025-07-03 10:11:16 +0200
+Started GET "/assets/controllers/index-ee64e1f1.js" for 127.0.0.1 at 2025-07-03 10:11:16 +0200
+Started GET "/assets/turbo.min-3a2e143f.js" for 127.0.0.1 at 2025-07-03 10:11:16 +0200
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for 127.0.0.1 at 2025-07-03 10:11:17 +0200
+Started GET "/assets/stimulus.min-4b1e420e.js" for 127.0.0.1 at 2025-07-03 10:11:17 +0200
+Started GET "/assets/controllers/application-3affb389.js" for 127.0.0.1 at 2025-07-03 10:11:17 +0200
+Started GET "/scholarships?query=Sciences+Politiques&country=France&level=Master" for 127.0.0.1 at 2025-07-03 10:12:14 +0200
+Processing by ScholarshipsController#index as HTML
+  Parameters: {"query"=>"Sciences Politiques", "country"=>"France", "level"=>"Master"}
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" INNER JOIN (SELECT "scholarships"."id" AS pg_search_id, (ts_rank((to_tsvector('simple', coalesce(("scholarships"."title")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."description")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."field_of_study")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."level")::text, ''))), (to_tsquery('simple', ''' ' || 'Sciences' || ' ''' || ':*') || to_tsquery('simple', ''' ' || 'Politiques' || ' ''' || ':*')), 0)) AS rank FROM "scholarships" WHERE ((to_tsvector('simple', coalesce(("scholarships"."title")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."description")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."field_of_study")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."level")::text, ''))) @@ (to_tsquery('simple', ''' ' || 'Sciences' || ' ''' || ':*') || to_tsquery('simple', ''' ' || 'Politiques' || ' ''' || ':*'))) OR ('Sciences Politiques' % (coalesce(("scholarships"."title")::text, '') || ' ' || coalesce(("scholarships"."description")::text, '') || ' ' || coalesce(("scholarships"."field_of_study")::text, '') || ' ' || coalesce(("scholarships"."level")::text, '')))) AS pg_search_bf1eff5757c95c272e8ed0 ON "scholarships"."id" = pg_search_bf1eff5757c95c272e8ed0.pg_search_id LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:253
+  [1m[36mScholarship Load (16.6ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" INNER JOIN (SELECT "scholarships"."id" AS pg_search_id, (ts_rank((to_tsvector('simple', coalesce(("scholarships"."title")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."description")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."field_of_study")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."level")::text, ''))), (to_tsquery('simple', ''' ' || 'Sciences' || ' ''' || ':*') || to_tsquery('simple', ''' ' || 'Politiques' || ' ''' || ':*')), 0)) AS rank FROM "scholarships" WHERE ((to_tsvector('simple', coalesce(("scholarships"."title")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."description")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."field_of_study")::text, '')) || to_tsvector('simple', coalesce(("scholarships"."level")::text, ''))) @@ (to_tsquery('simple', ''' ' || 'Sciences' || ' ''' || ':*') || to_tsquery('simple', ''' ' || 'Politiques' || ' ''' || ':*'))) OR ('Sciences Politiques' % (coalesce(("scholarships"."title")::text, '') || ' ' || coalesce(("scholarships"."description")::text, '') || ' ' || coalesce(("scholarships"."field_of_study")::text, '') || ' ' || coalesce(("scholarships"."level")::text, '')))) AS pg_search_bf1eff5757c95c272e8ed0 ON "scholarships"."id" = pg_search_bf1eff5757c95c272e8ed0.pg_search_id ORDER BY pg_search_bf1eff5757c95c272e8ed0.rank DESC, "scholarships"."id" ASC /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:273
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 175.9ms | GC: 12.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 178.6ms | GC: 12.9ms)
+Completed 200 OK in 230ms (Views: 161.0ms | ActiveRecord: 18.5ms (2 queries, 0 cached) | GC: 12.9ms)
+
+
+Started GET "/scholarships/1" for 127.0.0.1 at 2025-07-03 10:17:01 +0200
+Processing by ScholarshipsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mScholarship Load (2.1ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."id" = 1 LIMIT 1 /*action='show',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/controllers/scholarships_controller.rb:11:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/show.html.erb within layouts/application
+  [1m[36mInstitution Load (7.6ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" WHERE "institutions"."id" = 1 LIMIT 1 /*action='show',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/show.html.erb:80
+  Rendered scholarships/show.html.erb within layouts/application (Duration: 100.8ms | GC: 0.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 112.0ms | GC: 0.8ms)
+Completed 200 OK in 221ms (Views: 141.5ms | ActiveRecord: 15.4ms (2 queries, 0 cached) | GC: 1.2ms)
+
+
+Started GET "/scholarships/1" for 127.0.0.1 at 2025-07-03 10:17:08 +0200
+Processing by ScholarshipsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mScholarship Load (1.2ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."id" = 1 LIMIT 1 /*action='show',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/controllers/scholarships_controller.rb:11:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/show.html.erb within layouts/application
+  [1m[36mInstitution Load (1.3ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" WHERE "institutions"."id" = 1 LIMIT 1 /*action='show',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/show.html.erb:80
+  Rendered scholarships/show.html.erb within layouts/application (Duration: 8.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 20.0ms | GC: 1.9ms)
+Completed 200 OK in 63ms (Views: 20.0ms | ActiveRecord: 2.5ms (2 queries, 0 cached) | GC: 1.9ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 10:18:23 +0200
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:253
+  [1m[36mScholarship Load (0.8ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:273
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 15.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.2ms | GC: 0.4ms)
+Completed 200 OK in 51ms (Views: 18.6ms | ActiveRecord: 1.7ms (2 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/scholarships/1" for 127.0.0.1 at 2025-07-03 10:19:30 +0200
+Processing by ScholarshipsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mScholarship Load (1.6ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."id" = 1 LIMIT 1 /*action='show',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/controllers/scholarships_controller.rb:11:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/show.html.erb within layouts/application
+  [1m[36mInstitution Load (0.9ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" WHERE "institutions"."id" = 1 LIMIT 1 /*action='show',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/show.html.erb:80
+  Rendered scholarships/show.html.erb within layouts/application (Duration: 20.2ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 30.4ms | GC: 0.5ms)
+Completed 200 OK in 80ms (Views: 30.5ms | ActiveRecord: 2.5ms (2 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/scholarships/1" for 127.0.0.1 at 2025-07-03 10:19:30 +0200
+Processing by ScholarshipsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mScholarship Load (6.4ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."id" = 1 LIMIT 1 /*action='show',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/controllers/scholarships_controller.rb:11:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/show.html.erb within layouts/application
+  [1m[36mInstitution Load (0.9ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" WHERE "institutions"."id" = 1 LIMIT 1 /*action='show',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/show.html.erb:80
+  Rendered scholarships/show.html.erb within layouts/application (Duration: 6.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.1ms | GC: 0.0ms)
+Completed 200 OK in 55ms (Views: 19.2ms | ActiveRecord: 7.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/scholarships/1" for 127.0.0.1 at 2025-07-03 10:19:35 +0200
+Processing by ScholarshipsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mScholarship Load (1.3ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" WHERE "scholarships"."id" = 1 LIMIT 1 /*action='show',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/controllers/scholarships_controller.rb:11:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/show.html.erb within layouts/application
+  [1m[36mInstitution Load (1.3ms)[0m  [1m[34mSELECT "institutions".* FROM "institutions" WHERE "institutions"."id" = 1 LIMIT 1 /*action='show',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/show.html.erb:80
+  Rendered scholarships/show.html.erb within layouts/application (Duration: 16.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 19.1ms | GC: 0.4ms)
+Completed 200 OK in 67ms (Views: 18.9ms | ActiveRecord: 2.5ms (2 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/assets/turbo.min-5f3b7fda.js.map" for 127.0.0.1 at 2025-07-03 10:20:03 +0200
+Started GET "/assets/stimulus.min-2395e199.js.map" for 127.0.0.1 at 2025-07-03 10:20:03 +0200
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 10:20:36 +0200
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:253
+  [1m[36mScholarship Load (0.9ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:273
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 16.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 18.6ms | GC: 0.0ms)
+Completed 200 OK in 54ms (Views: 17.5ms | ActiveRecord: 2.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 10:26:12 +0200
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:212
+  [1m[36mScholarship Load (0.9ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:232
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 117.3ms | GC: 1.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 123.1ms | GC: 1.4ms)
+Completed 200 OK in 165ms (Views: 82.2ms | ActiveRecord: 43.7ms (2 queries, 0 cached) | GC: 1.6ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 10:51:14 +0200
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (18.5ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:215
+  [1m[36mScholarship Load (1.1ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:235
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 226.7ms | GC: 60.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 245.7ms | GC: 61.4ms)
+Completed 200 OK in 314ms (Views: 221.8ms | ActiveRecord: 38.7ms (2 queries, 0 cached) | GC: 61.4ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 10:52:18 +0200
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:215
+  [1m[36mScholarship Load (1.0ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:235
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 141.3ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 158.6ms | GC: 0.6ms)
+Completed 200 OK in 214ms (Views: 75.1ms | ActiveRecord: 89.6ms (2 queries, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 10:52:38 +0200
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:215
+  [1m[36mScholarship Load (1.1ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:235
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 97.3ms | GC: 0.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 115.8ms | GC: 1.2ms)
+Completed 200 OK in 173ms (Views: 109.9ms | ActiveRecord: 11.1ms (2 queries, 0 cached) | GC: 1.6ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 10:52:55 +0200
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:215
+  [1m[36mScholarship Load (0.8ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:235
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 112.4ms | GC: 0.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 129.3ms | GC: 0.9ms)
+Completed 200 OK in 188ms (Views: 122.5ms | ActiveRecord: 9.8ms (2 queries, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 10:54:04 +0200
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:217
+  [1m[36mScholarship Load (1.1ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:237
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 90.1ms | GC: 6.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 107.0ms | GC: 6.9ms)
+Completed 200 OK in 150ms (Views: 100.3ms | ActiveRecord: 9.7ms (2 queries, 0 cached) | GC: 7.3ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 10:54:36 +0200
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:194
+  [1m[36mScholarship Load (0.9ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:214
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 88.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 129.5ms | GC: 0.0ms)
+Completed 200 OK in 185ms (Views: 121.9ms | ActiveRecord: 10.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 10:55:15 +0200
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:197
+  [1m[36mScholarship Load (0.8ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:217
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 73.5ms | GC: 0.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 90.7ms | GC: 0.9ms)
+Completed 200 OK in 127ms (Views: 84.4ms | ActiveRecord: 9.0ms (2 queries, 0 cached) | GC: 1.2ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 10:55:27 +0200
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:197
+  [1m[36mScholarship Load (0.9ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:217
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 7.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 18.9ms | GC: 0.0ms)
+Completed 200 OK in 53ms (Views: 17.8ms | ActiveRecord: 2.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 10:55:30 +0200
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:197
+  [1m[36mScholarship Load (0.9ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:217
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 9.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.0ms | GC: 0.0ms)
+Completed 200 OK in 54ms (Views: 11.1ms | ActiveRecord: 2.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 10:56:07 +0200
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (7.2ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:209
+  [1m[36mScholarship Load (1.7ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:229
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 68.5ms | GC: 1.8ms)
+  Rendered layout layouts/application.html.erb (Duration: 76.5ms | GC: 2.2ms)
+Completed 200 OK in 130ms (Views: 55.8ms | ActiveRecord: 23.6ms (2 queries, 0 cached) | GC: 9.4ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 10:57:07 +0200
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:195
+  [1m[36mScholarship Load (0.8ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:215
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 96.6ms | GC: 1.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 113.5ms | GC: 1.3ms)
+Completed 200 OK in 172ms (Views: 94.9ms | ActiveRecord: 21.5ms (2 queries, 0 cached) | GC: 2.2ms)
+
+
+Started GET "/scholarships" for 127.0.0.1 at 2025-07-03 10:59:16 +0200
+Processing by ScholarshipsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering scholarships/index.html.erb within layouts/application
+  [1m[36mScholarship Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "scholarships" LIMIT 1 /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:187
+  [1m[36mScholarship Load (0.9ms)[0m  [1m[34mSELECT "scholarships".* FROM "scholarships" /*action='index',application='BourseRadar',controller='scholarships'*/[0m
+  ↳ app/views/scholarships/index.html.erb:207
+  Rendered scholarships/index.html.erb within layouts/application (Duration: 84.6ms | GC: 0.7ms)
+  Rendered layout layouts/application.html.erb (Duration: 100.8ms | GC: 10.6ms)
+Completed 200 OK in 147ms (Views: 93.7ms | ActiveRecord: 10.0ms (2 queries, 0 cached) | GC: 10.9ms)
+
+
