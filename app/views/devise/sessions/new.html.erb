@@ -1,26 +1,97 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <!-- Header -->
+    <div class="text-center">
+      <div class="mx-auto h-20 w-20 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mb-6 shadow-lg">
+        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+        </svg>
+      </div>
+      <h2 class="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">
+        Connexion
+      </h2>
+      <p class="text-gray-600">Connectez-vous à votre compte</p>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <!-- Main Form Card -->
+    <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+      <div class="px-8 py-8">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-6" }) do |f| %>
+          
+          <!-- Email Field -->
+          <div class="space-y-2">
+            <%= f.label :email, "Adresse email", class: "block text-sm font-semibold text-gray-700" %>
+            <%= f.email_field :email, 
+                autofocus: true, 
+                autocomplete: "email",
+                class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white",
+                placeholder: "votre@email.com" %>
+          </div>
+
+          <!-- Password Field -->
+          <div class="space-y-2">
+            <%= f.label :password, "Mot de passe", class: "block text-sm font-semibold text-gray-700" %>
+            <%= f.password_field :password, 
+                autocomplete: "current-password",
+                class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white",
+                placeholder: "••••••••" %>
+          </div>
+
+          <!-- Remember Me Checkbox -->
+          <% if devise_mapping.rememberable? %>
+            <div class="flex items-center">
+              <div class="flex items-center h-5">
+                <%= f.check_box :remember_me, 
+                    class: "h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded transition-colors duration-200" %>
+              </div>
+              <div class="ml-3 text-sm">
+                <%= f.label :remember_me, "Se souvenir de moi", 
+                    class: "text-gray-700 font-medium cursor-pointer hover:text-indigo-600 transition-colors duration-200" %>
+              </div>
+            </div>
+          <% end %>
+
+          <!-- Submit Button -->
+          <div>
+            <%= f.submit "Se connecter", 
+                class: "group relative w-full flex justify-center py-4 px-4 border border-transparent text-sm font-semibold rounded-xl text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 transform hover:scale-105 shadow-lg" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Links Section -->
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
+      <div class="text-center space-y-4">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center">
+      <p class="text-xs text-gray-500">
+        En vous connectant, vous acceptez nos conditions d'utilisation
+      </p>
+    </div>
   </div>
-<% end %>
+</div>
 
-<%= render "devise/shared/links" %>
+<!-- Style pour les liens Devise -->
+<style>
+  .bg-white a {
+    @apply text-indigo-600 hover:text-indigo-800 font-medium transition-colors duration-200 no-underline;
+  }
+  
+  .bg-white a:hover {
+    @apply underline;
+  }
+  
+  .bg-white br {
+    @apply hidden;
+  }
+  
+  .bg-white a:not(:last-child):after {
+    content: " • ";
+    @apply text-gray-400 mx-2;
+  }
+</style>

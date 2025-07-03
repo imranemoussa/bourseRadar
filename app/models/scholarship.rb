@@ -2,7 +2,7 @@ class Scholarship < ApplicationRecord
   belongs_to :institution
   has_many :notifications, dependent: :destroy
 
-  includes PgSearch::Model
+  include PgSearch::Model
 
   pg_search_scope :search_by_keywords,
     againt: [:title, :description, :field_of_study, :level],

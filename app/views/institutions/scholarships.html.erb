@@ -1,0 +1,220 @@
+<% content_for :title, "Bourses offertes par #{@institution.name}" %>
+<% content_for :description, "Découvrez toutes les bourses d'études proposées par #{@institution.name}." %>
+
+<div class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+  <!-- Hero Section -->
+  <section class="pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Institution Header -->
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full mb-6 shadow-xl">
+          <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+          </svg>
+        </div>
+        
+        <h1 class="text-5xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
+          Bourses proposées par
+        </h1>
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">
+          <%= @institution.name %>
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Découvrez toutes les opportunités de financement exceptionnelles publiées par cette institution partenaire de renom.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scholarships Section -->
+  <section class="pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <% if @scholarships.any? %>
+        <!-- Stats Bar -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-12">
+          <div class="flex flex-wrap items-center justify-between">
+            <div class="flex items-center space-x-8">
+              <div class="text-center">
+                <div class="text-3xl font-bold text-indigo-600">
+                  <%= @scholarships.count %>
+                </div>
+                <div class="text-sm text-gray-600 font-medium">
+                  Bourse<%= @scholarships.count > 1 ? 's' : '' %> disponible<%= @scholarships.count > 1 ? 's' : '' %>
+                </div>
+              </div>
+              
+              <div class="hidden sm:block w-px h-12 bg-gray-200"></div>
+              
+              <div class="text-center">
+                <div class="text-3xl font-bold text-purple-600">
+                  <%= @institution.country %>
+                </div>
+                <div class="text-sm text-gray-600 font-medium">
+                  Pays d'origine
+                </div>
+              </div>
+              
+              <div class="hidden sm:block w-px h-12 bg-gray-200"></div>
+              
+              <div class="text-center">
+                <div class="text-3xl font-bold text-green-600">
+                  <%= @institution.city %>
+                </div>
+                <div class="text-sm text-gray-600 font-medium">
+                  Ville
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-4 sm:mt-0">
+              <div class="flex items-center space-x-2 text-sm text-gray-500">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span>Mis à jour récemment</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scholarships Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+          <% @scholarships.each_with_index do |scholarship, index| %>
+            <div class="group animate-fade-in" style="animation-delay: <%= index * 0.1 %>s;">
+              <%= render "shared/scholarship_card", scholarship: scholarship %>
+            </div>
+          <% end %>
+        </div>
+
+        <!-- Load More Section (if applicable) -->
+        <div class="text-center mt-12">
+          <div class="inline-flex items-center space-x-2 text-gray-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span class="font-medium">Toutes les bourses disponibles sont affichées</span>
+          </div>
+        </div>
+
+      <% else %>
+        <!-- Empty State -->
+        <div class="text-center py-16">
+          <div class="max-w-md mx-auto">
+            <!-- Animated Icon -->
+            <div class="w-32 h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner">
+              <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
+                <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+            </div>
+            
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">
+              Aucune bourse disponible actuellement
+            </h3>
+            <p class="text-gray-600 text-lg leading-relaxed mb-8">
+              Cette institution prestigieuse n'a pas encore publié d'opportunités de bourses. 
+              Les nouvelles offres seront affichées dès qu'elles seront disponibles.
+            </p>
+            
+            <!-- Call to Action -->
+            <div class="space-y-4">
+              <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-6">
+                <div class="flex items-center justify-center mb-3">
+                  <svg class="w-6 h-6 text-indigo-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5-5-5h5v-12a7 7 0 1114 0z"></path>
+                  </svg>
+                  <h4 class="text-lg font-semibold text-indigo-900">Restez informé</h4>
+                </div>
+                <p class="text-indigo-700 text-sm">
+                  Suivez cette institution pour être notifié dès qu'une nouvelle bourse sera publiée.
+                </p>
+              </div>
+              
+              <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <%= link_to "Explorer d'autres institutions", "#", 
+                    class: "inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 transform hover:scale-105 shadow-lg" %>
+                
+                <%= link_to "Retour à l'accueil", "#", 
+                    class: "inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-xl hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
+  <!-- Contact Institution Section -->
+  <section class="py-12 bg-white/50 backdrop-blur-sm">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
+        <div class="text-center mb-6">
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">
+            Contactez <%= @institution.name %>
+          </h3>
+          <p class="text-gray-600">
+            Besoin d'informations supplémentaires ? N'hésitez pas à contacter directement l'institution.
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <% if @institution.contact_email.present? %>
+            <div class="text-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-200">
+              <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path>
+                </svg>
+              </div>
+              <h4 class="font-semibold text-gray-900 mb-1">Email</h4>
+              <p class="text-sm text-gray-600 break-all">
+                <%= @institution.contact_email %>
+              </p>
+            </div>
+          <% end %>
+          
+          <% if @institution.contact_phone.present? %>
+            <div class="text-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-200">
+              <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                </svg>
+              </div>
+              <h4 class="font-semibold text-gray-900 mb-1">Téléphone</h4>
+              <p class="text-sm text-gray-600">
+                <%= @institution.contact_phone %>
+              </p>
+            </div>
+          <% end %>
+          
+          <% if @institution.website.present? %>
+            <div class="text-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-200">
+              <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9m0 9c-5 0-9-4-9-9s4-9 9-9"></path>
+                </svg>
+              </div>
+              <h4 class="font-semibold text-gray-900 mb-1">Site web</h4>
+              <p class="text-sm text-gray-600 break-all">
+                <%= link_to @institution.website, @institution.website, target: "_blank", class: "text-indigo-600 hover:text-indigo-800 transition-colors duration-200" %>
+              </p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Custom Animations -->
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+  }
+</style>

@@ -1,0 +1,9 @@
+<ul class="space-y-2 text-sm text-gray-700">
+  <li><strong>Nom:</strong> <%= profile.name %></li>
+  <li><strong>Description:</strong> <%= simple_format(profile.description) %></li>
+  <li><strong>Pays:</strong> <%= profile.country %></li>
+  <li><strong>Ville:</strong> <%= profile.city %></li>
+  <li><strong>Site web:</strong> <%= link_to profile.website, profile.website, target: "_blank", class: "text-primary hover:underline" if profile.website.present? %></li>
+  <li><strong>Email de contact:</strong> <%= mail_to profile.contact_email if profile.contact_email.present? %></li>
+  <li><strong>Téléphone:</strong> <%= profile.contact_phone %></li>
+</ul>

@@ -1,29 +1,169 @@
-<h2>Sign up</h2>
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <!-- Header -->
+    <div class="text-center">
+      <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+        Créer un compte
+      </h2>
+      <p class="mt-2 text-sm text-gray-600">
+        Rejoignez-nous dès aujourd'hui
+      </p>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <!-- Form Container -->
+    <div class="bg-white rounded-xl shadow-lg p-8">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-6" }) do |f| %>
+        
+        <!-- Error Messages -->
+        <% if resource.errors.any? %>
+          <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div class="flex">
+              <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div class="ml-3">
+                <h3 class="text-sm font-medium text-red-800">
+                  Il y a <%= pluralize(resource.errors.count, "erreur") %> :
+                </h3>
+                <div class="mt-2 text-sm text-red-700">
+                  <ul class="list-disc pl-5 space-y-1">
+                    <% resource.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <!-- Name Fields Row -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <%= f.label :first_name, "Prénom", class: "block text-sm font-medium text-gray-700 mb-2" %>
+            <%= f.text_field :first_name, 
+                class: "appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 transition-colors sm:text-sm",
+                placeholder: "Votre prénom",
+                required: true %>
+          </div>
+          <div>
+            <%= f.label :last_name, "Nom", class: "block text-sm font-medium text-gray-700 mb-2" %>
+            <%= f.text_field :last_name,
+                class: "appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 transition-colors sm:text-sm",
+                placeholder: "Votre nom",
+                required: true %>
+          </div>
+        </div>
+
+        <!-- Email Field -->
+        <div>
+          <%= f.label :email, "Adresse email", class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <%= f.email_field :email,
+              autofocus: true,
+              autocomplete: "email",
+              class: "appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 transition-colors sm:text-sm",
+              placeholder: "votre@email.com",
+              required: true %>
+        </div>
+
+        <!-- Phone Field -->
+        <div>
+          <%= f.label :phone, "Téléphone", class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <%= f.telephone_field :phone,
+              class: "appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 transition-colors sm:text-sm",
+              placeholder: "+33 1 23 45 67 89" %>
+        </div>
+
+        <!-- Role Field -->
+        <div>
+          <%= f.label :role, "Rôle", class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <%= f.select :role, 
+              options_for_select([
+                ['Etudiant', 'student'],
+                ['Administrateur', 'admin'],
+                ['Institution', 'institution']
+              ]), 
+              { prompt: "Sélectionnez votre rôle" },
+              { class: "appearance-none relative block w-full px-3 py-3 border border-gray-300 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 transition-colors sm:text-sm bg-white" } %>
+        </div>
+
+        <!-- Password Field -->
+        <div>
+          <%= f.label :password, "Mot de passe", class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <% if @minimum_password_length %>
+            <p class="text-xs text-gray-500 mb-2">
+              <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                Minimum <%= @minimum_password_length %> caractères
+              </span>
+            </p>
+          <% end %>
+          <%= f.password_field :password,
+              autocomplete: "new-password",
+              class: "appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 transition-colors sm:text-sm",
+              placeholder: "••••••••",
+              required: true %>
+        </div>
+
+        <!-- Password Confirmation Field -->
+        <div>
+          <%= f.label :password_confirmation, "Confirmer le mot de passe", class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <%= f.password_field :password_confirmation,
+              autocomplete: "new-password",
+              class: "appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 transition-colors sm:text-sm",
+              placeholder: "••••••••",
+              required: true %>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+          <%= f.submit "Créer mon compte", 
+              class: "group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 transform hover:scale-105 shadow-lg" %>
+        </div>
+
+        <!-- Terms and Privacy -->
+        <div class="text-center">
+          <p class="text-xs text-gray-500">
+            En créant un compte, vous acceptez nos
+            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Conditions d'utilisation</a>
+            et notre
+            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Politique de confidentialité</a>
+          </p>
+        </div>
+
+      <% end %>
+
+      <!-- Links Section -->
+      <div class="mt-6 pt-6 border-t border-gray-200">
+        <div class="text-center space-y-2">
+          <%= link_to "Déjà un compte ? Se connecter", new_session_path(resource_name), 
+              class: "font-medium text-indigo-600 hover:text-indigo-500 transition-colors" %>
+          
+          <% if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+            <div>
+              <%= link_to "Vous n'avez pas reçu d'instructions de confirmation ?", 
+                  new_confirmation_path(resource_name), 
+                  class: "text-sm text-gray-500 hover:text-gray-700 transition-colors" %>
+            </div>
+          <% end %>
+
+          <% if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+            <div>
+              <%= link_to "Vous n'avez pas reçu d'instructions de déverrouillage ?", 
+                  new_unlock_path(resource_name), 
+                  class: "text-sm text-gray-500 hover:text-gray-700 transition-colors" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center">
+      <p class="text-sm text-gray-500">
+        © 2025 Votre Application. Tous droits réservés.
+      </p>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

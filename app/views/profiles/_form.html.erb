@@ -1,0 +1,62 @@
+<%= form_with model: @profile, url: profile_path, method: :patch, local: true, class: "space-y-6" do |f| %>
+  <% if current_user.student? %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <%= f.label :birth_date, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.date_field :birth_date, class: "mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary" %>
+
+      <%= f.label :nationality, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :nationality, class: "mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary" %>
+
+      <%= f.label :current_level, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :current_level, class: "mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary" %>
+
+      <%= f.label :current_institution, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :current_institution, class: "mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary" %>
+
+      <%= f.label :field_of_study, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :field_of_study, class: "mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary" %>
+
+      <%= f.label :address, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :address, class: "mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary" %>
+
+      <%= f.label :city, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :city, class: "mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary" %>
+
+      <%= f.label :country, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :country, class: "mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary" %>
+    </div>
+
+    <%= f.label :bio, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_area :bio, rows: 4, class: "mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary" %>
+  <% elsif current_user.institution? %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :name, class: "mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary" %>
+
+      <%= f.label :country, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :country, class: "mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary" %>
+
+      <%= f.label :city, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :city, class: "mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary" %>
+
+      <%= f.label :website, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.url_field :website, class: "mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary" %>
+
+      <%= f.label :contact_email, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.email_field :contact_email, class: "mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary" %>
+
+      <%= f.label :contact_phone, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.telephone_field :contact_phone, class: "mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary" %>
+
+      <%= f.label :logo_url, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :logo_url, class: "mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary" %>
+    </div>
+
+    <%= f.label :description, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_area :description, rows: 4, class: "mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary" %>
+  <% end %>
+
+  <div>
+    <%= f.submit "Enregistrer", class: "inline-flex justify-center px-6 py-3 bg-primary text-white font-medium rounded-xl shadow hover:bg-indigo-700 transition-colors" %>
+  </div>
+<% end %>
