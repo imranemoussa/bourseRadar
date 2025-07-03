@@ -1,0 +1,296 @@
+<div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl overflow-hidden shadow-2xl">
+    <!-- Header du formulaire -->
+    <div class="bg-gradient-to-r from-purple-600 to-pink-600 p-6 text-center">
+        <h2 class="text-2xl font-bold text-white flex items-center justify-center">
+            <svg class="w-8 h-8 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+            <%= @institution.persisted? ? "Modifier l'institution" : "Nouvelle institution" %>
+        </h2>
+    </div>
+
+    <!-- Formulaire -->
+    <%= form_with(model: [:admin, @institution], local: true, class: "p-8") do |form| %>
+    <!-- Gestion des erreurs -->
+    <% if @institution.errors.any? %>
+    <div class="mb-6 bg-red-500/20 border border-red-500/30 rounded-2xl p-4">
+        <div class="flex items-center mb-2">
+            <svg class="w-5 h-5 text-red-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+            </svg>
+            <h3 class="text-red-300 font-semibold">Erreurs détectées</h3>
+        </div>
+        <ul class="text-red-200 text-sm space-y-1">
+            <% @institution.errors.full_messages.each do |message| %>
+            <li class="flex items-start">
+                <span class="text-red-400 mr-2">•</span>
+                <%= message %>
+            </li>
+            <% end %>
+        </ul>
+    </div>
+    <% end %>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Colonne gauche - Informations institution -->
+        <div class="space-y-6">
+            <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+                <h3 class="text-lg font-bold text-white mb-4 flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                    Informations générales
+                </h3>
+
+                <div class="space-y-4">
+                    <!-- Nom -->
+                    <div class="group">
+                        <%= form.label :name, class: "block text-sm font-medium text-slate-300 mb-2" do %>
+                        <span class="flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a.997.997 0 01-1.414 0l-7-7A1.997 1.997 0 013 12V7a4 4 0 014-4z" />
+                            </svg>
+                            Nom de l'institution *
+                        </span>
+                        <% end %>
+                        <%= form.text_field :name, class: "w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 group-hover:bg-white/10", placeholder: "Nom de l'institution" %>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="group">
+                        <%= form.label :description, class: "block text-sm font-medium text-slate-300 mb-2" do %>
+                        <span class="flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            Description
+                        </span>
+                        <% end %>
+                        <%= form.text_area :description, rows: 4, class: "w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 group-hover:bg-white/10 resize-none", placeholder: "Description de l'institution..." %>
+                    </div>
+
+                    <!-- Ville et Pays -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="group">
+                            <%= form.label :city, class: "block text-sm font-medium text-slate-300 mb-2" do %>
+                            <span class="flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                Ville *
+                            </span>
+                            <% end %>
+                            <%= form.text_field :city, class: "w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 group-hover:bg-white/10", placeholder: "Ville" %>
+                        </div>
+
+                        <div class="group">
+                            <%= form.label :country, class: "block text-sm font-medium text-slate-300 mb-2" do %>
+                            <span class="flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Pays *
+                            </span>
+                            <% end %>
+                            <%= form.text_field :country, class: "w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 group-hover:bg-white/10", placeholder: "Pays" %>
+                        </div>
+                    </div>
+
+                    <!-- Site Web -->
+                    <div class="group">
+                        <%= form.label :website, class: "block text-sm font-medium text-slate-300 mb-2" do %>
+                        <span class="flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9m0 9c-5 0-9-4-9-9s4-9 9-9" />
+                            </svg>
+                            Site Web
+                        </span>
+                        <% end %>
+                        <%= form.url_field :website, class: "w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 group-hover:bg-white/10", placeholder: "https://exemple.com" %>
+                    </div>
+
+                    <!-- URL du logo -->
+                    <div class="group">
+                        <%= form.label :logo_url, class: "block text-sm font-medium text-slate-300 mb-2" do %>
+                        <span class="flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            URL du logo
+                        </span>
+                        <% end %>
+                        <%= form.url_field :logo_url, class: "w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 group-hover:bg-white/10", placeholder: "https://exemple.com/logo.png" %>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section contact -->
+            <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+                <h3 class="text-lg font-bold text-white mb-4 flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    Informations de contact
+                </h3>
+
+                <div class="space-y-4">
+                    <!-- Email de contact -->
+                    <div class="group">
+                        <%= form.label :contact_email, class: "block text-sm font-medium text-slate-300 mb-2" do %>
+                        <span class="flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                            </svg>
+                            Email de contact
+                        </span>
+                        <% end %>
+                        <%= form.email_field :contact_email, class: "w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 group-hover:bg-white/10", placeholder: "contact@institution.com" %>
+                    </div>
+
+                    <!-- Téléphone de contact -->
+                    <div class="group">
+                        <%= form.label :contact_phone, class: "block text-sm font-medium text-slate-300 mb-2" do %>
+                        <span class="flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            Téléphone de contact
+                        </span>
+                        <% end %>
+                        <%= form.telephone_field  :contact_phone, class: "w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 group-hover:bg-white/10", placeholder: "+33 1 23 45 67 89" %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Colonne droite - Informations utilisateur -->
+        <div class="space-y-6">
+            <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+                <h3 class="text-lg font-bold text-white mb-4 flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    Administrateur de l'institution
+                </h3>
+
+                <%= form.fields_for :user do |user_form| %>
+                <div class="space-y-4">
+                    <!-- Email -->
+                    <div class="group">
+                        <%= user_form.label :email, class: "block text-sm font-medium text-slate-300 mb-2" do %>
+                        <span class="flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                            </svg>
+                            Email *
+                        </span>
+                        <% end %>
+                        <%= user_form.email_field :email, class: "w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 group-hover:bg-white/10", placeholder: "admin@institution.com" %>
+                    </div>
+
+                    <!-- Prénom et Nom -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="group">
+                            <%= user_form.label :first_name, class: "block text-sm font-medium text-slate-300 mb-2" do %>
+                            <span class="flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                                Prénom *
+                            </span>
+                            <% end %>
+                            <%= user_form.text_field :first_name, class: "w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 group-hover:bg-white/10", placeholder: "Prénom" %>
+                        </div>
+
+                        <div class="group">
+                            <%= user_form.label :last_name, class: "block text-sm font-medium text-slate-300 mb-2" do %>
+                            <span class="flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                                Nom *
+                            </span>
+                            <% end %>
+                            <%= user_form.text_field :last_name, class: "w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 group-hover:bg-white/10", placeholder: "Nom" %>
+                        </div>
+                    </div>
+
+                    <!-- Téléphone -->
+                    <div class="group">
+                        <%= user_form.label :phone, class: "block text-sm font-medium text-slate-300 mb-2" do %>
+                        <span class="flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            Téléphone
+                        </span>
+                        <% end %>
+                        <%= user_form.telephone_field  :phone, class: "w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 group-hover:bg-white/10", placeholder: "+33 1 23 45 67 89" %>
+                    </div>
+                    <div>
+                        <%= user_form.label :password, "Mot de passe", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                        <% if @minimum_password_length %>
+                        <p class="text-xs text-gray-500 mb-2">
+                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                Minimum <%= @minimum_password_length %> caractères
+                            </span>
+                        </p>
+                        <% end %>
+                        <%= user_form.password_field :password,
+              autocomplete: "new-password",
+              class: "appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 transition-colors sm:text-sm",
+              placeholder: "••••••••",
+              required: true %>
+                    </div>
+
+                    <!-- Password Confirmation Field -->
+                    <div>
+                        <%= user_form.label :password_confirmation, "Confirmer le mot de passe", class: "block text-sm font-medium text-gray-700 mb-2" %>
+                        <%= user_form.password_field :password_confirmation,
+              autocomplete: "new-password",
+              class: "appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 transition-colors sm:text-sm",
+              placeholder: "••••••••",
+              required: true %>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+
+            <!-- Note d'information -->
+            <div class="bg-blue-500/20 border border-blue-500/30 rounded-2xl p-4">
+                <div class="flex items-start">
+                    <svg class="w-5 h-5 text-blue-400 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div>
+                        <h4 class="text-blue-300 font-semibold mb-1">Information</h4>
+                        <p class="text-blue-200 text-sm">Les champs marqués d'un astérisque (*) sont obligatoires. L'administrateur sera automatiquement créé s'il n'existe pas déjà.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Boutons d'action -->
+    <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-8 pt-6 border-t border-white/10">
+        <div class="flex space-x-4">
+            <%= link_to admin_institutions_path, class: "inline-flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 text-slate-300 font-medium rounded-xl transition-all duration-300 hover:scale-105" do %>
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Annuler
+            <% end %>
+        </div>
+
+        <div class="flex space-x-4">
+            <%= form.submit class: "inline-flex items-center px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-xl hover:shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer" do %>
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <%= @institution.persisted? ? "Mettre à jour" : "Créer l'institution" %>
+            <% end %>
+        </div>
+    </div>
+    <% end %>
+</div>
