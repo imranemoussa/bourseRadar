@@ -15,7 +15,18 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'c063b1f80ecfc9a3fa42d143d34d403e661e059a284990b50dd52fa908c3f24560123fcf45c6d236a1e3b24a0d19b1b3b48d5077c45c438795c806803e8263ff'
+  Rails.application.config.to_prepare do
+  Devise::RegistrationsController.class_eval do
+    before_action :configure_permitted_parameters, if: :devise_controller?
 
+    protected
+
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone, :role])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :phone, :role])
+    end
+  end
+  end
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'

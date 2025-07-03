@@ -28,7 +28,7 @@ class User < ApplicationRecord
   validates :phone, format: { with: /\A[\+]?[0-9\-\s\(\)]+\z/, message: "Format de numero invalide" }, allow_blank: true
   validates :role, presence: true
 
-  after_create :create_profile
+  #after_create :create_profile
 
   def full_name
     "#{first_name} #{last_name}"
