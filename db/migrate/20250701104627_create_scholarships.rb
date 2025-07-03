@@ -25,5 +25,6 @@ class CreateScholarships < ActiveRecord::Migration[8.0]
       t.timestamps
     end
 
+   
   end
 end

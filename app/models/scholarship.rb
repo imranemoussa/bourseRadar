@@ -2,14 +2,19 @@ class Scholarship < ApplicationRecord
   belongs_to :institution
   has_many :notifications, dependent: :destroy
 
+
   include PgSearch::Model
 
+  include PgSearch::Model 
+
+
   pg_search_scope :search_by_keywords,
-    againt: [:title, :description, :field_of_study, :level],
+    against: [:title, :description, :field_of_study, :level],  
     using: {
       tsearch: { prefix: true, any_word: true },
       trigram: {}
     }
+
 
   validates :title, presence: true, length: { minimum: 5, maximum: 100}
   validates :description, presence: true, length: { minimum: 50 }
@@ -49,4 +54,11 @@ class Scholarship < ApplicationRecord
       false
     end
   end
+  def remaining_days
+    return 0 unless application_deadline.present?
+
+    days = (application_deadline - Date.today).to_i
+    days.positive? ? days : 0
+ end
+
 end
