@@ -59,20 +59,10 @@ Rails.application.routes.draw do
   
   # Routes admin
   namespace :admin do
-    get '/dashboard', to: 'dashboard#index'
-    
     resources :users, only: [:index, :show]
+    resources :dashboard, only: [:index]
+    resources :institutions
     
-    resources :institutions, only: [:index, :show] do
-      member do
-        patch :verify
-      end
-    end
-    
-    resources :scholarships, only: [:index, :show] do
-      member do
-        patch :moderate
-      end
-    end
+    resources :scholarships
   end
 end

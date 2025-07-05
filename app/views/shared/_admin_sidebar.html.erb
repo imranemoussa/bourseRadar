@@ -1,0 +1,152 @@
+<style>
+.sidebar-admin {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 16rem; /* équivalent à w-64 */
+  height: 100vh;
+}
+</style>
+<div class="sidebar-admin position-fixed start-0 top-0 w-64 h-full bg-white shadow-lg border-r border-gray-200 z-50">  <!-- Brand Logo -->
+  <!-- Menu -->
+  <div class="overflow-y-auto h-full pb-20">
+    <ul class="menu p-4">
+      <li class="menu-title text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Menu</li>
+
+      <li class="menu-item mb-1">
+        <%= link_to admin_dashboard_index_path, class: "menu-link flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors #{current_page?(admin_dashboard_index_path) ? 'bg-blue-50 text-blue-700' : ''}" do %>
+          <span class="menu-icon mr-3"><i class="uil uil-estate text-lg"></i></span>
+          <span class="menu-text flex-1">Dashboard</span>
+        <% end %>
+      </li>
+
+      <li class="menu-item mb-1">
+        <%= link_to admin_users_path, class: "menu-link flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors #{current_page?(admin_users_path) ? 'bg-blue-50 text-blue-700' : ''}" do %>
+          <span class="menu-icon mr-3"><i class="uil uil-users-alt text-lg"></i></span>
+          <span class="menu-text">Utilisateurs</span>
+        <% end %>
+      </li>
+
+      <li class="menu-item mb-1">
+        <%= link_to admin_institutions_path, class: "menu-link flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors #{current_page?(admin_institutions_path) ? 'bg-blue-50 text-blue-700' : ''}" do %>
+          <span class="menu-icon mr-3"><i class="uil uil-university text-lg"></i></span>
+          <span class="menu-text">Institutions</span>
+        <% end %>
+      </li>
+
+      <li class="menu-item mb-1">
+        <%= link_to admin_scholarships_path, class: "menu-link flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors #{current_page?(admin_scholarships_path) ? 'bg-blue-50 text-blue-700' : ''}" do %>
+          <span class="menu-icon mr-3"><i class="uil uil-graduation-cap text-lg"></i></span>
+          <span class="menu-text">Bourses</span>
+        <% end %>
+      </li>
+
+      <li class="menu-title text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 mt-6">Gestion</li>
+
+      <!-- Gestion des utilisateurs avec dropdown -->
+      <li class="menu-item mb-1">
+        <a href="javascript:void(0)" class="menu-link flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer" data-collapse-toggle="users-management">
+          <span class="menu-icon mr-3"><i class="uil uil-users-alt text-lg"></i></span>
+          <span class="menu-text flex-1">Gestion Utilisateurs</span>
+          <span class="menu-arrow"><i class="uil uil-angle-down"></i></span>
+        </a>
+
+        <ul id="users-management" class="sub-menu hidden ml-6 mt-2">
+          <li class="menu-item mb-1">
+            <%= link_to admin_users_path, class: "menu-link flex items-center p-2 text-gray-600 rounded hover:bg-gray-100 transition-colors" do %>
+              <span class="menu-dot w-2 h-2 bg-gray-400 rounded-full mr-3"></span>
+              <span class="menu-text">Liste des utilisateurs</span>
+            <% end %>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Gestion des institutions avec dropdown -->
+      <li class="menu-item mb-1">
+        <a href="javascript:void(0)" class="menu-link flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer" data-collapse-toggle="institutions-management">
+          <span class="menu-icon mr-3"><i class="uil uil-university text-lg"></i></span>
+          <span class="menu-text flex-1">Gestion Institutions</span>
+          <span class="menu-arrow"><i class="uil uil-angle-down"></i></span>
+        </a>
+
+        <ul id="institutions-management" class="sub-menu hidden ml-6 mt-2">
+          <li class="menu-item mb-1">
+            <%= link_to admin_institutions_path, class: "menu-link flex items-center p-2 text-gray-600 rounded hover:bg-gray-100 transition-colors" do %>
+              <span class="menu-dot w-2 h-2 bg-gray-400 rounded-full mr-3"></span>
+              <span class="menu-text">Liste des institutions</span>
+            <% end %>
+          </li>
+          <li class="menu-item mb-1">
+            <%= link_to new_admin_institution_path, class: "menu-link flex items-center p-2 text-gray-600 rounded hover:bg-gray-100 transition-colors" do %>
+              <span class="menu-dot w-2 h-2 bg-gray-400 rounded-full mr-3"></span>
+              <span class="menu-text">Ajouter institution</span>
+            <% end %>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Gestion des bourses avec dropdown -->
+      <li class="menu-item mb-1">
+        <a href="javascript:void(0)" class="menu-link flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer" data-collapse-toggle="scholarships-management">
+          <span class="menu-icon mr-3"><i class="uil uil-graduation-cap text-lg"></i></span>
+          <span class="menu-text flex-1">Gestion Bourses</span>
+          <span class="menu-arrow"><i class="uil uil-angle-down"></i></span>
+        </a>
+
+        <ul id="scholarships-management" class="sub-menu hidden ml-6 mt-2">
+          <li class="menu-item mb-1">
+            <%= link_to admin_scholarships_path, class: "menu-link flex items-center p-2 text-gray-600 rounded hover:bg-gray-100 transition-colors" do %>
+              <span class="menu-dot w-2 h-2 bg-gray-400 rounded-full mr-3"></span>
+              <span class="menu-text">Liste des bourses</span>
+            <% end %>
+          </li>
+          <li class="menu-item mb-1">
+            <%= link_to new_admin_scholarship_path, class: "menu-link flex items-center p-2 text-gray-600 rounded hover:bg-gray-100 transition-colors" do %>
+              <span class="menu-dot w-2 h-2 bg-gray-400 rounded-full mr-3"></span>
+              <span class="menu-text">Ajouter bourse</span>
+            <% end %>
+          </li>
+        </ul>
+      </li>
+
+      <li class="menu-title text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 mt-6">Outils</li>
+
+      <li class="menu-item mb-1">
+        <a href="javascript:void(0)" class="menu-link flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer" data-collapse-toggle="reports">
+          <span class="menu-icon mr-3"><i class="uil uil-chart-line text-lg"></i></span>
+          <span class="menu-text flex-1">Rapports</span>
+          <span class="menu-arrow"><i class="uil uil-angle-down"></i></span>
+        </a>
+
+        <ul id="reports" class="sub-menu hidden ml-6 mt-2">
+          <li class="menu-item mb-1">
+            <a href="javascript:void(0)" class="menu-link flex items-center p-2 text-gray-600 rounded hover:bg-gray-100 transition-colors">
+              <span class="menu-dot w-2 h-2 bg-gray-400 rounded-full mr-3"></span>
+              <span class="menu-text">Statistiques utilisateurs</span>
+            </a>
+          </li>
+          <li class="menu-item mb-1">
+            <a href="javascript:void(0)" class="menu-link flex items-center p-2 text-gray-600 rounded hover:bg-gray-100 transition-colors">
+              <span class="menu-dot w-2 h-2 bg-gray-400 rounded-full mr-3"></span>
+              <span class="menu-text">Rapport bourses</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="menu-item mb-1">
+        <a href="javascript:void(0)" class="menu-link flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
+          <span class="menu-icon mr-3"><i class="uil uil-setting text-lg"></i></span>
+          <span class="menu-text flex-1">Paramètres</span>
+        </a>
+      </li>
+
+      <li class="menu-item mb-1">
+        <%= link_to root_path, class: "menu-link flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors" do %>
+          <span class="menu-icon mr-3"><i class="uil uil-external-link-alt text-lg"></i></span>
+          <span class="menu-text flex-1">Retour au site</span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>

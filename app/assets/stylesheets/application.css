@@ -8,3 +8,14 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+/* Masquer la silhouette indésirable */
+.fixed.left-0.top-0.w-64.h-full.bg-white.shadow-lg {
+    display: none !important;
+}
+
+/* Ou plus spécifiquement */
+.sidebar-outline,
+.app-menu,
+div[class*="fixed left-0"] {
+    display: none !important;
+}
