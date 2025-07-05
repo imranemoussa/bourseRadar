@@ -1,4 +1,5 @@
 class Admin::InstitutionsController < ApplicationController
+  layout 'admin'
   before_action :authenticate_user!
   before_action :autorize_admin!
   before_action :set_institution, only: [:show, :edit, :update, :destroy]
@@ -51,8 +52,13 @@ class Admin::InstitutionsController < ApplicationController
   end
 
   def institution_params
-    params.require(:institution).permit(:name, :description, :city, :country, :website, :contact_email, :contact_phone, :logo_url, user_attributes: [:email, :first_name, :last_name, :phone, :password, :password_confirmation])
+    allowed = [:name, :description, :city, :country, :website, :contact_email, :contact_phone, :logo_url]
+    if action_name == 'create'
+      allowed << { user_attributes: [:email, :first_name, :last_name, :phone, :password, :password_confirmation] }
+    end
+    params.require(:institution).permit(*allowed)
   end
+
 
   def autorize_admin!
     redirect_to root_path, notice: "Vous n'avez pas le droit d'accéder à cette page." unless current_user.admin?

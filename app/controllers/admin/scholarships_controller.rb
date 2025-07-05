@@ -1,4 +1,5 @@
 class Admin::ScholarshipsController < ApplicationController
+  layout 'admin'
   before_action :authenticate_user!
   before_action :autorize_admin!
   before_action :set_scholarship, only: [:show, :edit, :update, :destroy]

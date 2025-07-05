@@ -147,8 +147,8 @@
                       Modifier
                     <% end %>
                     
-                    <%= link_to admin_scholarship_path(scholarship), method: :delete, 
-                        data: { confirm: "Êtes-vous sûr de vouloir supprimer cette bourse ?" },
+                    <%= button_to admin_scholarship_path(scholarship), method: :delete, 
+                        data: {turbo: false, confirm: "Êtes-vous sûr de vouloir supprimer cette bourse ?" },
                         class: "bg-red-50 hover:bg-red-100 text-red-600 font-medium py-2 px-3 rounded-lg transition-colors text-sm" do %>
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
