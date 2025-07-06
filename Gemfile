@@ -24,6 +24,11 @@ gem 'devise'
 gem 'devise-jwt'
 gem 'pg_search'
 
+# Pour les jobs en arrière-plan
+gem 'sidekiq'
+gem 'redis'
+
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 

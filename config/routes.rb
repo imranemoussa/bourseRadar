@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+require 'sidekiq/web'
   
   devise_for :users, controllers: {
   registrations: 'users/registrations',
@@ -33,6 +35,11 @@ Rails.application.routes.draw do
       get :scholarships
     end
   end
+
+authenticate :user, lambda { |user| user.admin? } do
+  mount Sidekiq::Web => '/sidekiq'
+end
+
   
   # Routes pour utilisateurs connectés
   authenticated :user do
