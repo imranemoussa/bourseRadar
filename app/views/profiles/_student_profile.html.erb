@@ -1,9 +1,0 @@
-<ul class="space-y-2 text-sm text-gray-700">
-  <li><strong>Date de naissance:</strong> <%= l(profile.birth_date) if profile.birth_date %></li>
-  <li><strong>Nationalité:</strong> <%= profile.nationality %></li>
-  <li><strong>Niveau actuel:</strong> <%= profile.current_level %></li>
-  <li><strong>Institution actuelle:</strong> <%= profile.current_institution %></li>
-  <li><strong>Domaine d'étude:</strong> <%= profile.field_of_study %></li>
-  <li><strong>Adresse:</strong> <%= profile.address %>, <%= profile.city %>, <%= profile.country %></li>
-  <li><strong>Bio:</strong> <%= simple_format(profile.bio) %></li>
-</ul>

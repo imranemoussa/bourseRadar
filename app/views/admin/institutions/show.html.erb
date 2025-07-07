@@ -160,7 +160,7 @@
                             Modifier
                             <% end %>
 
-                            <%= button_to admin_institution_path(institution),
+                            <%= button_to admin_institution_path(@institution),
                                 method: :delete,
                                 data: { turbo: false, confirm: "Êtes-vous sûr de vouloir supprimer cette institution ?" },
                                 form_class: "inline",
