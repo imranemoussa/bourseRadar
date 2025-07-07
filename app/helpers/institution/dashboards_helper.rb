@@ -1,0 +1,2 @@
+module Institution::DashboardsHelper
+end

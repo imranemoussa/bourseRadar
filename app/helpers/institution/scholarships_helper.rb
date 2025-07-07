@@ -1,0 +1,2 @@
+module Institution::ScholarshipsHelper
+end

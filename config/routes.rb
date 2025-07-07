@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  namespace :institution do
+    get "dashboards/index"
+    get "dashboards/show"
+    get "dashboards/new"
+    get "dashboards/create"
+    get "scholarships/index"
+    get "scholarships/show"
+    get "scholarships/new"
+    get "scholarships/create"
+  end
 
   
   devise_for :users, controllers: {
@@ -63,6 +73,11 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
     resources :institutions
     
+    resources :scholarships
+  end
+   # Routes institution
+  namespace :institution do
+    resources :dashboard, only: [:index]    
     resources :scholarships
   end
 end
