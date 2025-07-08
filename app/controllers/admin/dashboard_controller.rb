@@ -1,7 +1,7 @@
 class Admin::DashboardController < ApplicationController
   layout 'admin'
   before_action :authenticate_user!
-  before_action :autorize_admin!
+ before_action :autorize_admin!
   def index
     @stats = {
       total_users: User.count,

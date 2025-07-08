@@ -1,0 +1,295 @@
+<%= form_with(model: [:institution, scholarship], local: true, class: "space-y-8") do |form| %>
+  <div class="bg-gradient-to-br from-indigo-50 via-white to-purple-50 min-h-screen py-8 px-4">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header avec animation -->
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full mb-6 shadow-lg transform hover:scale-110 transition-transform duration-300">
+          <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+          </svg>
+        </div>
+        <h1 class="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
+          <%= @scholarship.persisted? ? "Modifier la bourse" : "Nouvelle bourse" %>
+        </h1>
+        <p class="text-lg text-gray-600">Remplissez les informations ci-dessous pour créer une bourse d'excellence</p>
+      </div>
+
+      <!-- Messages d'erreur -->
+      <% if @scholarship.errors.any? %>
+        <div class="bg-red-50 border-l-4 border-red-500 p-6 mb-8 rounded-lg shadow-sm">
+          <div class="flex items-center mb-3">
+            <svg class="w-6 h-6 text-red-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16c-.77.833.192 2.5 1.732 2.5z"></path>
+            </svg>
+            <h3 class="text-red-800 font-semibold">Erreurs détectées</h3>
+          </div>
+          <ul class="text-red-700 space-y-1">
+            <% @scholarship.errors.full_messages.each do |message| %>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+                <%= message %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <!-- Formulaire principal -->
+      <div class="bg-white rounded-3xl shadow-xl p-8 backdrop-blur-sm bg-opacity-90 border border-gray-100">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          <!-- Section Informations générales -->
+          <div class="lg:col-span-2">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+              <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg mr-3 flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              Informations générales
+            </h2>
+          </div>
+
+         
+          <!-- Titre -->
+          <div class="form-group">
+            <%= form.label :title, "Titre de la bourse", class: "block text-sm font-semibold text-gray-700 mb-3" %>
+            <%= form.text_field :title, 
+                class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md",
+                placeholder: "ex: Bourse d'excellence en informatique" %>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group lg:col-span-2">
+            <%= form.label :description, "Description", class: "block text-sm font-semibold text-gray-700 mb-3" %>
+            <%= form.text_area :description, 
+                class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md",
+                rows: 4, placeholder: "Décrivez les objectifs et le contenu de la bourse..." %>
+          </div>
+
+          <!-- Critères académiques -->
+          <div class="lg:col-span-2 mt-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+              <div class="w-8 h-8 bg-gradient-to-r from-green-500 to-teal-600 rounded-lg mr-3 flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              Critères académiques
+            </h2>
+          </div>
+
+          <!-- Niveau -->
+          <div class="form-group">
+            <%= form.label :level, "Niveau d'études", class: "block text-sm font-semibold text-gray-700 mb-3" %>
+            <%= form.select :level, 
+                options_for_select([
+                  ["Licence", "licence"],
+                  ["Master", "master"],
+                  ["Doctorat", "doctorat"],
+                  ["Post-doctorat", "post_doctorat"]
+                ], @scholarship.level),
+                { prompt: "Sélectionnez le niveau" },
+                { class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-white shadow-sm hover:shadow-md" } %>
+          </div>
+
+          <!-- Domaine d'étude -->
+          <div class="form-group">
+            <%= form.label :field_of_study, "Domaine d'étude", class: "block text-sm font-semibold text-gray-700 mb-3" %>
+            <%= form.text_field :field_of_study,
+                class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md",
+                placeholder: "ex: Informatique, Médecine, Ingénierie..." %>
+          </div>
+
+          <!-- Localisation -->
+          <div class="lg:col-span-2 mt-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+              <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg mr-3 flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+              </div>
+              Localisation
+            </h2>
+          </div>
+
+          <!-- Pays -->
+          <div class="form-group">
+            <%= form.label :country, "Pays", class: "block text-sm font-semibold text-gray-700 mb-3" %>
+            <%= form.text_field :country,
+                class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md",
+                placeholder: "ex: France, Canada, Allemagne..." %>
+          </div>
+
+          <!-- Ville -->
+          <div class="form-group">
+            <%= form.label :city, "Ville", class: "block text-sm font-semibold text-gray-700 mb-3" %>
+            <%= form.text_field :city,
+                class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md",
+                placeholder: "ex: Paris, Toronto, Berlin..." %>
+          </div>
+
+          <!-- Détails financiers -->
+          <div class="lg:col-span-2 mt-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+              <div class="w-8 h-8 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-lg mr-3 flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                </svg>
+              </div>
+              Détails financiers
+            </h2>
+          </div>
+
+          <!-- Pourcentage -->
+          <div class="form-group">
+            <%= form.label :pourcentage, "Pourcentage de prise en charge", class: "block text-sm font-semibold text-gray-700 mb-3" %>
+            <%= form.number_field :pourcentage,
+                class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md",
+                min: 0, max: 100, placeholder: "ex: 75" %>
+          </div>
+
+          <!-- Type de bourse -->
+          <div class="form-group">
+            <%= form.label :scholarship_type, "Type de bourse", class: "block text-sm font-semibold text-gray-700 mb-3" %>
+            <%= form.select :scholarship_type,
+                options_for_select([
+                  ["Partielle", "partielle"],
+                  ["Complète", "complete"],
+                  ["Logement", "logement"],
+                  ["Transport", "transport"]
+                ], @scholarship.scholarship_type),
+                { prompt: "Sélectionnez le type" },
+                { class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-white shadow-sm hover:shadow-md" } %>
+          </div>
+
+          <!-- Avantages -->
+          <div class="form-group lg:col-span-2">
+            <%= form.label :benefits, "Avantages", class: "block text-sm font-semibold text-gray-700 mb-3" %>
+            <%= form.text_area :benefits,
+                class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md",
+                rows: 3, placeholder: "Décrivez les avantages offerts par la bourse..." %>
+          </div>
+
+          <!-- Durée et dates -->
+          <div class="lg:col-span-2 mt-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+              <div class="w-8 h-8 bg-gradient-to-r from-red-500 to-pink-600 rounded-lg mr-3 flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+              Durée et dates importantes
+            </h2>
+          </div>
+
+          <!-- Durée -->
+          <div class="form-group">
+            <%= form.label :duration_months, "Durée (en mois)", class: "block text-sm font-semibold text-gray-700 mb-3" %>
+            <%= form.number_field :duration_months,
+                class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md",
+                min: 1, placeholder: "ex: 12" %>
+          </div>
+
+          <!-- Date limite -->
+          <div class="form-group">
+            <%= form.label :application_deadline, "Date limite de candidature", class: "block text-sm font-semibold text-gray-700 mb-3" %>
+            <%= form.date_field :application_deadline,
+                class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md" %>
+          </div>
+
+          <!-- Date de début -->
+          <div class="form-group">
+            <%= form.label :program_start_date, "Date de début du programme", class: "block text-sm font-semibold text-gray-700 mb-3" %>
+            <%= form.date_field :program_start_date,
+                class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md" %>
+          </div>
+
+          <!-- Langue -->
+          <div class="form-group">
+            <%= form.label :language, "Langue d'enseignement", class: "block text-sm font-semibold text-gray-700 mb-3" %>
+            <%= form.text_field :language,
+                class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md",
+                placeholder: "ex: Français, Anglais, Allemand..." %>
+          </div>
+
+          <!-- Critères d'éligibilité -->
+          <div class="lg:col-span-2 mt-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+              <div class="w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-lg mr-3 flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                </svg>
+              </div>
+              Critères d'éligibilité
+            </h2>
+          </div>
+
+          <!-- Âge min -->
+          <div class="form-group">
+            <%= form.label :age_min, "Âge minimum", class: "block text-sm font-semibold text-gray-700 mb-3" %>
+            <%= form.number_field :age_min,
+                class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md",
+                min: 16, max: 100, placeholder: "ex: 18" %>
+          </div>
+
+          <!-- Âge max -->
+          <div class="form-group">
+            <%= form.label :age_max, "Âge maximum", class: "block text-sm font-semibold text-gray-700 mb-3" %>
+            <%= form.number_field :age_max,
+                class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md",
+                min: 16, max: 100, placeholder: "ex: 35" %>
+          </div>
+
+          <!-- Exigence de genre -->
+          <div class="form-group">
+            <%= form.label :gender_requirement, "Exigence de genre", class: "block text-sm font-semibold text-gray-700 mb-3" %>
+            <%= form.select :gender_requirement,
+                options_for_select([
+                  ["Aucune", ""],
+                  ["Femmes uniquement", "femmes"],
+                  ["Hommes uniquement", "hommes"]
+                ], @scholarship.gender_requirement),
+                { prompt: "Sélectionnez si applicable" },
+                { class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-white shadow-sm hover:shadow-md" } %>
+          </div>
+
+          <!-- Prérequis -->
+          <div class="form-group">
+            <%= form.label :requirements, "Prérequis", class: "block text-sm font-semibold text-gray-700 mb-3" %>
+            <%= form.text_area :requirements,
+                class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md",
+                rows: 3, placeholder: "Listez les prérequis académiques et autres..." %>
+          </div>
+
+          <!-- URL externe -->
+          <div class="form-group lg:col-span-2">
+            <%= form.label :external_application_url, "URL de candidature externe", class: "block text-sm font-semibold text-gray-700 mb-3" %>
+            <%= form.url_field :external_application_url,
+                class: "w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm hover:shadow-md",
+                placeholder: "https://example.com/apply" %>
+          </div>
+
+          <!-- Statut actif -->
+          <div class="form-group lg:col-span-2">
+            <div class="flex items-center p-4 bg-gray-50 rounded-xl">
+              <%= form.check_box :active, class: "w-5 h-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 focus:ring-2" %>
+              <%= form.label :active, "Bourse active", class: "ml-3 text-sm font-semibold text-gray-700" %>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Boutons d'action -->
+        <div class="flex flex-col sm:flex-row gap-4 mt-12 pt-8 border-t border-gray-200">
+          <%= form.submit (@scholarship.persisted? ? "Mettre à jour" : "Créer la bourse"), 
+              class: "w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transform hover:scale-105 transition-all duration-200" %>
+          
+          <%= link_to "Annuler", admin_scholarships_path, 
+              class: "w-full sm:w-auto px-8 py-4 bg-gray-100 text-gray-700 font-semibold rounded-xl shadow-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transform hover:scale-105 transition-all duration-200 text-center" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

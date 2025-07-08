@@ -38,11 +38,11 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :institutions, only: [:index, :show, :new] do
-    member do
-      get :scholarships
-    end
-  end
+  # resources :institutions, only: [:index, :show, :new] do
+  #   member do
+  #     get :scholarships
+  #   end
+  # end
   
   # Routes pour utilisateurs connectés
   authenticated :user do
@@ -62,9 +62,9 @@ Rails.application.routes.draw do
     end
     
     # Routes pour les institutions
-    resources :institutions, except: [:index, :show, :new] do
-      resources :scholarships, except: [:index, :show]
-    end
+    # resources :institutions, except: [:index, :show, :new] do
+     # resources :scholarships, except: [:index, :show]
+    #end
   end
   
   # Routes admin
@@ -77,7 +77,7 @@ Rails.application.routes.draw do
   end
    # Routes institution
   namespace :institution do
-    resources :dashboard, only: [:index]    
+    resources :dashboards, only: [:index]    
     resources :scholarships
   end
 end

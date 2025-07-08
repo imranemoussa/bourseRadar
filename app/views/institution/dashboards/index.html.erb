@@ -1,2 +1,291 @@
-<h1>Institution::Dashboards#index</h1>
-<p>Find me in app/views/institution/dashboards/index.html.erb</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Institution - Gestion des Bourses</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900">Dashboard Institution</h1>
+                    <p class="text-gray-600">Gestion des bourses d'études</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-sm text-gray-500">
+                        Connecté en tant que: <span class="font-medium text-gray-900"> <%=current_user.institution.name%></span>
+                    </div>
+                    <button onclick="openModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center gap-2 transition-colors">
+                        <i class="fas fa-plus"></i>
+                        Ajouter une bourse
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Flash Messages -->
+        <div id="flash-messages" class="mb-6">
+            <!-- Success Message -->
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 hidden" id="success-message">
+                <div class="flex">
+                    <i class="fas fa-check-circle mr-2 mt-0.5"></i>
+                    <span id="success-text">Bourse ajoutée avec succès!</span>
+                </div>
+            </div>
+            
+            <!-- Error Message -->
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 hidden" id="error-message">
+                <div class="flex">
+                    <i class="fas fa-exclamation-circle mr-2 mt-0.5"></i>
+                    <span id="error-text">Une erreur s'est produite</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-600">Total Bourses</p>
+                        <p class="text-2xl font-bold text-gray-900" id="total-scholarships"><%= @total_scholarships %></p>
+                    </div>
+                    <div class="bg-blue-100 p-3 rounded-full">
+                        <i class="fas fa-award text-blue-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+          
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-sm text-gray-600">Bourses Inactives</p>
+                  <p class="text-2xl font-bold text-gray-900" id="inactive-scholarships"><%=@total_scholarships_inactive%></p>
+                </div>
+                <div class="bg-red-100 p-3 rounded-full">
+                  <i class="fas fa-pause-circle text-red-500 text-xl"></i>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-600">Bourses Actives</p>
+                        <p class="text-2xl font-bold text-gray-900" id="active-scholarships"><%=@total_scholarships_active%></p>
+                    </div>
+                    <div class="bg-purple-100 p-3 rounded-full">
+                        <i class="fas fa-calendar-check text-purple-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters and Search -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-8 border border-gray-200">
+            <div class="flex flex-col sm:flex-row gap-4">
+                <div class="flex-1">
+                    <div class="relative">
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" 
+                               id="search-input"
+                               placeholder="Rechercher une bourse..."
+                               class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               onkeyup="filterScholarships()">
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-filter text-gray-400"></i>
+                    <select id="category-filter" 
+                            class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            onchange="filterScholarships()">
+                        <option value="">Toutes les catégories</option>
+                        <option value="Académique">Académique</option>
+                        <option value="Mobilité">Mobilité</option>
+                        <option value="Recherche">Recherche</option>
+                        <option value="Social">Social</option>
+                        <option value="Sport">Sport</option>
+                    </select>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-filter text-gray-400"></i>
+                    <select id="status-filter" 
+                            class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            onchange="filterScholarships()">
+                        <option value="">Tous les statuts</option>
+                        <option value="Actif">Actif</option>
+                        <option value="Inactif">Inactif</option>
+                        <option value="Expiré">Expiré</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scholarships Table -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-lg font-semibold text-gray-900">Mes Bourses (<span id="scholarship-count">5</span>)</h2>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Bourse</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Montant</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Catégorie</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date limite</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Candidats</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scholarships-table" class="bg-white divide-y divide-gray-200">
+                        <!-- Scholarship rows will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="text-center py-12 hidden">
+                <i class="fas fa-award text-gray-400 text-5xl mb-4"></i>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Aucune bourse trouvée</h3>
+                <p class="text-gray-500 mb-4">Aucune bourse ne correspond aux critères de recherche.</p>
+                <button onclick="clearFilters()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    Effacer les filtres
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Scholarship Modal -->
+    <div id="scholarship-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900">Ajouter une nouvelle bourse</h3>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <form id="scholarship-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Titre *</label>
+                        <input type="text" 
+                               name="title" 
+                               id="scholarship-title"
+                               required
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Description *</label>
+                        <textarea name="description" 
+                                  id="scholarship-description"
+                                  required
+                                  rows="3"
+                                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Montant *</label>
+                            <input type="number" 
+                                   name="amount" 
+                                   id="scholarship-amount"
+                                   required
+                                   step="0.01"
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Devise</label>
+                            <select name="currency" 
+                                    id="scholarship-currency"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="EUR">EUR</option>
+                                <option value="USD">USD</option>
+                                <option value="XOF">XOF</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Date limite *</label>
+                        <input type="date" 
+                               name="deadline" 
+                               id="scholarship-deadline"
+                               required
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Catégorie *</label>
+                        <select name="category" 
+                                id="scholarship-category"
+                                required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">Sélectionner une catégorie</option>
+                            <option value="Académique">Académique</option>
+                            <option value="Mobilité">Mobilité</option>
+                            <option value="Recherche">Recherche</option>
+                            <option value="Social">Social</option>
+                            <option value="Sport">Sport</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Nombre de places *</label>
+                        <input type="number" 
+                               name="available_spots" 
+                               id="scholarship-spots"
+                               required
+                               min="1"
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    
+                    <div class="flex gap-3 pt-4">
+                        <button type="button" 
+                                onclick="submitScholarship()"
+                                class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">
+                            <i class="fas fa-plus mr-2"></i>
+                            Ajouter
+                        </button>
+                        <button type="button" 
+                                onclick="closeModal()"
+                                class="flex-1 bg-gray-200 text-gray-800 py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors">
+                            Annuler
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+            
+       
+       
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderScholarships();
+            updateStatistics();
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('scholarship-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
