@@ -64,7 +64,7 @@
                         <% if current_user.role == 'institution' %>
                             <%= link_to "Mes Bourses", institution_scholarships_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(institution_scholarships_path)}" %>
                             <%= link_to "Ajouter Bourse", new_scholarship_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(new_scholarship_path)}" %>
-                            <%= link_to "Dashboard", institution_dashboard_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(institution_dashboard_path)}" %>
+                            <%= link_to "Dashboard", institution_dashboards_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(institution_dashboards_path)}" %>
                         <% elsif current_user.role == 'student' %>
                             <%= link_to "Mon Profil", profile_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(profile_path)}" %>
                         <% end %>
@@ -99,7 +99,7 @@
                                         <i class="fas fa-edit mr-2"></i>Modifier Profil
                                     <% end %>
                                 <% elsif current_user.role == 'institution' %>
-                                    <%= link_to institution_dashboard_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors" do %>
+                                    <%= link_to institution_dashboards_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors" do %>
                                         <i class="fas fa-chart-line mr-2"></i>Dashboard
                                     <% end %>
                                     <%= link_to institution_scholarships_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors" do %>
@@ -152,7 +152,7 @@
                     <% if current_user.role == 'institution' %>
                         <%= link_to "Mes Bourses", institution_scholarships_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(institution_scholarships_path)}" %>
                         <%= link_to "Ajouter Bourse", new_scholarship_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(new_scholarship_path)}" %>
-                        <%= link_to "Dashboard", institution_dashboard_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(institution_dashboard_path)}" %>
+                        <%= link_to "Dashboard", institution_dashboards_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(institution_dashboards_path)}" %>
                     <% elsif current_user.role == 'student' %>
                         <%= link_to "Mon Profil", profile_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(profile_path)}" %>
                     <% end %>
@@ -179,7 +179,7 @@
                             <i class="fas fa-edit mr-2"></i>Modifier Profil
                         <% end %>
                     <% elsif current_user.role == 'institution' %>
-                        <%= link_to institution_dashboard_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors" do %>
+                        <%= link_to institution_dashboards_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors" do %>
                             <i class="fas fa-chart-line mr-2"></i>Dashboard
                         <% end %>
                         <%= link_to institution_scholarships_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors" do %>
