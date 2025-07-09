@@ -1,182 +1,198 @@
 <!-- app/views/admin/scholarships/index.html.erb -->
 <div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-  <!-- Header Section -->
-  <div class="bg-white/80 backdrop-blur-sm border-b border-slate-200 sticky top-0 z-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-        <div class="flex items-center space-x-3">
-          <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-          </div>
-          <div>
-            <h1 class="text-3xl font-bold text-slate-900">Gestion des Bourses</h1>
-            <p class="text-slate-600 mt-1">Administrez et gérez toutes les bourses d'études</p>
-          </div>
-        </div>
-        
-        <%= link_to new_admin_scholarship_path, class: "inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl" do %>
-          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-          </svg>
-          Nouvelle Bourse
-        <% end %>
-      </div>
-    </div>
-  </div>
+    <!-- Header Section -->
+    <div class="bg-white/80 backdrop-blur-sm border-b border-slate-200 sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold text-slate-900">Gestion des Bourses</h1>
+                        <p class="text-slate-600 mt-1">Administrez et gérez toutes les bourses d'études</p>
+                    </div>
+                </div>
 
-  <!-- Main Content -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <!-- Statistics Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-      <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-slate-200">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm font-medium text-slate-600">Total Bourses</p>
-            <p class="text-3xl font-bold text-slate-900"><%= @scholarships.count %></p>
-          </div>
-          <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-          </div>
+                <%= link_to new_admin_scholarship_path, class: "inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl" do %>
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+                Nouvelle Bourse
+                <% end %>
+            </div>
         </div>
-      </div>
-
-      <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-slate-200">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm font-medium text-slate-600">Bourses Actives</p>
-            <p class="text-3xl font-bold text-green-600"><%= @scholarships.where(active: true).count %></p>
-          </div>
-          <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
-            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-slate-200">
-        <div class="flex items-center justify-between">
-          <div>
-            <p class="text-sm font-medium text-slate-600">Bourses Inactives</p>
-            <p class="text-3xl font-bold text-red-600"><%= @scholarships.where(active: false).count %></p>
-          </div>
-          <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
-            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <!-- Scholarships Grid -->
-    <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
-      <div class="px-6 py-4 bg-gradient-to-r from-slate-50 to-slate-100 border-b border-slate-200">
-        <h2 class="text-xl font-semibold text-slate-900">Liste des Bourses</h2>
-      </div>
-      
-      <div class="overflow-x-auto">
-        <% if @scholarships.any? %>
-          <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 p-6">
-            <% @scholarships.each do |scholarship| %>
-              <div class="bg-gradient-to-br from-white to-slate-50 rounded-xl border border-slate-200 hover:border-blue-300 transition-all duration-300 hover:shadow-lg group">
-                <div class="p-6">
-                  <!-- Status Badge -->
-                  <div class="flex items-center justify-between mb-4">
-                    <span class="<%= scholarship.active? ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' %> px-3 py-1 rounded-full text-xs font-medium">
-                      <%= scholarship.active? ? 'Active' : 'Inactive' %>
-                    </span>
-                    <span class="text-xs text-slate-500">
-                      <%= scholarship.created_at.strftime("%d/%m/%Y") %>
-                    </span>
-                  </div>
-
-                  <!-- Title and Institution -->
-                  <div class="mb-4">
-                    <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
-                      <%= truncate(scholarship.title, length: 50) %>
-                    </h3>
-                    <p class="text-sm text-slate-600 flex items-center">
-                      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                      </svg>
-                      <%= scholarship.institution&.name || "Institution non définie" %>
-                    </p>
-                  </div>
-
-                  <!-- Details -->
-                  <div class="space-y-2 mb-4">
-                    <div class="flex items-center justify-between text-sm">
-                      <span class="text-slate-600">Pays:</span>
-                      <span class="font-medium text-slate-900"><%= scholarship.country %></span>
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Statistics Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-slate-200">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-slate-600">Total Bourses</p>
+                        <p class="text-3xl font-bold text-slate-900"><%= @scholarships.count %></p>
                     </div>
-                    <div class="flex items-center justify-between text-sm">
-                      <span class="text-slate-600">Niveau:</span>
-                      <span class="font-medium text-slate-900"><%= scholarship.level %></span>
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
                     </div>
-                    <div class="flex items-center justify-between text-sm">
-                      <span class="text-slate-600">Pourcentage:</span>
-                      <span class="font-medium text-blue-600"><%= scholarship.pourcentage %>%</span>
-                    </div>
-                    <% if scholarship.application_deadline %>
-                      <div class="flex items-center justify-between text-sm">
-                        <span class="text-slate-600">Date limite:</span>
-                        <span class="font-medium text-red-600"><%= scholarship.application_deadline.strftime("%d/%m/%Y") %></span>
-                      </div>
-                    <% end %>
-                  </div>
+                </div>
+            </div>
 
-                  <!-- Actions -->
-                  <div class="flex items-center space-x-2 pt-4 border-t border-slate-100">
-                    <%= link_to admin_scholarship_path(scholarship), class: "flex-1 bg-blue-50 hover:bg-blue-100 text-blue-600 font-medium py-2 px-3 rounded-lg transition-colors text-center text-sm" do %>
-                      <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                      </svg>
-                      Voir
-                    <% end %>
-                    
-                    <%= link_to edit_admin_scholarship_path(scholarship), class: "flex-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 font-medium py-2 px-3 rounded-lg transition-colors text-center text-sm" do %>
-                      <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                      </svg>
-                      Modifier
-                    <% end %>
-                    
-                    <%= button_to admin_scholarship_path(scholarship), method: :delete, 
+            <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-slate-200">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-slate-600">Bourses Actives</p>
+                        <p class="text-3xl font-bold text-green-600"><%= @scholarships.where(active: true).count %></p>
+                    </div>
+                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-slate-200">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-slate-600">Bourses Inactives</p>
+                        <p class="text-3xl font-bold text-red-600"><%= @scholarships.where(active: false).count %></p>
+                    </div>
+                    <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scholarships Grid -->
+        <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+            <div class="px-6 py-4 bg-gradient-to-r from-slate-50 to-slate-100 border-b border-slate-200">
+                <h2 class="text-xl font-semibold text-slate-900">Liste des Bourses</h2>
+            </div>
+
+            <div class="overflow-x-auto">
+                <% if @scholarships.any? %>
+                <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 p-6">
+                    <% @scholarships.each do |scholarship| %>
+                    <div class="bg-gradient-to-br from-white to-slate-50 rounded-xl border border-slate-200 hover:border-blue-300 transition-all duration-300 hover:shadow-lg group">
+                        <div class="p-6">
+                            <!-- Status Badge -->
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="<%= scholarship.active? ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' %> px-3 py-1 rounded-full text-xs font-medium">
+                                    <%= scholarship.active? ? 'Active' : 'Inactive' %>
+                                </span>
+                                <span class="text-xs text-slate-500">
+                                    <%= scholarship.created_at.strftime("%d/%m/%Y") %>
+                                </span>
+                            </div>
+
+                            <!-- Title and Institution -->
+                            <div class="mb-4">
+                                <h3 class="text-lg font-semibold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
+                                    <%= truncate(scholarship.title, length: 50) %>
+                                </h3>
+                                <p class="text-sm text-slate-600 flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                    </svg>
+                                    <%= scholarship.institution&.name || "Institution non définie" %>
+                                </p>
+                            </div>
+
+                            <!-- Details -->
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-slate-600">Pays:</span>
+                                    <span class="font-medium text-slate-900"><%= scholarship.country %></span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-slate-600">Niveau:</span>
+                                    <span class="font-medium text-slate-900"><%= scholarship.level %></span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-slate-600">Pourcentage:</span>
+                                    <span class="font-medium text-blue-600"><%= scholarship.pourcentage %>%</span>
+                                </div>
+                                <% if scholarship.application_deadline %>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-slate-600">Date limite:</span>
+                                    <span class="font-medium text-red-600"><%= scholarship.application_deadline.strftime("%d/%m/%Y") %></span>
+                                </div>
+                                <% end %>
+                            </div>
+                            <div class="flex items-center text-sm font-medium">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>
+                                    <% if scholarship.days_left %>
+                                    <% if scholarship.days_left > 0 %>
+                                    <span class="<%= scholarship.days_left <= 7 ? 'text-red-600 font-bold' : scholarship.days_left <= 30 ? 'text-orange-600 font-semibold' : 'text-green-600 font-medium' %>">
+                                        <%= scholarship.days_left %> jours restants
+                                    </span>
+                                    <% else %>
+                                    <span class="text-red-600 font-bold">Expiré</span>
+                                    <% end %>
+                                    <% else %>
+                                    <span class="text-gray-500">Date non spécifiée</span>
+                                    <% end %>
+                                </span>
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="flex items-center space-x-2 pt-4 border-t border-slate-100">
+                                <%= link_to admin_scholarship_path(scholarship), class: "flex-1 bg-blue-50 hover:bg-blue-100 text-blue-600 font-medium py-2 px-3 rounded-lg transition-colors text-center text-sm" do %>
+                                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                                Voir
+                                <% end %>
+
+                                <%= link_to edit_admin_scholarship_path(scholarship), class: "flex-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 font-medium py-2 px-3 rounded-lg transition-colors text-center text-sm" do %>
+                                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                                Modifier
+                                <% end %>
+
+                                <%= button_to admin_scholarship_path(scholarship), method: :delete, 
                         data: {turbo: false, confirm: "Êtes-vous sûr de vouloir supprimer cette bourse ?" },
                         class: "bg-red-50 hover:bg-red-100 text-red-600 font-medium py-2 px-3 rounded-lg transition-colors text-sm" do %>
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                      </svg>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
                     <% end %>
-                  </div>
                 </div>
-              </div>
-            <% end %>
-          </div>
-        <% else %>
-          <div class="text-center py-12">
-            <div class="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-12 h-12 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
+                <% else %>
+                <div class="text-center py-12">
+                    <div class="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-12 h-12 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-slate-900 mb-2">Aucune bourse trouvée</h3>
+                    <p class="text-slate-600 mb-6">Commencez par créer votre première bourse d'études.</p>
+                    <%= link_to new_admin_scholarship_path, class: "inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg" do %>
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                    Créer une bourse
+                    <% end %>
+                </div>
+                <% end %>
             </div>
-            <h3 class="text-lg font-semibold text-slate-900 mb-2">Aucune bourse trouvée</h3>
-            <p class="text-slate-600 mb-6">Commencez par créer votre première bourse d'études.</p>
-            <%= link_to new_admin_scholarship_path, class: "inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg" do %>
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-              Créer une bourse
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+        </div>
     </div>
-  </div>
 </div>

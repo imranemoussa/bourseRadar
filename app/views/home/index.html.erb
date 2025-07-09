@@ -6,85 +6,56 @@
         <div class="absolute top-1/3 right-24 w-16 h-16 bg-gradient-to-r from-purple-200/40 to-pink-200/40 rounded-full blur-lg"></div>
         <div class="absolute bottom-32 left-1/4 w-12 h-12 bg-gradient-to-r from-cyan-200/35 to-blue-200/35 rounded-full blur-lg"></div>
         <div class="absolute top-1/2 left-1/2 w-18 h-18 bg-gradient-to-r from-amber-200/25 to-orange-200/25 rounded-full blur-xl"></div>
-        
         <div class="absolute top-1/4 left-1/3 w-1 h-1 bg-indigo-400/60 rounded-full"></div>
         <div class="absolute top-3/4 right-1/4 w-2 h-2 bg-purple-400/40 rounded-full"></div>
         <div class="absolute top-1/2 left-1/5 w-1 h-1 bg-pink-400/50 rounded-full"></div>
     </div>
-
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div class="text-center">
             <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/60 backdrop-blur-sm border border-white/40 text-indigo-700 text-sm font-medium mb-6">
                 <i class="fas fa-sparkles mr-2 text-amber-500"></i>
                 Votre porte d'entrée vers l'excellence
             </div>
-            
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4 leading-tight">
-                Trouvez votre 
+                Trouvez votre
                 <span class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                     bourse d'études
                 </span>
                 idéale
             </h1>
-
             <div class="max-w-2xl mx-auto mb-10">
                 <p class="text-lg md:text-xl text-gray-600 mb-4 leading-relaxed">
                     Découvrez des milliers d'opportunités dans le monde entier
                 </p>
             </div>
-
             <!-- Compact Search Bar -->
-            <div class="max-w-4xl mx-auto mb-12">
-                <div class="bg-white/60 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-white/30">
-                    <%= form_with url: root_path, method: :get, local: true, class: "flex flex-col lg:flex-row gap-3" do |form| %>
-                        <div class="flex-1 relative">
-                            <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-indigo-400"></i>
-                            <%= form.text_field :search, 
-                                placeholder: "Ex: Intelligence Artificielle, Médecine...",
-                                value: params[:search],
-                                class: "w-full pl-12 pr-4 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-white/30 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 outline-none text-gray-700 transition-all duration-300" %>
-                        </div>
-                        <div class="flex gap-3">
-                            <%= form.select :country, 
-                                options_for_select([["🌍 Tous pays", ""]] + @countries.map { |c| [c, c] }, params[:country]),
-                                {}, 
-                                { class: "px-4 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-white/30 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 outline-none text-gray-700 min-w-[140px]" } %>
-                            <%= form.select :level, 
-                                options_for_select([["📚 Tous niveaux", ""]] + @levels.map { |l| [l, l] }, params[:level]),
-                                {}, 
-                                { class: "px-4 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-white/30 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 outline-none text-gray-700 min-w-[140px]" } %>
-                            <%= form.submit "Rechercher", class: "bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-3 rounded-xl transition-all duration-300 font-medium shadow-lg cursor-pointer hover:scale-105 hover:shadow-indigo-500/25" %>
-                        </div>
-                    <% end %>
-                </div>
+            <%= form_with url: root_path, method: :get, local: true, class: "flex flex-col sm:flex-row gap-3 w-full" do |form| %>
+            <div class="flex-1 relative">
+                <%= form.text_field :search,
+            placeholder: "Ex: Intelligence Artificielle, Médecine...",
+            value: params[:search],
+            class: "w-full pl-12 pr-4 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-white/30 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 outline-none text-gray-700 transition-all duration-300" %>
             </div>
 
-            <!-- Compact Stats -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                <div class="bg-white/50 backdrop-blur-md rounded-xl p-6 text-center border border-white/30 hover:bg-white/60 transition-all duration-300 hover:scale-105">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">
-                        <%= number_with_delimiter(@total_scholarships) %>
-                    </div>
-                    <div class="text-gray-600 font-medium text-sm">Bourses disponibles</div>
-                </div>
-                <div class="bg-white/50 backdrop-blur-md rounded-xl p-6 text-center border border-white/30 hover:bg-white/60 transition-all duration-300 hover:scale-105">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-                        <%= number_with_delimiter(@total_institutions) %>
-                    </div>
-                    <div class="text-gray-600 font-medium text-sm">Institutions partenaires</div>
-                </div>
-                <div class="bg-white/50 backdrop-blur-md rounded-xl p-6 text-center border border-white/30 hover:bg-white/60 transition-all duration-300 hover:scale-105">
-                    <div class="text-3xl font-bold bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent mb-2">
-                        <%= @countries_count %>
-                    </div>
-                    <div class="text-gray-600 font-medium text-sm">Pays couverts</div>
-                </div>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <%= form.select :country,
+            options_for_select([["🌍 Tous pays", ""]] + @countries.map { |c| [c, c] }, params[:country]),
+            {},
+            { class: "px-4 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-white/30 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 outline-none text-gray-700 w-full sm:min-w-[140px]" } %>
+
+                <%= form.select :level,
+            options_for_select([["📚 Tous niveaux", ""]] + @levels.map { |l| [l, l] }, params[:level]),
+            {},
+            { class: "px-4 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-white/30 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 outline-none text-gray-700 w-full sm:min-w-[140px]" } %>
+
+                <%= form.submit "Rechercher", class: "bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-3 rounded-xl transition-all duration-300 font-medium shadow-lg cursor-pointer hover:scale-105 hover:shadow-indigo-500/25 w-full sm:w-auto" %>
             </div>
+            <% end %>
         </div>
     </div>
 </section>
 
-<!-- Recent Scholarships -->
+<!-- Recent Scholarships with Carousel -->
 <section class="py-20 bg-gradient-to-br from-gray-50 to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
@@ -98,123 +69,217 @@
             <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 Découvrez les dernières opportunités de bourses d'études ajoutées par nos institutions partenaires
             </p>
-            
             <% if params[:search].present? %>
-                <div class="mt-8 inline-flex items-center flex-wrap justify-center gap-3 text-sm">
-                    <span class="text-gray-600 font-medium">Recherche pour :</span>
-                    <span class="px-4 py-2 bg-indigo-100 text-indigo-800 rounded-full font-semibold">"<%= params[:search] %>"</span>
-                    <% if params[:country].present? %>
-                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-semibold"><%= params[:country] %></span>
-                    <% end %>
-                    <% if params[:level].present? %>
-                        <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full font-semibold"><%= params[:level] %></span>
-                    <% end %>
-                    <%= link_to root_path, class: "text-red-600 hover:text-red-800 ml-2 px-3 py-1 rounded-full hover:bg-red-50 transition-colors" do %>
-                        <i class="fas fa-times mr-1"></i> Effacer
-                    <% end %>
-                </div>
+            <div class="mt-8 inline-flex items-center flex-wrap justify-center gap-3 text-sm">
+                <span class="text-gray-600 font-medium">Recherche pour :</span>
+                <span class="px-4 py-2 bg-indigo-100 text-indigo-800 rounded-full font-semibold">"<%= params[:search] %>"</span>
+                <% if params[:country].present? %>
+                <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-semibold"><%= params[:country] %></span>
+                <% end %>
+                <% if params[:level].present? %>
+                <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full font-semibold"><%= params[:level] %></span>
+                <% end %>
+                <%= link_to root_path, class: "text-red-600 hover:text-red-800 ml-2 px-3 py-1 rounded-full hover:bg-red-50 transition-colors" do %>
+                <i class="fas fa-times mr-1"></i> Effacer
+                <% end %>
+            </div>
             <% end %>
         </div>
-
         <% if @scholarships.present? %>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <% @scholarships.each do |scholarship| %>
-                    <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden group hover:-translate-y-2 hover:scale-[1.02]">
-                        <div class="p-8">
-                            <!-- Institution Badge -->
-                            <div class="flex items-center mb-6">
-                                <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
-                                    <i class="fas fa-university text-white text-lg"></i>
-                                </div>
-                                <div class="ml-4 min-w-0">
-                                    <h4 class="font-bold text-gray-900 text-lg truncate"><%= scholarship.institution.name %></h4>
-                                    <p class="text-gray-500 flex items-center font-medium">
-                                        <i class="fas fa-map-marker-alt mr-2 text-indigo-500"></i>
-                                        <%= scholarship.country %>
+        <!-- Carousel Container -->
+        <div class="relative">
+            <!-- Carousel Navigation -->
+            <div class="flex justify-center items-center gap-4 mb-8">
+                <button id="prevBtn" class="bg-white hover:bg-gray-50 text-indigo-600 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 hover:scale-105">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="flex gap-2" id="indicators"></div>
+                <button id="nextBtn" class="bg-white hover:bg-gray-50 text-indigo-600 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 hover:scale-105">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <!-- Carousel Content -->
+            <div class="overflow-hidden rounded-2xl">
+                <div id="carousel" class="flex transition-transform duration-500 ease-in-out">
+                    <% @scholarships.each_slice(3).with_index do |scholarship_group, index| %>
+                    <div class="min-w-full">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+                            <% scholarship_group.each do |scholarship| %>
+                            <div class="bg-white rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 overflow-hidden group hover:-translate-y-2 hover:scale-[1.02]">
+                                <div class="p-4 md:p-6 lg:p-8">
+                                    <!-- Institution Badge -->
+                                    <div class="flex items-center mb-4 md:mb-6">
+                                        <div class="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                                            <i class="fas fa-university text-white text-sm md:text-base lg:text-lg"></i>
+                                        </div>
+                                        <div class="ml-3 md:ml-4 min-w-0">
+                                            <h4 class="font-bold text-gray-900 text-sm md:text-base lg:text-lg truncate"><%= scholarship.institution.name %></h4>
+                                            <p class="text-gray-500 flex items-center font-medium text-xs md:text-sm">
+                                                <i class="fas fa-map-marker-alt mr-1 md:mr-2 text-indigo-500"></i>
+                                                <%= scholarship.country %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Scholarship Title -->
+                                    <h3 class="text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-3 md:mb-4 group-hover:text-indigo-600 transition-colors leading-tight line-clamp-2">
+                                        <%= scholarship.title %>
+                                    </h3>
+                                    <!-- Description -->
+                                    <p class="text-gray-600 mb-4 md:mb-6 text-xs md:text-sm leading-relaxed line-clamp-3">
+                                        <%= truncate(scholarship.description, length: 120) %>
                                     </p>
-                                </div>
-                            </div>
-
-                            <!-- Scholarship Title -->
-                            <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-indigo-600 transition-colors leading-tight line-clamp-2">
-                                <%= scholarship.title %>
-                            </h3>
-
-                            <!-- Description -->
-                            <p class="text-gray-600 mb-6 text-sm leading-relaxed line-clamp-3">
-                                <%= truncate(scholarship.description, length: 120) %>
-                            </p>
-
-                            <!-- Tags -->
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <% if scholarship.level.present? %>
-                                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full font-semibold">
-                                        <%= scholarship.level %>
-                                    </span>
-                                <% end %>
-                                <% if scholarship.field_of_study.present? %>
-                                    <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full font-semibold">
-                                        <%= truncate(scholarship.field_of_study, length: 20) %>
-                                    </span>
-                                <% end %>
-                                <% if scholarship.pourcentage.present? %>
-                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full font-semibold">
-                                        <%= scholarship.pourcentage.to_i %>% financé
-                                    </span>
-                                <% end %>
-                            </div>
-
-                            <!-- Footer -->
-                            <div class="flex items-center justify-between pt-6 border-t border-gray-100">
-                                <div class="flex items-center text-sm font-medium">
-                                    <i class="fas fa-calendar-alt mr-2"></i>
-                                    <span>
-                                        <% if scholarship.days_left %>
-                                            <% if scholarship.days_left > 0 %>
+                                    <!-- Tags -->
+                                    <div class="flex flex-wrap gap-1 md:gap-2 mb-4 md:mb-6">
+                                        <% if scholarship.level.present? %>
+                                        <span class="px-2 md:px-3 py-1 bg-blue-100 text-blue-800 text-xs md:text-sm rounded-full font-semibold">
+                                            <%= scholarship.level %>
+                                        </span>
+                                        <% end %>
+                                        <% if scholarship.field_of_study.present? %>
+                                        <span class="px-2 md:px-3 py-1 bg-purple-100 text-purple-800 text-xs md:text-sm rounded-full font-semibold">
+                                            <%= truncate(scholarship.field_of_study, length: 20) %>
+                                        </span>
+                                        <% end %>
+                                        <% if scholarship.pourcentage.present? %>
+                                        <span class="px-2 md:px-3 py-1 bg-green-100 text-green-800 text-xs md:text-sm rounded-full font-semibold">
+                                            <%= scholarship.pourcentage.to_i %>% financé
+                                        </span>
+                                        <% end %>
+                                    </div>
+                                    <!-- Footer -->
+                                    <div class="flex items-center justify-between pt-4 md:pt-6 border-t border-gray-100">
+                                        <div class="flex items-center text-xs md:text-sm font-medium">
+                                            <i class="fas fa-calendar-alt mr-1 md:mr-2 text-indigo-500"></i>
+                                            <span>
+                                                <% if scholarship.days_left %>
+                                                <% if scholarship.days_left > 0 %>
                                                 <span class="<%= scholarship.days_left <= 7 ? 'text-red-600 font-bold' : scholarship.days_left <= 30 ? 'text-orange-600 font-semibold' : 'text-green-600 font-medium' %>">
                                                     <%= scholarship.days_left %> jours restants
                                                 </span>
-                                            <% else %>
+                                                <% else %>
                                                 <span class="text-red-600 font-bold">Expiré</span>
-                                            <% end %>
-                                        <% else %>
-                                            <span class="text-gray-500">Date non spécifiée</span>
+                                                <% end %>
+                                                <% else %>
+                                                <span class="text-gray-500">Date non spécifiée</span>
+                                                <% end %>
+                                            </span>
+                                        </div>
+                                        <%= link_to scholarship_path(scholarship), class: "text-indigo-600 hover:text-indigo-800 font-bold text-xs md:text-sm flex items-center group-hover:translate-x-1 transition-transform" do %>
+                                        Voir détails
+                                        <i class="fas fa-arrow-right ml-1 md:ml-2 text-xs"></i>
                                         <% end %>
-                                    </span>
+                                    </div>
                                 </div>
-                                <%= link_to scholarship_path(scholarship), class: "text-indigo-600 hover:text-indigo-800 font-bold text-sm flex items-center group-hover:translate-x-1 transition-transform" do %>
-                                    Voir détails
-                                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                                <% end %>
                             </div>
+                            <% end %>
                         </div>
                     </div>
-                <% end %>
-            </div>
-        <% else %>
-            <!-- Empty State -->
-            <div class="text-center py-16">
-                <div class="w-32 h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-8">
-                    <i class="fas fa-search text-gray-400 text-4xl"></i>
+                    <% end %>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">
-                    <%= params[:search].present? ? "Aucune bourse trouvée" : "Aucune bourse disponible" %>
-                </h3>
-                <p class="text-gray-600 mb-8 text-lg max-w-md mx-auto leading-relaxed">
-                    <%= params[:search].present? ? 
+            </div>
+        </div>
+        <% else %>
+        <!-- Empty State -->
+        <div class="text-center py-16">
+            <div class="w-32 h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-8">
+                <i class="fas fa-search text-gray-400 text-4xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                <%= params[:search].present? ? "Aucune bourse trouvée" : "Aucune bourse disponible" %>
+            </h3>
+            <p class="text-gray-600 mb-8 text-lg max-w-md mx-auto leading-relaxed">
+                <%= params[:search].present? ? 
                         "Essayez d'ajuster vos critères de recherche ou explorez d'autres options." : 
                         "Les institutions n'ont pas encore publié de bourses. Revenez bientôt !" %>
-                </p>
-                <% if params[:search].present? %>
-                    <%= link_to root_path, class: "inline-flex items-center px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-xl transition-all duration-300 font-bold text-lg shadow-lg hover:scale-105" do %>
-                        <i class="fas fa-home mr-3"></i>
-                        Voir toutes les bourses
-                    <% end %>
-                <% end %>
-            </div>
+            </p>
+            <% if params[:search].present? %>
+            <%= link_to root_path, class: "inline-flex items-center px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-xl transition-all duration-300 font-bold text-lg shadow-lg hover:scale-105" do %>
+            <i class="fas fa-home mr-3"></i>
+            Voir toutes les bourses
+            <% end %>
+            <% end %>
+        </div>
         <% end %>
     </div>
 </section>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.getElementById('carousel');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicatorsContainer = document.getElementById('indicators');
+        if (!carousel) return;
+        const slides = carousel.children;
+        const totalSlides = slides.length;
+        let currentSlide = 0;
+        // Generate indicators
+        for (let i = 0; i < totalSlides; i++) {
+            const indicator = document.createElement('div');
+            indicator.className = `indicator w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${i === 0 ? 'bg-indigo-600' : 'bg-gray-300'}`;
+            indicator.addEventListener('click', () => goToSlide(i));
+            indicatorsContainer.appendChild(indicator);
+        }
+        const indicators = indicatorsContainer.querySelectorAll('.indicator');
+
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('bg-indigo-600', index === currentSlide);
+                indicator.classList.toggle('bg-gray-300', index !== currentSlide);
+            });
+        }
+
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateCarousel();
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+        // Event listeners
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+        // Touch/swipe support for mobile
+        let startX = 0;
+        let endX = 0;
+        carousel.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+        carousel.addEventListener('touchmove', (e) => {
+            endX = e.touches[0].clientX;
+        });
+        carousel.addEventListener('touchend', () => {
+            const deltaX = startX - endX;
+            const minSwipeDistance = 50;
+            if (Math.abs(deltaX) > minSwipeDistance) {
+                if (deltaX > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+        });
+        // Auto-play
+        setInterval(nextSlide, 8000);
+        // Hide navigation if only one slide
+        if (totalSlides <= 1) {
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+            indicatorsContainer.style.display = 'none';
+        }
+    });
+</script>
 
 <style>
     .line-clamp-2 {
@@ -223,7 +288,7 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
-    
+
     .line-clamp-3 {
         display: -webkit-box;
         -webkit-line-clamp: 3;
