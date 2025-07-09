@@ -35,29 +35,29 @@
                 </p>
             </div>
 
-            <!-- Enhanced Search Bar -->
+             <!-- Compact Search Bar -->
             <div class="max-w-4xl mx-auto mb-12">
-                <div class="bg-white/60 backdrop-blur-md rounded-2xl shadow-xl border border-white/30">
-                    <form class="p-4" action="/scholarships" method="get">
-                        <div class="flex flex-col space-y-3 lg:space-y-0 lg:flex-row lg:gap-3">
-                            <div class="flex-1 relative">
-                                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-indigo-400 text-lg"></i>
-                                <input type="text" name="query" placeholder="Ex: Intelligence Artificielle, Médecine..." class="w-full pl-12 pr-4 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-white/30 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 outline-none text-gray-700 transition-all duration-300">
-                            </div>
-                            <div class="flex flex-col sm:flex-row gap-3 lg:w-auto">
-                                <select name="country" class="px-4 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-white/30 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 outline-none text-gray-700 flex-1 sm:flex-initial sm:min-w-[140px]">
-                                    <option value="">🌍 Destination</option>
-                                </select>
-                                <select name="level" class="px-4 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-white/30 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 outline-none text-gray-700 flex-1 sm:flex-initial sm:min-w-[140px]">
-                                    <option value="">📚 Niveau</option>
-                                </select>
-                                <button type="submit" class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-3 rounded-xl hover:from-indigo-600 hover:to-purple-600 transition-all duration-300 font-medium shadow-lg hover:shadow-indigo-500/25 transform hover:scale-105 flex items-center justify-center w-full sm:w-auto sm:min-w-[140px]">
-                                    <i class="fas fa-rocket mr-2"></i>
-                                    Découvrir
-                                </button>
-                            </div>
+                <div class="bg-white/60 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-white/30">
+                    <%= form_with url: root_path, method: :get, local: true, class: "flex flex-col lg:flex-row gap-3" do |form| %>
+                        <div class="flex-1 relative">
+                            <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-indigo-400"></i>
+                            <%= form.text_field :search, 
+                                placeholder: "Ex: Intelligence Artificielle, Médecine...",
+                                value: params[:search],
+                                class: "w-full pl-12 pr-4 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-white/30 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 outline-none text-gray-700 transition-all duration-300" %>
                         </div>
-                    </form>
+                        <div class="flex gap-3">
+                            <%= form.select :country, 
+                                options_for_select([["🌍 Tous pays", ""]] + @countries.map { |c| [c, c] }, params[:country]),
+                                {}, 
+                                { class: "px-4 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-white/30 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 outline-none text-gray-700 min-w-[140px]" } %>
+                            <%= form.select :level, 
+                                options_for_select([["📚 Tous niveaux", ""]] + @levels.map { |l| [l, l] }, params[:level]),
+                                {}, 
+                                { class: "px-4 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-white/30 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-400/20 outline-none text-gray-700 min-w-[140px]" } %>
+                            <%= form.submit "Rechercher", class: "bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-3 rounded-xl transition-all duration-300 font-medium shadow-lg cursor-pointer hover:scale-105 hover:shadow-indigo-500/25" %>
+                        </div>
+                    <% end %>
                 </div>
             </div>
 

@@ -14,6 +14,12 @@ class Scholarship < ApplicationRecord
       tsearch: { prefix: true, any_word: true },
       trigram: {}
     }
+    pg_search_scope :search_by_name_and_status,
+    against: [:title, :active],
+    using: {
+      tsearch: { prefix: true, any_word: true },
+      trigram: {}
+    }
 
 
   validates :title, presence: true, length: { minimum: 5, maximum: 100}

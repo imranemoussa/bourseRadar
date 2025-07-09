@@ -1,15 +1,4 @@
 Rails.application.routes.draw do
-  namespace :institution do
-    get "dashboards/index"
-    get "dashboards/show"
-    get "dashboards/new"
-    get "dashboards/create"
-    get "scholarships/index"
-    get "scholarships/show"
-    get "scholarships/new"
-    get "scholarships/create"
-  end
-
   
   devise_for :users, controllers: {
   registrations: 'users/registrations',
@@ -61,10 +50,9 @@ Rails.application.routes.draw do
       end
     end
     
-    # Routes pour les institutions
-    # resources :institutions, except: [:index, :show, :new] do
-     # resources :scholarships, except: [:index, :show]
-    #end
+     #Routes pour les institutions
+     resources :institutions, except: [:index, :show, :new] 
+    
   end
   
   # Routes admin
