@@ -68,8 +68,21 @@
                     <!-- Navigation Student (par défaut) -->
                     <%= link_to "Accueil", root_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(root_path)}" %>
                     <%= link_to "Bourses", scholarships_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(scholarships_path)}" %>
-                    <%= link_to "Rechercher", search_scholarships_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(search_scholarships_path)}" %>
-                    <% end %>
+                    
+                    <% if user_signed_in? %>
+                        <% if current_user.role != 'student' %>
+                            <%= link_to "Institutions", institutions_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(institutions_path)}" %>
+                        <% end %>
+                        
+                        <!-- Liens spécifiques aux rôles -->
+                        
+                        <% if current_user.role == 'institution' %>
+                            <%= link_to "Mes Bourses", institution_scholarships_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(institution_scholarships_path)}" %>
+                            <%= link_to "Ajouter Bourse", new_scholarship_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(new_scholarship_path)}" %>
+                            <%= link_to "Dashboard", institution_dashboard_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(institution_dashboard_path)}" %>
+                        <% elsif current_user.role == 'student' %>
+                            <%= link_to "Mon Profil", profile_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(profile_path)}" %>
+                        <% end %>
                     <% else %>
                     <!-- Navigation pour visiteurs non connectés -->
                     <%= link_to "Accueil", root_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(root_path)}" %>
@@ -100,13 +113,13 @@
                                 <i class="fas fa-bell mr-2"></i>Notifications
                                 <% end %>
                                 <% elsif current_user.role == 'institution' %>
-                                <%= link_to edit_institution_path(current_user.institution), class: "block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors" do %>
-                                <i class="fas fa-building mr-2"></i>Mon Institution
-                                <% end %>
-                                <% elsif current_user.role == 'admin' %>
-                                <%= link_to edit_user_registration_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors" do %>
-                                <i class="fas fa-user-shield mr-2"></i>Profil Admin
-                                <% end %>
+                                    <%= link_to institution_dashboard_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors" do %>
+                                        <i class="fas fa-chart-line mr-2"></i>Dashboard
+                                    <% end %>
+                                    <%= link_to institution_scholarships_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors" do %>
+                                        <i class="fas fa-graduation-cap mr-2"></i>Mes Bourses
+                                    <% end %>
+                                
                                 <% end %>
 
                                 <%= link_to edit_user_registration_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors" do %>
@@ -155,8 +168,20 @@
                 <!-- Navigation Mobile Student -->
                 <%= link_to "Accueil", root_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(root_path)}" %>
                 <%= link_to "Bourses", scholarships_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(scholarships_path)}" %>
-                <%= link_to "Rechercher", search_scholarships_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(search_scholarships_path)}" %>
-                <% end %>
+                
+                <% if user_signed_in? %>
+                    <% if current_user.role != 'student' %>
+                        <%= link_to "Institutions", institutions_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(institutions_path)}" %>
+                    <% end %>
+                    
+                    <!-- Liens mobiles spécifiques aux rôles -->
+                    <% if current_user.role == 'institution' %>
+                        <%= link_to "Mes Bourses", institution_scholarships_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(institution_scholarships_path)}" %>
+                        <%= link_to "Ajouter Bourse", new_scholarship_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(new_scholarship_path)}" %>
+                        <%= link_to "Dashboard", institution_dashboard_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(institution_dashboard_path)}" %>
+                    <% elsif current_user.role == 'student' %>
+                        <%= link_to "Mon Profil", profile_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(profile_path)}" %>
+                    <% end %>
                 <% else %>
                 <!-- Navigation Mobile pour visiteurs -->
                 <%= link_to "Accueil", root_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(root_path)}" %>
@@ -183,13 +208,13 @@
                     <i class="fas fa-bell mr-2"></i>Notifications
                     <% end %>
                     <% elsif current_user.role == 'institution' %>
-                    <%= link_to edit_institution_path(current_user.institution), class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors" do %>
-                    <i class="fas fa-building mr-2"></i>Mon Institution
-                    <% end %>
-                    <% elsif current_user.role == 'admin' %>
-                    <%= link_to edit_user_registration_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors" do %>
-                    <i class="fas fa-user-shield mr-2"></i>Profil Admin
-                    <% end %>
+                        <%= link_to institution_dashboard_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors" do %>
+                            <i class="fas fa-chart-line mr-2"></i>Dashboard
+                        <% end %>
+                        <%= link_to institution_scholarships_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors" do %>
+                            <i class="fas fa-graduation-cap mr-2"></i>Mes Bourses
+                        <% end %>
+                    
                     <% end %>
 
                     <%= link_to edit_user_registration_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors" do %>

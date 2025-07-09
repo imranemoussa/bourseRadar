@@ -78,15 +78,8 @@
 
         <!-- Role Field -->
         <div>
-          <%= f.label :role, "Rôle", class: "block text-sm font-medium text-gray-700 mb-2" %>
-          <%= f.select :role, 
-              options_for_select([
-                ['Etudiant', 'student'],
-                ['Administrateur', 'admin'],
-                ['Institution', 'institution']
-              ]), 
-              { prompt: "Sélectionnez votre rôle" },
-              { class: "appearance-none relative block w-full px-3 py-3 border border-gray-300 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 transition-colors sm:text-sm bg-white" } %>
+         <%= f.hidden_field :role, value: 'student' %>
+
         </div>
 
         <!-- Password Field -->
