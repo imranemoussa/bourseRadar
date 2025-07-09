@@ -39,8 +39,8 @@ Rails.application.routes.draw do
     # Dashboard principal
     
     # Profil étudiant
-    resource :profile, only: [:show, :edit, :update]
-    
+    # Dans routes.rb
+    resource :profile, only: [:show, :edit, :update, :new, :create]    
     # Notifications
     resources :notifications, only: [:index] do
       member do

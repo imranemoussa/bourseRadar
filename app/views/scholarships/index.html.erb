@@ -1,4 +1,3 @@
-
 <!-- Hero Section -->
 <section class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 relative overflow-hidden flex items-center">
     <!-- Animated background elements -->
@@ -132,9 +131,21 @@
 
                     <!-- Footer -->
                     <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                        <div class="flex items-center text-sm text-gray-500">
+                        <div class="flex items-center text-sm font-medium">
                             <i class="fas fa-calendar-alt mr-2"></i>
-                            <span class="text-green-600"><%= scholarship.remaining_days %> jours restants</span>
+                            <span>
+                                <% if scholarship.days_left %>
+                                <% if scholarship.days_left > 0 %>
+                                <span class="<%= scholarship.days_left <= 7 ? 'text-red-600 font-bold' : scholarship.days_left <= 30 ? 'text-orange-600 font-semibold' : 'text-green-600 font-medium' %>">
+                                    <%= scholarship.days_left %> jours restants
+                                </span>
+                                <% else %>
+                                <span class="text-red-600 font-bold">Expiré</span>
+                                <% end %>
+                                <% else %>
+                                <span class="text-gray-500">Date non spécifiée</span>
+                                <% end %>
+                            </span>
                         </div>
                         <%= link_to  scholarship_path(scholarship), class: "text-primary hover:text-indigo-700 font-medium text-sm flex items-center group-hover:translate-x-1 transition-transform" do %>
                         Voir détails

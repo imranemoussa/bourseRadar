@@ -53,7 +53,26 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <%= link_to "Accueil", root_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(root_path)}" %>
                     <%= link_to "Bourses", scholarships_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(scholarships_path)}" %>
-                    <%= link_to "Institutions", institutions_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(institutions_path)}" %>
+                    
+                    <% if user_signed_in? %>
+                        <% if current_user.role != 'student' %>
+                            <%= link_to "Institutions", institutions_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(institutions_path)}" %>
+                        <% end %>
+                        
+                        <!-- Liens spécifiques aux rôles -->
+                        
+                        <% if current_user.role == 'institution' %>
+                            <%= link_to "Mes Bourses", institution_scholarships_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(institution_scholarships_path)}" %>
+                            <%= link_to "Ajouter Bourse", new_scholarship_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(new_scholarship_path)}" %>
+                            <%= link_to "Dashboard", institution_dashboard_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(institution_dashboard_path)}" %>
+                        <% elsif current_user.role == 'student' %>
+                            <%= link_to "Mon Profil", profile_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(profile_path)}" %>
+                        <% end %>
+                    <% else %>
+                        <!-- Visiteur non connecté -->
+                        <%= link_to "Institutions", institutions_path, class: "text-gray-700 hover:text-primary transition-colors #{'font-semibold text-primary' if current_page?(institutions_path)}" %>
+                    <% end %>
+                    
                     <a href="#" class="text-gray-700 hover:text-primary transition-colors">À propos</a>
 
                     <div class="flex items-center space-x-4">
@@ -71,18 +90,34 @@
                             </button>
 
                             <div x-show="userMenu" @click.away="userMenu = false" x-transition class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2">
+                                <!-- Menu contextuel selon le rôle -->
+                                <% if current_user.role == 'student' %>
+                                    <%= link_to profile_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors" do %>
+                                        <i class="fas fa-user mr-2"></i>Mon Profil
+                                    <% end %>
+                                    <%= link_to edit_profile_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors" do %>
+                                        <i class="fas fa-edit mr-2"></i>Modifier Profil
+                                    <% end %>
+                                <% elsif current_user.role == 'institution' %>
+                                    <%= link_to institution_dashboard_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors" do %>
+                                        <i class="fas fa-chart-line mr-2"></i>Dashboard
+                                    <% end %>
+                                    <%= link_to institution_scholarships_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors" do %>
+                                        <i class="fas fa-graduation-cap mr-2"></i>Mes Bourses
+                                    <% end %>
+                                
+                                <% end %>
 
                                 <%= link_to edit_user_registration_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors" do %>
-                                <i class="fas fa-user-cog mr-2"></i>Profil
+                                    <i class="fas fa-user-cog mr-2"></i>Paramètres
                                 <% end %>
                                 <%= link_to notifications_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors" do %>
-                                <i class="fas fa-bell mr-2"></i>Notifications
+                                    <i class="fas fa-bell mr-2"></i>Notifications
                                 <% end %>
                                 <hr class="my-2">
-                                <%= link_to destroy_user_session_path, data: { turbo_method: :delete, confirm: "Êtes-vous sûr ?" }, class: "block px-4 py-2 ..." do %>
-                                <i class="fas fa-sign-out-alt mr-2"></i>Déconnexion
+                                <%= link_to destroy_user_session_path, data: { turbo_method: :delete, confirm: "Êtes-vous sûr ?" }, class: "block px-4 py-2 text-red-600 hover:bg-red-50 transition-colors" do %>
+                                    <i class="fas fa-sign-out-alt mr-2"></i>Déconnexion
                                 <% end %>
-
                             </div>
                         </div>
                         <% else %>
@@ -107,23 +142,60 @@
             <div class="px-2 pt-2 pb-3 space-y-1">
                 <%= link_to "Accueil", root_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(root_path)}" %>
                 <%= link_to "Bourses", scholarships_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(scholarships_path)}" %>
-                <%= link_to "Institutions", institutions_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(institutions_path)}" %>
+                
+                <% if user_signed_in? %>
+                    <% if current_user.role != 'student' %>
+                        <%= link_to "Institutions", institutions_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(institutions_path)}" %>
+                    <% end %>
+                    
+                    <!-- Liens mobiles spécifiques aux rôles -->
+                    <% if current_user.role == 'institution' %>
+                        <%= link_to "Mes Bourses", institution_scholarships_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(institution_scholarships_path)}" %>
+                        <%= link_to "Ajouter Bourse", new_scholarship_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(new_scholarship_path)}" %>
+                        <%= link_to "Dashboard", institution_dashboard_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(institution_dashboard_path)}" %>
+                    <% elsif current_user.role == 'student' %>
+                        <%= link_to "Mon Profil", profile_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(profile_path)}" %>
+                    <% end %>
+                <% else %>
+                    <!-- Visiteur non connecté -->
+                    <%= link_to "Institutions", institutions_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors #{'bg-indigo-50 text-primary font-semibold' if current_page?(institutions_path)}" %>
+                <% end %>
+                
                 <a href="#" class="block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors">À propos</a>
 
                 <% if user_signed_in? %>
                 <div class="border-t border-gray-200 pt-2 mt-2">
                     <div class="px-3 py-2 text-sm text-gray-500">
                         Connecté en tant que <%= current_user.first_name || current_user.email.split('@').first %>
+                        <span class="text-xs bg-gray-200 px-2 py-1 rounded ml-2"><%= current_user.role.capitalize %></span>
                     </div>
 
+                    <!-- Menu mobile contextuel selon le rôle -->
+                    <% if current_user.role == 'student' %>
+                        <%= link_to profile_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors" do %>
+                            <i class="fas fa-user mr-2"></i>Mon Profil
+                        <% end %>
+                        <%= link_to edit_profile_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors" do %>
+                            <i class="fas fa-edit mr-2"></i>Modifier Profil
+                        <% end %>
+                    <% elsif current_user.role == 'institution' %>
+                        <%= link_to institution_dashboard_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors" do %>
+                            <i class="fas fa-chart-line mr-2"></i>Dashboard
+                        <% end %>
+                        <%= link_to institution_scholarships_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors" do %>
+                            <i class="fas fa-graduation-cap mr-2"></i>Mes Bourses
+                        <% end %>
+                    
+                    <% end %>
+
                     <%= link_to edit_user_registration_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors" do %>
-                    <i class="fas fa-user-cog mr-2"></i>Profil
+                        <i class="fas fa-user-cog mr-2"></i>Paramètres
                     <% end %>
                     <%= link_to notifications_path, class: "block px-3 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors" do %>
-                    <i class="fas fa-bell mr-2"></i>Notifications
+                        <i class="fas fa-bell mr-2"></i>Notifications
                     <% end %>
-                    <%= link_to destroy_user_session_path, method: :delete, class: "block px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors" do %>
-                    <i class="fas fa-sign-out-alt mr-2"></i>Déconnexion
+                    <%= link_to destroy_user_session_path, data: { turbo_method: :delete, confirm: "Êtes-vous sûr ?" }, class: "block px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors" do %>
+                        <i class="fas fa-sign-out-alt mr-2"></i>Déconnexion
                     <% end %>
                 </div>
                 <% else %>

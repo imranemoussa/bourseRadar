@@ -1,11 +1,24 @@
 class ProfilesController < ApplicationController
-  #before_action :authenticate_user!
-  before_action :set_profile
+  before_action :authenticate_user!
+  before_action :set_profile, only: [:edit, :update, :show]
 
-  def show
+  def new
+    @profile = current_user.build_student_profile if current_user.student?
+  end
+
+  def create
+    if current_user.student?
+      @profile = current_user.build_student_profile(profile_params)
+      if @profile.save
+        redirect_to profile_path, notice: "Profil étudiant créé avec succès."
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
   end
 
   def edit
+    # @profile déjà défini par set_profile
   end
 
   def update
@@ -16,36 +29,21 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def show
+    # @profile déjà défini par set_profile
+  end
+
   private
 
   def set_profile
-    if current_user.student?
-      @profile = current_user.student_profile
-    else
-      @profile = current_user.institution
+    @profile = current_user.student_profile
+    unless @profile
+      redirect_to new_profile_path, alert: "Veuillez d'abord créer votre profil."
     end
   end
 
+
   def profile_params
-    if current_user.student?
-      params.require(:student_profile).permit(
-        :birth_date,
-        :natinality,
-        :current_level,
-        :current_institution,
-        :field_of_study,
-        :bio,
-        :address,
-        :city,
-        :country
-      )
-    elsif current_user.institution?
-       params.require(:institution).permit(
-        :name, :description, :country, :city, :website,
-        :contact_email, :contact_phone, :logo_url
-      )
-    else
-      {}
-    end
+    params.require(:student_profile).permit(:birth_date, :nationality, :current_level, :current_institution, :field_of_study, :bio, :address, :city, :country)
   end
 end

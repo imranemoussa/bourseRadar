@@ -1,18 +1,234 @@
 <% content_for :title, "Mon Profil" %>
 <% content_for :description, "Consultez les informations de votre profil utilisateur." %>
 
-<section class="py-16 bg-white">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="bg-white rounded-2xl shadow-xl p-8">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">Profil de <%= current_user.full_name %></h2>
+<section class="py-16 bg-white ">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
 
-      <% if current_user.student? %>
-        <%= render partial: "student_profile", locals: { profile: @profile } %>
-      <% elsif current_user.institution? %>
-        <%= render partial: "institution_profile", locals: { profile: @profile } %>
-      <% end %>
+        .card-shadow {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
 
-      <%= link_to "Modifier mon profil", edit_profile_path, class: "mt-6 inline-block bg-primary text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition" %>
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+    </style>
+
+
+    <!-- Header avec gradient -->
+    <div class="gradient-bg h-64 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+        <div class="relative z-10 container mx-auto px-4 pt-8">
+            <div class="flex justify-between items-start">
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="text-white hover:text-gray-200 transition-colors">
+                        <i class="fas fa-arrow-left text-xl"></i>
+                    </a>
+                    <h1 class="text-3xl font-bold text-white">Profil Étudiant</h1>
+                </div>
+                <%= link_to edit_profile_path, class: "bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-4 py-2 rounded-lg transition-all duration-300 backdrop-blur-sm" do %>
+                <i class="fas fa-edit mr-2"></i>Modifier
+                <% end %>
+
+            </div>
+        </div>
     </div>
-  </div>
+
+    <!-- Photo de profil et nom -->
+    <div class="container mx-auto px-4 -mt-20 relative z-20">
+        <div class="bg-white rounded-2xl card-shadow p-8 mb-8 hover-scale">
+            <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
+                <!-- Photo de profil -->
+                <div class="relative">
+                    <div class="w-32 h-32 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-lg">
+                        <%= @profile.user.first_name&.first || 'E' %>
+                    </div>
+                    <div class="absolute -bottom-2 -right-2 bg-green-500 w-8 h-8 rounded-full border-4 border-white flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-sm"></i>
+                    </div>
+                </div>
+
+                <!-- Informations principales -->
+                <div class="flex-1 text-center md:text-left">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">
+                        <%= @profile.user.first_name %> <%= @profile.user.last_name %>
+                    </h2>
+                    <p class="text-xl text-gray-600 mb-4">
+                        <%= @profile.field_of_study || "Domaine d'étude" %>
+                    </p>
+                    <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                            <%= @profile.current_level || "Niveau actuel" %>
+                        </span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
+                            <%= @profile.nationality || "Nationalité" %>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Statistiques -->
+                <div class="flex space-x-8">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-gray-800">4.2</div>
+                        <div class="text-sm text-gray-600">Moyenne</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-gray-800">12</div>
+                        <div class="text-sm text-gray-600">Projets</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grille d'informations -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+            <!-- Informations personnelles -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-2xl card-shadow p-6 hover-scale">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-user-circle text-blue-500 mr-3"></i>
+                        Informations personnelles
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-birthday-cake text-pink-500 w-5"></i>
+                                <div>
+                                    <p class="text-sm text-gray-600">Date de naissance</p>
+                                    <p class="font-semibold text-gray-800">
+                                        <%= @profile.birth_date&.strftime("%d/%m/%Y") || "Non renseigné" %>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-globe text-green-500 w-5"></i>
+                                <div>
+                                    <p class="text-sm text-gray-600">Nationalité</p>
+                                    <p class="font-semibold text-gray-800">
+                                        <%= @profile.nationality || "Non renseigné" %>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-envelope text-orange-500 w-5"></i>
+                                <div>
+                                    <p class="text-sm text-gray-600">Email</p>
+                                    <p class="font-semibold text-gray-800">
+                                        <%= @profile.user.email %>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-map-marker-alt text-red-500 w-5"></i>
+                                <div>
+                                    <p class="text-sm text-gray-600">Adresse</p>
+                                    <p class="font-semibold text-gray-800">
+                                        <%= @profile.address || "Non renseigné" %>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-city text-purple-500 w-5"></i>
+                                <div>
+                                    <p class="text-sm text-gray-600">Ville</p>
+                                    <p class="font-semibold text-gray-800">
+                                        <%= @profile.city || "Non renseigné" %>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-flag text-blue-500 w-5"></i>
+                                <div>
+                                    <p class="text-sm text-gray-600">Pays</p>
+                                    <p class="font-semibold text-gray-800">
+                                        <%= @profile.country || "Non renseigné" %>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Informations académiques -->
+            <div>
+                <div class="bg-white rounded-2xl card-shadow p-6 hover-scale mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
+                        <i class="fas fa-graduation-cap text-purple-500 mr-3"></i>
+                        Parcours académique
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <p class="text-sm text-gray-600">Institution actuelle</p>
+                            <p class="font-semibold text-gray-800">
+                                <%= @profile.current_institution || "Non renseigné" %>
+                            </p>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <p class="text-sm text-gray-600">Niveau d'étude</p>
+                            <p class="font-semibold text-gray-800">
+                                <%= @profile.current_level || "Non renseigné" %>
+                            </p>
+                        </div>
+                        <div class="border-l-4 border-orange-500 pl-4">
+                            <p class="text-sm text-gray-600">Domaine d'étude</p>
+                            <p class="font-semibold text-gray-800">
+                                <%= @profile.field_of_study || "Non renseigné" %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions rapides -->
+                <div class="bg-white rounded-2xl card-shadow p-6 hover-scale">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Actions rapides</h3>
+                    <div class="space-y-3">
+                        <a href="/profiles/<%= @profile.id %>/edit" class="flex items-center space-x-3 p-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors">
+                            <i class="fas fa-edit text-blue-500"></i>
+                            <span class="text-blue-700 font-medium">Modifier le profil</span>
+                        </a>
+                        <a href="#" class="flex items-center space-x-3 p-3 bg-green-50 hover:bg-green-100 rounded-lg transition-colors">
+                            <i class="fas fa-download text-green-500"></i>
+                            <span class="text-green-700 font-medium">Télécharger CV</span>
+                        </a>
+                        <a href="#" class="flex items-center space-x-3 p-3 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors">
+                            <i class="fas fa-share text-purple-500"></i>
+                            <span class="text-purple-700 font-medium">Partager profil</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Biographie -->
+        <% if @profile.bio.present? %>
+        <div class="bg-white rounded-2xl card-shadow p-6 mb-8 hover-scale">
+            <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                <i class="fas fa-quote-left text-indigo-500 mr-3"></i>
+                À propos de moi
+            </h3>
+            <div class="prose prose-lg max-w-none">
+                <p class="text-gray-700 leading-relaxed">
+                    <%= simple_format(@profile.bio) %>
+                </p>
+            </div>
+        </div>
+        <% end %>
+
+        <!-- Footer -->
+        <div class="text-center py-8">
+            <p class="text-gray-500">
+                Profil créé le <%= @profile.created_at&.strftime("%d/%m/%Y") || "Date inconnue" %>
+            </p>
+        </div>
+    </div>
+
 </section>
