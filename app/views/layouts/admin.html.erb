@@ -56,29 +56,44 @@
         </main>
     </div>
 
-    <!-- JavaScript pour les dropdowns -->
+    <!-- JavaScript pour les dropdowns - Compatible avec Turbo -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        function initializeSidebarDropdowns() {
             const toggles = document.querySelectorAll('[data-collapse-toggle]');
 
             toggles.forEach(toggle => {
-                toggle.addEventListener('click', function() {
-                    const targetId = this.getAttribute('data-collapse-toggle');
-                    const target = document.getElementById(targetId);
-                    const arrow = this.querySelector('.menu-arrow i');
-
-                    if (target.classList.contains('hidden')) {
-                        target.classList.remove('hidden');
-                        arrow.classList.remove('uil-angle-down');
-                        arrow.classList.add('uil-angle-up');
-                    } else {
-                        target.classList.add('hidden');
-                        arrow.classList.remove('uil-angle-up');
-                        arrow.classList.add('uil-angle-down');
-                    }
-                });
+                // Supprimer les anciens event listeners pour éviter les doublons
+                toggle.removeEventListener('click', handleDropdownClick);
+                toggle.addEventListener('click', handleDropdownClick);
             });
-        });
+        }
+
+        function handleDropdownClick(event) {
+            const targetId = this.getAttribute('data-collapse-toggle');
+            const target = document.getElementById(targetId);
+            const arrow = this.querySelector('.menu-arrow i');
+
+            if (target && arrow) {
+                if (target.classList.contains('hidden')) {
+                    target.classList.remove('hidden');
+                    arrow.classList.remove('uil-angle-down');
+                    arrow.classList.add('uil-angle-up');
+                } else {
+                    target.classList.add('hidden');
+                    arrow.classList.remove('uil-angle-up');
+                    arrow.classList.add('uil-angle-down');
+                }
+            }
+        }
+
+        // Initialiser au chargement initial
+        document.addEventListener('DOMContentLoaded', initializeSidebarDropdowns);
+        
+        // Réinitialiser après chaque navigation Turbo
+        document.addEventListener('turbo:load', initializeSidebarDropdowns);
+        
+        // Pour les anciennes versions de Turbo (si vous utilisez turbolinks)
+        document.addEventListener('turbolinks:load', initializeSidebarDropdowns);
     </script>
 </body>
 
