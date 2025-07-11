@@ -150,6 +150,9 @@
             </div>
 
             <!-- Sidebar -->
+            <% if @scholarship.application_deadline.present? %>
+            <% days_left = (@scholarship.application_deadline - Date.current).to_i %>
+            <%if days_left > 0%>
             <div class="space-y-6">
                 <!-- CTA Postuler -->
                 <div class="bg-gradient-to-br from-primary to-secondary rounded-2xl p-6 text-black sticky top-6">
@@ -172,6 +175,11 @@
                         Candidature 100% sécurisée
                     </p>
                 </div>
+                <%else%>
+                <p class="font-semibold">Candidatures fermées</p>
+                <%end%>
+                <%end%>
+                
 
                 <!-- Informations clés -->
                 <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
@@ -269,25 +277,9 @@
                     </div>
                 </div>
 
-                <!-- Actions rapides -->
-                <div class="bg-white rounded-2xl shadow-lg p-6 card-hover">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4">Actions rapides</h3>
-                    <div class="space-y-3">
-                        <button class="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-gray-700">
-                            <i class="fas fa-bookmark mr-2"></i>
-                            Sauvegarder
-                        </button>
-                        <button class="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-gray-700">
-                            <i class="fas fa-share mr-2"></i>
-                            Partager
-                        </button>
-                        <button class="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-gray-700">
-                            <i class="fas fa-print mr-2"></i>
-                            Imprimer
-                        </button>
-                    </div>
-                </div>
+                
             </div>
+          
         </div>
     </div>
 </section>
