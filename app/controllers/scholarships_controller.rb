@@ -13,5 +13,17 @@ class ScholarshipsController < ApplicationController
     def show
        @scholarship=Scholarship.find(params[:id])
     end
+
+    def send_matching_notifications
+    @scholarship = Scholarship.find(params[:id])
+    NotificationMailerJob.perform_later(@scholarship.id, 'matching_scholarship')
+    redirect_to @scholarship, notice: 'Notifications envoyées aux étudiants correspondants.'
+  end
+  
+  def send_deadline_reminders
+    @scholarship = Scholarship.find(params[:id])
+    NotificationMailerJob.perform_later(@scholarship.id, 'deadline_reminder')
+    redirect_to @scholarship, notice: 'Rappels de date limite envoyés.'
+  end
     
 end
