@@ -1,0 +1,21 @@
+Bonjour <%= @user_name %>,
+
+Une nouvelle bourse correspondant à votre domaine d'études est maintenant disponible !
+
+DÉTAILS DE LA BOURSE
+====================
+Titre: <%= @scholarship.title %>
+Domaine: <%= @scholarship.field_of_study %>
+Niveau: <%= @scholarship.level %>
+Pays: <%= @scholarship.country %>
+Pourcentage: <%= @scholarship.pourcentage %>%
+Institution: <%= @institution.name %>
+Date limite: <%= @scholarship.application_deadline.strftime('%d/%m/%Y') %>
+
+<% if @scholarship.description.present? %>
+Description: <%= @scholarship.description %>
+<% end %>
+
+Pour voir les détails complets et postuler, visitez : <%= scholarship_url(@scholarship) %>
+
+Vous recevez cet email car votre domaine d'études correspond à cette bourse.

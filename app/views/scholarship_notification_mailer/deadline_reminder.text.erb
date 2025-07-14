@@ -1,0 +1,15 @@
+Bonjour <%= @user_name %>,
+
+RAPPEL URGENT : Plus que <%= @days_remaining %> jour<%= @days_remaining > 1 ? 's' : '' %> pour postuler !
+
+DÉTAILS DE LA BOURSE
+====================
+Titre: <%= @scholarship.title %>
+Domaine: <%= @scholarship.field_of_study %>
+Niveau: <%= @scholarship.level %>
+Pourcentage: <%= @scholarship.pourcentage %>%
+Institution: <%= @institution.name %>
+Date limite: <%= @scholarship.application_deadline.strftime('%d/%m/%Y') %>
+
+Ne laissez pas passer cette opportunité !
+Postulez maintenant : <%= scholarship_url(@scholarship) %>
