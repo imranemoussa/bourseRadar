@@ -22,7 +22,7 @@ class Admin::InstitutionsController < ApplicationController
     @institution = Institution.create(institution_params)
     @institution.user.role = 'institution' if @institution.user.present?
     if @institution.save
-      redirect_to admin_institution_path(@institution), notice: "Institution créée avec succès."
+      redirect_to  admin_institutions_path, notice: "Institution créée avec succès."
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,17 +33,21 @@ class Admin::InstitutionsController < ApplicationController
   end
 
   def update
-    if @institution = Institution.update(institution_params)
-      redirect_to admin_institution_path(@institution), notice: "Institution mise à jour avec succès."
+    if @institution.update(institution_params)
+
+      redirect_to  admin_institutions_path, notice: "Institution mise à jour avec succès."
     else
       render :edit, status: :unprocessable_entity
     end
   end
-
-  def destroy
-    @institution.destroy
-    redirect_to admin_institutions_path, notice: "Institution supprimee avec succès."
-  end
+    def destroy
+        if  @institution.destroy
+        redirect_to admin_institutions_path, notice: "Institution supprimee avec succès."
+        else
+        redirect_to admin_institutions_path, notice: "Institution supprimee avec succès."
+        end
+      end
+  
 
   private
 
