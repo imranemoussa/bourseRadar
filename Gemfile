@@ -24,8 +24,7 @@ gem 'devise'
 gem 'devise-jwt'
 gem 'pg_search'
 
-gem 'sidekiq'
-gem 'redis', '~> 4.0'
+
 
 group :development do
   gem 'letter_opener'
